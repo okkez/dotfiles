@@ -1,0 +1,57 @@
+# -*- sh -*-
+bindkey "^?" backward-delete-char
+bindkey "[3~" backward-delete-char
+setopt ignoreeof
+
+export RUBYLIB="${RUBYLIB}":/usr/local/lib/site_ruby
+export PATH=~/.gems/bin:"${PATH}"
+#export PATH=~/jruby-1.0/bin:"${PATH}"
+export GEM_HOME=~/.gems
+export HREF_DATADIR=~/.href
+
+alias gosh="rlwrap gosh"
+alias g="goruby -rirb -e'IRB.start'"
+alias ec=emacsclient
+
+function svn() {
+  if [ $1 = "diff" ] ; then
+    command env LANG=C LC_ALL=C svn diff $2 $3 $4 $5 $6
+  else
+    command svn $*
+  fi
+}
+
+function say() {
+  echo "(SayText \"$*\")"| festival --pipe
+}
+
+function reload() {
+  source ~/.zshrc
+}
+
+completion_list () {
+  mkdir -p ~/.zsh/completion
+  if [ ! -f ~/.zsh/completion/$*[-1] ]; then
+    eval $*[1,-2] | sed -e 's/^/compadd /g' > ~/.zsh/completion/$*[-1]
+  fi
+
+  `cat ~/.zsh/completion/$*[-1]`
+}
+
+_cheat () {
+  completion_list 'cheat sheets | grep -v All' _cheat
+}
+
+compdef _cheat cheat
+
+_rake () {
+  if [ -f Rakefile ]; then
+    compadd `rake -T | awk "{print \\$2}" | xargs`
+  fi
+}
+
+compdef _rake rake
+
+## load private .zshrc configuration file
+#
+[ -f ~/dotfiles/zshrc.private ] && source ~/dotfiles/zshrc.private
