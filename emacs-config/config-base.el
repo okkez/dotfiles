@@ -15,13 +15,12 @@
 (auto-compression-mode t)
 ; xemacs の shell-mode で 日本語 EUC が使えるようにする
 (if (featurep 'xemacs)
-    (add-hook 'shell-mode-hook (function
-				(lambda () (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))))
-  )
+    (add-hook 'shell-mode-hook
+              (function
+               (lambda () (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)))))
 ; 日本語 grep
 (if (file-exists-p "/usr/bin/lgrep")
-    (setq grep-command "lgrep -n ")
-  )
+    (setq grep-command "lgrep -n "))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 漢字変換 (Anthy) の設定
@@ -40,6 +39,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'font-lock)
 (if (not (featurep 'xemacs))
-    (global-font-lock-mode t)
-  )
+    (global-font-lock-mode t))
 
+;; tab-width
+(setq default-tab-width 4)
+
+(setq-default indent-tabs-mode nil)
