@@ -29,6 +29,20 @@ function reload() {
   source ~/.zshrc
 }
 
+typeset -ga chpwd_functions
+typeset -ga preexec_functions
+function _set_rprompt_git() {
+  local git_branch
+  git_branch="${$(git symbolic-ref HEAD 2> /dev/null)#refs/heads/}"
+  if [ $? != '0' ]; then
+    RPROMPT=$DEFAULT_RPROMPT
+  else
+    RPROMPT="${DEFAULT_RPROMPT}:%{${fg[blue]}%}${git_branch}%{${reset_color}%}"
+  fi
+}
+chpwd_functions+=_set_rprompt_git
+preexec_functions+=_set_rprompt_git
+
 completion_list () {
   mkdir -p ~/.zsh/completion
   if [ ! -f ~/.zsh/completion/$*[-1] ]; then

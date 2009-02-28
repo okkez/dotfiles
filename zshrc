@@ -14,6 +14,7 @@ export LANG=ja_JP.UTF-8
 #
 autoload colors
 colors
+
 # case ${UID} in
 # 0)
 #     PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
@@ -49,6 +50,8 @@ case ${UID} in
           PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
 	;;
 esac
+
+DEFAULT_RPROMPT=$RPROMPT
  
 # auto change directory
 #
