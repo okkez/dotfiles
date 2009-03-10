@@ -45,3 +45,7 @@
 (setq default-tab-width 4)
 
 (setq-default indent-tabs-mode nil)
+
+;; stop bell
+;(setq visible-bell t)
+(setq ring-bell-function 'ignore)
