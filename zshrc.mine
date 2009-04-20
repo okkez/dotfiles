@@ -4,9 +4,10 @@ bindkey "[3~" backward-delete-char
 setopt ignoreeof
 
 export RUBYLIB="${RUBYLIB}":/usr/local/lib/site_ruby
-export PATH=~/.gems/bin:"${PATH}"
+export PATH=$HOME/bin:"${PATH}"
+#export PATH=~/.gems/bin:"${PATH}"
 #export PATH=~/jruby-1.0/bin:"${PATH}"
-export GEM_HOME=~/.gems
+#export GEM_HOME=~/.gems
 export HREF_DATADIR=~/.href
 
 alias gosh="rlwrap gosh"
