@@ -8,7 +8,7 @@
 Assume that the filename should be config-NAME.el."
   (load (concat my-emacs-config-dir "/config-" name ".el")))
 
-(defvar my-emacs-pre-config '("path"))
+(defvar my-emacs-pre-config '("path" "key"))
 (defvar my-emacs-misc-config
   '("anthy"
     "auto-install"
@@ -47,7 +47,7 @@ Assume that the filename should be config-NAME.el."
     ;"tdiary"
     ;"yatex"
     ))
-(defvar my-emacs-post-config '("misc" "key"))
+(defvar my-emacs-post-config '("misc"))
 (defvar my-emacs-config
   (append nil my-emacs-pre-config my-emacs-misc-config my-emacs-post-config))
 
