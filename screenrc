@@ -2,6 +2,9 @@
 # Example of a user's .screenrc file
 #
 
+# encoding
+defencoding utf8
+
 # prefix key
 escape ^z^z
 

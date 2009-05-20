@@ -7,6 +7,8 @@
 #
 export LANG=ja_JP.UTF-8
 
+# 8bit settings
+setopt print_eightbit
 
 ## Default shell configuration
 #
