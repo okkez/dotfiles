@@ -4,6 +4,6 @@
 ; git submodule init
 ; git submodule update
 (setq load-path (cons "~/.elisp/rinari" load-path))
-(setq rinari-minor-mode-prefixes (list "'"))
+(setq rinari-minor-mode-prefixes (list "r"))
 (require 'rinari)
 

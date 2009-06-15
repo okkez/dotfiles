@@ -1,6 +1,9 @@
 ;; ruby-mode でもEnterでインデントする
 (add-hook 'ruby-mode-hook
-          '(lambda () (setq default-abbrev-mode nil)
+          '(lambda ()
+             (require 'ruby-electric)
+             (ruby-electric-mode t)
+             (setq default-abbrev-mode nil)
              (define-key ruby-mode-map "\C-m" 'ruby-reindent-then-newline-and-indent)
              (define-key ruby-mode-map "\C-j" 'newline)))
 ;; ruby-mode で Develock の桁数変更
