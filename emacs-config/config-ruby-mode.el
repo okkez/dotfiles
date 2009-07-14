@@ -9,6 +9,9 @@
 ;; ruby-mode で Develock の桁数変更
 (plist-put develock-max-column-plist 'ruby-mode 100)
 
+;; Rakefile も ruby-mode になるように
+(setq auto-mode-alist  (cons '("Rakefile$"   . ruby-mode) auto-mode-alist))
+
 ;; magic comment
 ;; Ruby1.9から、ファイルの文字コードを明記する必要がある
 ;; http://d.hatena.ne.jp/rubikitch/20080307/magiccomment
