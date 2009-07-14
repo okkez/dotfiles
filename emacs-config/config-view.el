@@ -4,8 +4,8 @@
       `( ;; vi-like
         ("h" . backward-word)
         ("l" . forward-word)
-        ("j" . next-window-line)
-        ("k" . previous-window-line)
+        ("j" . next-line)
+        ("k" . previous-line)
         (";" . gene-word)
         ("b" . scroll-down)
         (" " . scroll-up)
