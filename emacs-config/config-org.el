@@ -11,8 +11,8 @@
 ;(setq org-agenda-files (list org-default-notes-file
 ;                             (format-time-string "~/memo/holidays.%Y.org")))
 (setq org-remember-templates
-      '(("Todo" ?t "** TODO %?\n   %i\n   %a\n   %t" nil "Inbox")
-        ("Bug" ?b "** TODO %?   :bug:\n   %i\n   %a\n   %t" nil "Inbox")
+      '(("Todo" ?t "*** TODO %?\n   %i\n   %a\n   %t" nil "Inbox")
+        ("Bug" ?b "*** TODO %?   :bug:\n   %i\n   %a\n   %t" nil "Inbox")
         ("Idea" ?i "** %?\n   %i\n   %a\n   %t" nil "New Ideas")
         ))
 
