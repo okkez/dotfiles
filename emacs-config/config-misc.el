@@ -14,6 +14,10 @@
 ;(require 'un-define)
 ;(un-define-debian)
 
+;; default font
+(set-default-font "VL ゴシック" 10)
+(set-default-coding-systems 'utf-8-unix)
+
 ;; ツールバーを消す
 (tool-bar-mode nil)
 
