@@ -18,11 +18,15 @@
 (set-default-font "VL ゴシック" 10)
 (set-default-coding-systems 'utf-8-unix)
 
+;; 長い行を折り返さない
+(setq-default truncate-lines t)
+
 ;; ツールバーを消す
 (tool-bar-mode nil)
 
 ;; 行番号
 (line-number-mode t)
+(global-linum-mode t)
 ;; 桁番号
 (column-number-mode t)
 (set-scroll-bar-mode 'right)
