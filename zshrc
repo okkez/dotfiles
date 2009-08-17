@@ -108,6 +108,8 @@ setopt hist_ignore_dups     # ignore duplication command history list
 setopt hist_reduce_blanks   # reduce blanks
 setopt hist_ignore_space    # ignore the command starts with blanks
 setopt share_history        # share command history data
+setopt hist_save_no_dups
+setopt hist_find_no_dups
 
 
 ## Completion configuration
@@ -139,17 +141,17 @@ alias j="jobs -l"
 
 case "${OSTYPE}" in
 freebsd*|darwin*)
-    alias ls="ls -G -w"
+    alias ls=" ls -G -w"
     ;;
 linux*)
-    alias ls="ls --color"
+    alias ls=" ls --color"
     ;;
 esac
 
-alias l="ls"
-alias la="ls -a"
-alias lf="ls -F"
-alias ll="ls -alh"
+alias l=" ls"
+alias la=" ls -a"
+alias lf=" ls -F"
+alias ll=" ls -alh"
 
 alias du="du -h"
 alias df="df -h"
