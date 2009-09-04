@@ -148,7 +148,7 @@ bind ^] paste [.]
 # caption always "%3n %t%? @%u%?%? [%h]%?%=%c"
 # hardstatus alwaysignore
 # hardstatus alwayslastline "%Lw"
-hardstatus alwayslastline "[screen %n%?: %t%?] %h %Y-%m-%d %c"
+hardstatus alwayslastline "[screen %n%?: %t%?] %h %Y-%m-%d %c | %l"
 
 # bind = resize =
 # bind + resize +1
