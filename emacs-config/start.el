@@ -11,6 +11,7 @@ Assume that the filename should be config-NAME.el."
 (defvar my-emacs-pre-config '("path" "key"))
 (defvar my-emacs-misc-config
   '("anthy"
+    "install-elisp"
     "auto-install"
     "anything"
     ;"auto-insert-tkld"
