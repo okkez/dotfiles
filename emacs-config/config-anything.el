@@ -52,3 +52,7 @@
         ))
 
 (define-key global-map (kbd "C-z l") 'anything)
+
+(require 'ac-anything)
+(define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-anything)
+

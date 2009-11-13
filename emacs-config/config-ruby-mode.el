@@ -12,6 +12,12 @@
 ;; Rakefile も ruby-mode になるように
 (setq auto-mode-alist  (cons '("Rakefile$"   . ruby-mode) auto-mode-alist))
 
+;; ruby-electric-mode 優先順位を最下位にする。[ruby-list:45511]
+(let ((rel (assq 'ruby-electric-mode minor-mode-map-alist)))
+  (setq minor-mode-map-alist (append
+                              (delete rel minor-mode-map-alist)
+                              (list rel))))
+
 ;; magic comment
 ;; Ruby1.9から、ファイルの文字コードを明記する必要がある
 ;; http://d.hatena.ne.jp/rubikitch/20080307/magiccomment
