@@ -1,4 +1,4 @@
-(setq load-path (cons "~/.elisp/auto-complete" load-path))
+(add-to-list 'load-path "~/.elisp/auto-complete")
 (require 'auto-complete)
 (require 'auto-complete-config)
 (global-auto-complete-mode t)

@@ -1,5 +1,5 @@
 ;; color-theme
-(setq load-path (cons "~/.elisp/color-theme-6.6.0" load-path))
+(add-to-list 'load-path "~/.elisp/color-theme-6.6.0")
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-dark-laptop)

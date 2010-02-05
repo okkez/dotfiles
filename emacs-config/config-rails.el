@@ -1,5 +1,5 @@
 ;; rails.el
-(setq load-path (cons "~/.elisp/emacs-rails.HEAD" load-path))
+(add-to-list 'load-path "~/.elisp/emacs-rails.HEAD")
 (defun try-complete-abbrev (old)
   (if (expand-abbrev) t nil))
 

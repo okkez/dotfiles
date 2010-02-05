@@ -1,4 +1,4 @@
 ;; install-elisp
 (require 'install-elisp)
-(setq load-path (cons "~/.elisp/repos" load-path))
+(add-to-list 'load-path "~/.elisp/repos")
 (setq install-elisp-repository-directory "~/.elisp/repos/")
