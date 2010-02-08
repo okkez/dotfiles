@@ -5,4 +5,4 @@
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory "~/.elisp/yasnippets-rails/rails-snippets")
-
+(yas/load-directory "~/.elisp/yasnippet/snippets")
