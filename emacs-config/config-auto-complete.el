@@ -16,4 +16,5 @@
 (setq ac-auto-start 4)
 ;(global-set-key "\M-i" 'ac-start)
 
+(add-to-list 'ac-modes 'rhtml-mode)
 
