@@ -11,6 +11,8 @@
                 ac-source-words-in-same-mode-buffers))
 (add-hook 'emacs-lisp-mode-hook
           (lambda () (add-to-list 'ac-sources 'ac-source-symbols t)))
+(ac-css-keywords-initialize)
+;(ac-rcodetools-initialize)
 ;; M-/ で補完開始
 ;(setq ac-auto-start nil)
 (setq ac-auto-start 4)
