@@ -93,3 +93,7 @@ If the link is in hidden text, expose it."
 
 ;; key-chord
 (key-chord-define-global "op" 'org-remember)
+
+;; ~/memo/agenda.org を開く
+(define-key global-map (kbd "C-z a")
+  '(lambda () (interactive) (find-file "~/memo/agenda.org")))
