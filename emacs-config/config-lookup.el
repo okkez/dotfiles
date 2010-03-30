@@ -24,11 +24,11 @@
 
 ;;; lookup 用 search-agents 定義
 (setq lookup-search-agents '(
-			     (ndeb "~/.dic/OALD_7")(ndspell)
-			     ;(ndeb "~/.dic/readers")(ndspell)
-			     ;(ndeb "~/.dic/EIJIRO77")(ndspell)
-			     ;(ndeb "~/.dic/ROGET")(ndspell)
-			     ;(ndeb "~/.dic/mypaedia")(ndspell)
-			     ;(ndtp "localhost")(ndspell)
-			     ))
+                             (ndeb "~/.dic/OALD_7")(ndspell)
+                             ;(ndeb "~/.dic/readers")(ndspell)
+                             ;(ndeb "~/.dic/EIJIRO77")(ndspell)
+                             ;(ndeb "~/.dic/ROGET")(ndspell)
+                             ;(ndeb "~/.dic/mypaedia")(ndspell)
+                             ;(ndtp "localhost")(ndspell)
+                             ))
 
