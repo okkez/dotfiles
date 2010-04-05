@@ -21,4 +21,5 @@
 ;(global-set-key "\M-i" 'ac-start)
 
 (add-to-list 'ac-modes 'rhtml-mode)
+(add-to-list 'ac-modes 'rd-mode)
 
