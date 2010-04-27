@@ -127,6 +127,9 @@
 ;       (executable-interpret (format "byte-compile %s" buffer-file-name))))
 ;(add-hook 'emacs-lisp-mode-hook 'auto-async-byte-compile)
 
+;; uniquify
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; emacsclient
 (server-start)
