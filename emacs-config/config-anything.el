@@ -1,5 +1,4 @@
-(require 'anything)
-(require 'anything-config)
+(require 'anything-startup)
 
 ;; candidates-file  plug-in
 (defun anything-compile-source--candidates-file (source)
@@ -31,27 +30,6 @@
     (requires-pattern . 5)
     (candidate-number-limit . 20)
     (type . file)))
-
-; (defvar anything-c-source-find-library
-;   '((name . "Elisp libraries")
-;     ;; これは全Emacs Lispファイル
-;     (candidates-file "/log/elisp.filelist" updating)
-;     (requires-pattern . 4)
-;     (type . file)
-;     (major-mode emacs-lisp-mode)))
-
-(setq anything-sources
-      '(anything-c-source-buffers+
-        anything-c-source-colors
-        anything-c-source-recentf
-        anything-c-source-man-pages
-        anything-c-source-emacs-commands
-        anything-c-source-emacs-functions
-        anything-c-source-files-in-current-dir
-        anything-c-source-home-directory
-        ))
-
-(define-key global-map (kbd "C-z l") 'anything)
 
 (require 'ac-anything)
 (define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-anything)
