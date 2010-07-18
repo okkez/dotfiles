@@ -223,4 +223,4 @@ esac
 
 ## load user .zshrc configuration file
 #
-[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+[ -f ~/dotfiles/zshrc.mine ] && source ~/dotfiles/zshrc.mine
