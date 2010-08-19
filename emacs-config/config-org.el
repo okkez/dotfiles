@@ -15,7 +15,9 @@
         ("Bug" ?b "** TODO %?   :bug:\n   %i\n   %a\n   %t" nil "Inbox")
         ("Idea" ?i "** %?\n   %i\n   %a\n   %t" nil "New Ideas")
         ))
-
+;; TODO の状態
+(setq org-todo-keywords '("TODO" "Wait" "DONE")
+      org-todo-interpretation 'sequence)
 ;; for code reading
 (defvar org-code-reading-software-name nil)
 ;; ~/memo/code-reading.org に記録する
