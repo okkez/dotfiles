@@ -41,14 +41,15 @@
   (define-key view-mode-map " " 'scroll-up))
 (add-hook 'view-mode-hook 'view-mode-hook0)
 
-;; ½ñ¤­¹ş¤ßÉÔÇ½¤Ê¥Õ¥¡¥¤¥ë¤Ïview-mode¤Ç³«¤¯¤è¤¦¤Ë
+;; æ›¸ãè¾¼ã¿ä¸èƒ½ãªãƒ•ã‚¡ã‚¤ãƒ«ã¯view-modeã§é–‹ãã‚ˆã†ã«
 (defadvice find-file
   (around find-file-switch-to-view-file (file &optional wild) activate)
   (if (and (not (file-writable-p file))
            (not (file-directory-p file)))
       (view-file file)
-    ad-do-it))
-;; ½ñ¤­¹ş¤ßÉÔÇ½¤Ê¾ì¹ç¤Ïview-mode¤òÈ´¤±¤Ê¤¤¤è¤¦¤Ë
+    ad-do-it)
+  (if (eq major-mode 'po-mode) view-mode))
+;; æ›¸ãè¾¼ã¿ä¸èƒ½ãªå ´åˆã¯view-modeã‚’æŠœã‘ãªã„ã‚ˆã†ã«
 (defvar view-mode-force-exit nil)
 (defmacro do-not-exit-view-mode-unless-writable-advice (f)
   `(defadvice ,f (around do-not-exit-view-mode-unless-writable activate)
