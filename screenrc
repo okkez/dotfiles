@@ -158,3 +158,15 @@ hardstatus alwayslastline "[screen %n%?: %t%?] %h %Y-%m-%d %c | %l"
 # defnonblock 1
 # blankerprg rain -d 100
 # idle 30 blanker
+
+##########
+#
+# logging
+#
+# ^z H toggle logging
+# ^z h hardcopy
+# ^z : hardcopy -h [filename]
+#
+hardcopydir "/home/kenji/screenlog"
+logfile "/home/kenji/screenlog/%Y%m%d-%n.log"
+deflog off
