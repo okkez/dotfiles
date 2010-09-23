@@ -72,3 +72,7 @@ compdef _rake rake
 ## load private .zshrc configuration file
 #
 [ -f ~/dotfiles/zshrc.private ] && source ~/dotfiles/zshrc.private
+
+## load rvm
+if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+
