@@ -36,7 +36,8 @@
  '(auto-compression-mode t nil (jka-compr))
  '(case-fold-search t)
 ; '(current-language-environment "Japanese")
- '(default-input-method "japanese-anthy")
+; '(default-input-method "japanese-anthy")
+ '(default-input-method "japanese-skk")
  '(global-font-lock-mode t nil (font-lock))
  '(show-paren-mode t nil (paren)))
 (custom-set-faces
