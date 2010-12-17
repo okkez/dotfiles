@@ -53,6 +53,7 @@ case ${UID} in
 	;;
 esac
 
+DEFAULT_PROMPT=$PROMPT
 DEFAULT_RPROMPT=$RPROMPT
  
 # auto change directory
