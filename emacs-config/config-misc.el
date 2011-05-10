@@ -133,6 +133,8 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; カーソル位置の数字をインクリメント
+;; http://www.emacswiki.org/emacs/IncrementNumber
+;; http://d.hatena.ne.jp/gongoZ/20091222/1261454818
 (defun increment-string-as-number (number)
   "Replace progression string of the position of the cursor
 by string that added NUMBER.
