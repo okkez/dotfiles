@@ -32,8 +32,8 @@
 ;(toggle-input-method nil)
 ;; UIM の設定
 ;(require 'uim)
-(require 'uim-leim)
-(setq default-input-method "japanese-anthy-uim")
+;(require 'uim-leim)
+;(setq default-input-method "japanese-anthy-uim")
 ;(global-set-key "\C-\\" 'uim-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Xでのカラー表示
