@@ -40,7 +40,7 @@ function _set_rprompt_git() {
   if [ $? != '0' ]; then
     RPROMPT=$DEFAULT_RPROMPT
   else
-    RPROMPT="${DEFAULT_RPROMPT}:%{${fg[blue]}%}${git_branch}%{${reset_color}%}"
+    RPROMPT="${DEFAULT_RPROMPT}:%{${fg[green]}%}${git_branch}%{${reset_color}%}"
   fi
 }
 chpwd_functions+=_set_rprompt_git
@@ -87,3 +87,5 @@ compdef _rake rake
 ## load rvm
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 
+## load dir_colors
+if [[ -s $HOME/dotfiles/dir_colors ]] ; then eval $(dircolors $HOME/dotfiles/dir_colors) ; fi
