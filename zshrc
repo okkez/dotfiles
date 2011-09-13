@@ -84,6 +84,10 @@ setopt nolistbeep
 #
 setopt numeric_glob_sort
 
+# delete rprompt after exec command
+#
+setopt transient_rprompt
+
 ## Keybind configuration
 #
 # emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes
