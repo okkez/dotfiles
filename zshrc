@@ -80,6 +80,9 @@ setopt noautoremoveslash
 #
 setopt nolistbeep
 
+# numerical sort
+#
+setopt numeric_glob_sort
 
 ## Keybind configuration
 #
