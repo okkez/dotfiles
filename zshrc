@@ -141,12 +141,14 @@ alias where="command -v"
 alias j="jobs -l"
 
 case "${OSTYPE}" in
-freebsd*|darwin*)
-    alias ls=" ls -G -w"
-    ;;
-linux*)
-    alias ls=" ls --color"
-    ;;
+    freebsd*|darwin*)
+        alias ls=" ls -G -w"
+        ;;
+    linux*)
+        alias ls=" ls --color"
+        ;;
+    solaris*)
+        alias ls=" gls --color"
 esac
 
 alias l=" ls"
