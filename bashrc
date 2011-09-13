@@ -210,3 +210,4 @@ export PATH=~/.gems/bin:"${PATH}"
 export GEM_HOME=~/.gems
 export HREF_DATADIR=~/.href
 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
