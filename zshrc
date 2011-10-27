@@ -116,6 +116,7 @@ setopt hist_ignore_dups     # ignore duplication command history list
 setopt hist_reduce_blanks   # reduce blanks
 setopt hist_ignore_space    # ignore the command starts with blanks
 setopt share_history        # share command history data
+setopt extended_history     # save timestamp and elapsed time to history file
 setopt hist_save_no_dups
 setopt hist_find_no_dups
 
