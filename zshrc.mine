@@ -32,19 +32,22 @@ function reload() {
   source ~/.zshrc
 }
 
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' formats '(%s)-[%b]'
+zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+
 typeset -ga chpwd_functions
 typeset -ga preexec_functions
-function _set_rprompt_git() {
-  local git_branch
-  git_branch="${$(git symbolic-ref HEAD 2> /dev/null)#refs/heads/}"
-  if [ $? != '0' ]; then
-    RPROMPT=$DEFAULT_RPROMPT
+function _set_rprompt_vcs() {
+  LANG=C vcs_info >&/dev/null
+  if [ -n "${vcs_info_msg_0_}" ]; then
+    RPROMPT="${DEFAULT_RPROMPT}:%{${fg[green]}%}${vcs_info_msg_0_}%{${reset_color}%}"
   else
-    RPROMPT="${DEFAULT_RPROMPT}:%{${fg[green]}%}${git_branch}%{${reset_color}%}"
+    RPROMPT=$DEFAULT_RPROMPT
   fi
 }
-chpwd_functions+=_set_rprompt_git
-preexec_functions+=_set_rprompt_git
+chpwd_functions+=_set_rprompt_vcs
+preexec_functions+=_set_rprompt_vcs
 
 function _set_prompt_ruby() {
     local ruby_version
