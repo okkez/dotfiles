@@ -109,8 +109,8 @@ bindkey "\\en" history-beginning-search-forward-end
 ## Command history configuration
 #
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=10000000
+SAVEHIST=10000000
 setopt hist_no_store        # ignore history command
 setopt hist_ignore_dups     # ignore duplication command history list
 setopt hist_reduce_blanks   # reduce blanks
