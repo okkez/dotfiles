@@ -14,6 +14,8 @@
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 ;; Gemfile も ruby-mode になるように
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+;; *.gemspec も ruby-mode になるように
+(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
 
 ;; ruby-electric-mode 優先順位を最下位にする。[ruby-list:45511]
 (let ((rel (assq 'ruby-electric-mode minor-mode-map-alist)))
