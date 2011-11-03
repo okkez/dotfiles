@@ -65,7 +65,7 @@ Assume that the filename should be config-NAME.el."
   (append nil my-emacs-pre-config my-emacs-misc-config my-emacs-post-config))
 
 (mapcar 'my-emacs-load-config my-emacs-config)
-
+(el-get 'sync my-el-get-packages)
 
 ;(setq Info-directory-list '( "~/share/info" "/usr/local/share/info" 
 ;                             "/sw/share/info" "/usr/share/info"))
