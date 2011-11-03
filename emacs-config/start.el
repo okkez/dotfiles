@@ -10,7 +10,8 @@ Assume that the filename should be config-NAME.el."
 
 (defvar my-emacs-pre-config '("path" "key"))
 (defvar my-emacs-misc-config
-  '("anthy"
+  '("el-get"
+    ;"anthy"
     "install-elisp"
     "auto-install"
     "auto-complete"
