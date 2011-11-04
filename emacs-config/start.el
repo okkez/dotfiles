@@ -8,10 +8,9 @@
 Assume that the filename should be config-NAME.el."
   (load (concat my-emacs-config-dir "/config-" name ".el")))
 
-(defvar my-emacs-pre-config '("path" "key"))
+(defvar my-emacs-pre-config '("path" "key" "el-get"))
 (defvar my-emacs-misc-config
-  '("el-get"
-    ;"anthy"
+  '(;"anthy"
     "install-elisp"
     "auto-install"
     "auto-complete"
@@ -65,7 +64,6 @@ Assume that the filename should be config-NAME.el."
   (append nil my-emacs-pre-config my-emacs-misc-config my-emacs-post-config))
 
 (mapcar 'my-emacs-load-config my-emacs-config)
-(el-get 'sync my-el-get-packages)
 
 ;(setq Info-directory-list '( "~/share/info" "/usr/local/share/info" 
 ;                             "/sw/share/info" "/usr/share/info"))
