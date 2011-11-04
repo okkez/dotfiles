@@ -1,4 +1,3 @@
-(add-to-list 'my-el-get-packages 'ruby-electric)
 ;; ruby-mode でもEnterでインデントする
 (add-hook 'ruby-mode-hook
           '(lambda ()

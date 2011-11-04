@@ -1,5 +1,5 @@
-(require 'anything-startup)
-(define-key anything-command-map (kbd "C-x C-f") 'anything-filelist+)
+;(require 'anything-startup)
+;(define-key anything-command-map (kbd "C-x C-f") 'anything-filelist+)
 
 ;; candidates-file  plug-in
 (defun anything-compile-source--candidates-file (source)

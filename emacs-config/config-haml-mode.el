@@ -1,7 +1,7 @@
 ;; haml-mode
 ;; git://github.com/nex3/haml.git
-(add-to-list 'load-path "~/.elisp/haml-mode")
-(add-to-list 'load-path "~/.elisp/sass-mode")
+(add-to-list 'load-path "~/.emacs.d/haml-mode")
+(add-to-list 'load-path "~/.emacs.d/sass-mode")
 (require 'haml-mode)
 (require 'sass-mode)
 
