@@ -1,8 +1,9 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/anything/contrib")
 (require 'anything-startup)
 ;(define-key anything-command-map (kbd "C-x C-f") 'anything-filelist+)
+(define-key global-map (kbd "C-;") 'anything)
 (define-key global-map (kbd "M-x") 'anything-M-x)
-(define-key global-map (kbd "C-x C-f") 'anything-filelist+)
+;(define-key global-map (kbd "C-x C-f") 'anything-filelist+)
 (define-key global-map (kbd "C-x b") 'anything-filelist+)
 
 ;; candidates-file  plug-in
