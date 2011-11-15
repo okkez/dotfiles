@@ -1,5 +1,8 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/anything/contrib")
 (require 'anything-startup)
+;; anything 用 prefix key の設定 "<f5> a" は押しにくい
+(custom-set-variables
+ '(anything-command-map-prefix-key "\C-z"))
 ;(define-key anything-command-map (kbd "C-x C-f") 'anything-filelist+)
 (define-key global-map (kbd "C-;") 'anything)
 (define-key global-map (kbd "M-x") 'anything-M-x)
