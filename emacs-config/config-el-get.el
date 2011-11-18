@@ -4,11 +4,7 @@
 ;; システムのレシピを上書きできる
 ;; システムに入ってないレシピも記述する
 (setq el-get-sources
-      '((:name ruby-electric
-               :description "Electric commands editing for ruby files"
-               :type elpa
-               :post-init nil)
-        (:name rinari
+      '((:name rinari
                :description "Rinari Is Not A Rails IDE"
                :type git
                :url "https://github.com/eschulte/rinari.git"
