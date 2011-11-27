@@ -8,3 +8,6 @@
 ;   (c-set-style "gnu") ;デフォルトの設定
 ; )
 ;(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(require 'gtags)
+(add-hook 'c-mode-hook
+          (lambda () (gtags-mode 1)))
