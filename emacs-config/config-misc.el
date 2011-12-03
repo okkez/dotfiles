@@ -72,6 +72,10 @@
 (setq user-full-name "okkez")
 (setq user-mail-address "okkez000@gmail.com")
 
+;; backup files
+(setq backup-directory-alist
+      '(("/Dropbox/*.*" . "~/.emacs.d/backup/")
+        ))
 
 ;; grep-edit
 ;; http://d.hatena.ne.jp/rubikitch/20081025/1224869598
