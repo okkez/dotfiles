@@ -61,6 +61,14 @@
                :post-init (lambda ()
                             (add-to-list 'auto-mode-alist
                                          '("\\.scss$" . sass-mode))))
+        (:name grep-edit
+               :description "Edit grep result"
+               :type http
+               :url "http://www.bookshelf.jp/elc/grep-edit.el")
+        (:name japanese-holidays
+               :description "Japanese Holidays"
+               :type http
+               :url "http://www.meadowy.org/meadow/netinstall/export/799/branches/3.00/pkginfo/japanese-holidays/japanese-holidays.el")
         ))
 
 ;; 自分用パッケージリストの初期化
@@ -72,9 +80,13 @@
                 my-emacs-misc-config))
 
 ;; 設定ファイル名とレシピ名が一致しないものは自分で追加
-(add-to-list 'my-el-get-packages 'ruby-electric)
-(add-to-list 'my-el-get-packages 'sass-mode)
-(add-to-list 'my-el-get-packages 'yasnippets-rails)
+(mapcar '(lambda (elem)
+           (add-to-list 'my-el-get-packages elem))
+        '(ruby-electric
+          sass-mode
+          yasnippets-rails
+          japanese-holidays
+          grep-edit))
 
 (el-get 'sync my-el-get-packages)
 
