@@ -64,10 +64,6 @@
 
 (put 'narrow-to-region 'disabled nil)
 
-
-;; css-mode
-(setq css-indent-offset 2)
-
 ;; for ChangeLog mode
 (setq user-full-name "okkez")
 (setq user-mail-address "okkez000@gmail.com")
