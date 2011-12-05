@@ -1,6 +1,26 @@
 ;; el-get は deb で入れるので自動インストールしない
 (require 'el-get)
 
+;; el-get-list-packages で f でレシピを開く
+(defun el-get-current-recipe ()
+  "get recipe name of current line"
+  (save-excursion
+    (beginning-of-line)
+    (buffer-substring
+     (progn (skip-chars-forward " \t") (point))
+     (progn (skip-chars-forward "^ \t") (point)))))
+
+(defun el-get-find-recipe-at-line ()
+  "find recipe of current line"
+  (interactive)
+  (let ((package (el-get-current-recipe)))
+    (el-get-find-recipe-file package)))
+
+(add-hook
+ 'el-get-package-menu-mode-hook
+ '(lambda ()
+    (define-key el-get-package-menu-mode-map "f" 'el-get-find-recipe-at-line)))
+
 ;; システムのレシピを上書きできる
 ;; システムに入ってないレシピも記述する
 (setq el-get-sources
