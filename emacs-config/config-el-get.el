@@ -69,6 +69,10 @@
                :description "Japanese Holidays"
                :type http
                :url "http://www.meadowy.org/meadow/netinstall/export/799/branches/3.00/pkginfo/japanese-holidays/japanese-holidays.el")
+        (:name js2-mode
+               :description "A major mode for JavaScript"
+               :type git
+               :url "https://github.com/mooz/js2-mode.git")
         ))
 
 ;; 自分用パッケージリストの初期化
