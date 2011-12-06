@@ -126,6 +126,11 @@ setopt hist_find_no_dups
 fpath=(~/.zsh/functions/Completion ${fpath})
 autoload -U compinit
 compinit
+setopt complete_in_word
+
+## expansion
+#
+setopt magic_equal_subst    # expand filename after equal mark.
 
 
 ## zsh editor
