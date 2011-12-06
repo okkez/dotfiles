@@ -15,7 +15,7 @@
 ;(un-define-debian)
 
 ;; default font
-(set-default-font "モトヤLマルベリ3等幅" 10)
+(set-default-font "VL ゴシック" 10)
 (set-default-coding-systems 'utf-8-unix)
 
 ;; 長い行を折り返さない
