@@ -98,6 +98,12 @@
   (define-key js2-mode-map "\C-\M-q" 'my-indent-sexp)
   (if (featurep 'js2-highlight-vars)
       (js2-highlight-vars-mode))
+  ;; fix bug with my-indent-sexp
+  (setq c-current-comment-prefix
+        (if (listp c-comment-prefix-regexp)
+            (cdr-safe (or (assoc major-mode c-comment-prefix-regexp)
+                          (assoc 'other c-comment-prefix-regexp)))
+          c-comment-prefix-regexp))
   (message "My JS2 hook"))
 
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
