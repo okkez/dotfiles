@@ -110,7 +110,9 @@
           sass-mode
           yasnippets-rails
           japanese-holidays
-          grep-edit))
+          grep-edit
+          color-theme-solarized
+          ))
 
 (el-get 'sync my-el-get-packages)
 
