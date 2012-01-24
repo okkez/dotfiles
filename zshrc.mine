@@ -91,5 +91,7 @@ compdef _rake rake
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 
 ## load dir_colors
-if [[ -s $HOME/dotfiles/dir_colors ]] ; then eval $(dircolors $HOME/dotfiles/dir_colors) ; fi
+DIRCOLORS=$HOME/src/dircolors-solarized/dircolors.ansi-universal
+test -s $DIRCOLORS && eval $(dircolors $DIRCOLORS)
+
 fpath=(~/.zsh/Completion $fpath)
