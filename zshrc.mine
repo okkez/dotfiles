@@ -89,6 +89,7 @@ compdef _rake rake
 
 ## load rvm
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ## load dir_colors
 DIRCOLORS=$HOME/src/dircolors-solarized/dircolors.ansi-universal
