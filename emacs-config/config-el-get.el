@@ -93,6 +93,14 @@
                :description "A major mode for JavaScript"
                :type git
                :url "https://github.com/mooz/js2-mode.git")
+        (:name key-chord
+               :description "map pairs of simultaneously pressed keys to commands"
+               :type emacswiki
+               :features "key-chord")
+        (:name recentf-ext
+               :description "Recentf extension"
+               :type emacswiki
+               :features "recentf-ext")
         ))
 
 ;; 自分用パッケージリストの初期化
@@ -112,6 +120,8 @@
           japanese-holidays
           grep-edit
           color-theme-solarized
+          key-chord
+          recentf-ext
           ))
 
 (el-get 'sync my-el-get-packages)
