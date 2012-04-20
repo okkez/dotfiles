@@ -10,9 +10,7 @@ Assume that the filename should be config-NAME.el."
 
 (defvar my-emacs-pre-config '("path" "key" "el-get"))
 (defvar my-emacs-misc-config
-  '("install-elisp"
-    "auto-install"
-    "auto-complete"
+  '("auto-complete"
     "anything"
     ;"auto-insert-tkld"
     ;"auto-save"
@@ -48,7 +46,6 @@ Assume that the filename should be config-NAME.el."
     "ruby-mode"
     "rd-mode"
     "recentf"
-    ;"rails"
     "rinari"
     "rhtml-mode"
     "scheme"
