@@ -25,11 +25,6 @@
  '(lambda ()
     (define-key el-get-package-menu-mode-map "f" 'el-get-find-recipe-at-line)))
 
-;; システムのレシピを上書きできる
-;; システムに入ってないレシピも記述する
-;; (setq el-get-sources
-;;       '())
-
 ;; 自分用パッケージリストの初期化
 ;; 設定ファイル名とレシピ名が一致するものは自動でパッケージリストに追加
 (setq
