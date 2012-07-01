@@ -1,0 +1,6 @@
+(:name yasnippets-rails
+       :description "yasnippets-rails"
+       :depends yasnippet
+       :type git
+       :url "https://github.com/eschulte/yasnippets-rails.git"
+       :complile nil)

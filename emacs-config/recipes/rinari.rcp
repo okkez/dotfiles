@@ -1,0 +1,7 @@
+(:name rinari
+       :description "Rinari Is Not A Rails IDE"
+       :type git
+       :url "https://github.com/eschulte/rinari.git"
+       :load-path ("." "util" "util/jump")
+       :compile ("\\.el$" "util")
+       :features rinari)
