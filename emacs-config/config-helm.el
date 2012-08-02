@@ -51,6 +51,8 @@
                        helm-c-source-buffer-not-found)
                      "*my helm mini*"))
 
+(set-face-background 'helm-selection "#0a2832")
+
 (helm-mode 1)
 (custom-set-variables
  '(helm-command-map-prefix-key "\C-z"))
