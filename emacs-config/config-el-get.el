@@ -39,6 +39,7 @@
         '(ruby-electric
           sass-mode
           color-theme-solarized
+          recentf-ext
           ))
 
 (el-get 'sync my-el-get-packages)
