@@ -55,8 +55,10 @@
 
 (helm-mode 1)
 (custom-set-variables
- '(helm-command-map-prefix-key "\C-z"))
-;(define-key helm-command-map (kbd "C-x C-f") 'helm-filelist+)
+ '(helm-command-map-prefix-key "\C-z")
+ '(helm-ff-smart-completion nil)
+ '(helm-ff-auto-update-initial-value nil))
+
 (define-key global-map (kbd "C-;") 'my-helm-mini)
 (define-key global-map (kbd "M-x") 'helm-M-x)
 ;(define-key global-map (kbd "C-x C-f") 'helm-filelist+)
