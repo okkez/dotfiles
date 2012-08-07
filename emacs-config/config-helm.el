@@ -61,6 +61,7 @@
 
 (define-key global-map (kbd "C-;") 'my-helm-mini)
 (define-key global-map (kbd "M-x") 'helm-M-x)
-;(define-key global-map (kbd "C-x C-f") 'helm-filelist+)
+(define-key global-map (kbd "C-x C-f") 'helm-find-files)
 (define-key global-map (kbd "C-x b") 'my-helm-mini)
+(define-key helm-find-files-map (kbd "C-h") nil)
 
