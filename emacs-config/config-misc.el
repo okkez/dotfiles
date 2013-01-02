@@ -22,7 +22,7 @@
 (setq-default truncate-lines t)
 
 ;; ツールバーを消す
-(tool-bar-mode nil)
+(tool-bar-mode 0)
 
 ;; 行番号
 (line-number-mode t)
