@@ -41,6 +41,40 @@
 
 (define-key global-map (kbd "C-:") 'helm-git-project)
 
+(defun string-strip (string)
+  (replace-regexp-in-string "\\`[ \r\n]*\\|[ \r\n]*\\'" "" string))
+
+(defvar helm-c-source-git-commit-messages
+  '((name . "Git Commit Messages")
+    (candidates . helm-c-git-commit-messages-candidates)
+    (action . (("Insert" . (lambda (str) (insert str)))))
+    (migemo)
+    (multiline))
+  "Source for browsing and inserting commit messages.")
+
+(defun helm-c-git-commit-messages-candidates ()
+  (let* ((messages-string
+          (shell-command-to-string "\\git \\log -50 --format=\"%x00%B\""))
+         (raw-messages (string-to-list (split-string messages-string "\0")))
+         (messages (mapcar (lambda (raw-message)
+                             (string-strip raw-message))
+                           raw-messages)))
+    (remove-if (lambda (message)
+                 (string-equal message ""))
+               messages)))
+
+(defun helm-git-commit-messages ()
+  "`helm' for git commit messages."
+  (interactive)
+  (helm-other-buffer 'helm-c-source-git-commit-messages
+                         "*helm commit messages*"))
+
+(defun magit-enable-helm ()
+  ;; 過去のコミットメッセージを挿入
+  (define-key magit-log-edit-mode-map
+    (kbd "C-c i") 'helm-git-commit-messages))
+(add-hook 'magit-mode-hook
+          'magit-enable-helm)
 
 (defun my-helm-mini ()
   "My Helm mini source"
