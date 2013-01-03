@@ -1,5 +1,4 @@
 (:name grep-edit
        :description "Edit grep result"
-       :type http
-       :url "http://www.bookshelf.jp/elc/grep-edit.el"
-       :features grep-edit)
+       :type emacs-wiki
+       :features (grep-edit))
