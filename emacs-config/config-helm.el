@@ -46,28 +46,29 @@
 
 (defvar helm-c-source-git-commit-messages
   '((name . "Git Commit Messages")
-    (candidates . helm-c-git-commit-messages-candidates)
-    (action . (("Insert" . (lambda (str) (insert str)))))
+    (init . helm-c-git-commit-messages-init)
+    (action . (("Insert" . (lambda (candidate)
+                             (insert
+                              (replace-regexp-in-string "\0" "\n" candidate))))))
+    (real-to-display . helm-c-git-commit-messages-real-to-display)
     (migemo)
-    (multiline))
-  "Source for browsing and inserting commit messages.")
+    (multiline)
+    (candidates-in-buffer)))
 
-(defun helm-c-git-commit-messages-candidates ()
-  (let* ((messages-string
-          (shell-command-to-string "\\git \\log -50 --format=\"%x00%B\""))
-         (raw-messages (string-to-list (split-string messages-string "\0")))
-         (messages (mapcar (lambda (raw-message)
-                             (string-strip raw-message))
-                           raw-messages)))
-    (remove-if (lambda (message)
-                 (string-equal message ""))
-               messages)))
+(defun helm-c-git-commit-messages-init ()
+  (with-current-buffer (helm-candidate-buffer 'global)
+    (call-process-shell-command
+     "git log --format=\"%x00%B\" | tr '\\n\\000\' '\\000\\n' | sed -e '/^$/d' -e 's/\\x0\\+$//'"
+     nil (current-buffer))))
 
 (defun helm-git-commit-messages ()
   "`helm' for git commit messages."
   (interactive)
   (helm-other-buffer 'helm-c-source-git-commit-messages
                          "*helm commit messages*"))
+
+(defun helm-c-git-commit-messages-real-to-display (candidate)
+    (replace-regexp-in-string "\0" "\n" candidate))
 
 (defun magit-enable-helm ()
   ;; 過去のコミットメッセージを挿入
