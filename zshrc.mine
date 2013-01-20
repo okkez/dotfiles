@@ -9,6 +9,7 @@ export PATH=$HOME/bin:"${PATH}"
 #export PATH=~/jruby-1.0/bin:"${PATH}"
 #export GEM_HOME=~/.gems
 export HREF_DATADIR=~/.href
+export EDITOR=vim
 
 alias gosh="rlwrap gosh"
 alias g="goruby -rirb -e'IRB.start'"
