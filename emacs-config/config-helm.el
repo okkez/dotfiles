@@ -92,7 +92,8 @@
 (custom-set-variables
  '(helm-command-map-prefix-key "\C-z")
  '(helm-ff-smart-completion nil)
- '(helm-ff-auto-update-initial-value nil))
+ '(helm-ff-auto-update-initial-value nil)
+ '(helm-buffer-max-length 30))
 
 (define-key global-map (kbd "C-;") 'my-helm-mini)
 (define-key global-map (kbd "M-x") 'helm-M-x)
