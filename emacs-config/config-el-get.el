@@ -40,6 +40,7 @@
           sass-mode
           color-theme-solarized
           recentf-ext
+          helm-c-yasnippet
           ))
 
 (el-get 'sync my-el-get-packages)
