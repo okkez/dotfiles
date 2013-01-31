@@ -1,0 +1,16 @@
+# name: diary
+# key: diary
+# --
+* `(let ((system-time-locale "C")) (format-time-string "%Y-%m-%d(%a)" (current-time)))`
+
+** コミットについて
+
+*** 何か思ったコミット
+
+*** 読んだ割合
+
+** 予定
+
+*** $0
+
+** 予定にないけどやったこと

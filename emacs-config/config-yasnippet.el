@@ -6,5 +6,6 @@
 (yas--initialize)
 (yas-load-directory "~/.emacs.d/el-get/yasnippets-rails/rails-snippets")
 (yas-load-directory "~/.emacs.d/el-get/yasnippet/snippets")
+(yas-load-directory "~/dotfiles/emacs-config/snippets")
 (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 
