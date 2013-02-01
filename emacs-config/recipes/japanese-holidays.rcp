@@ -1,4 +1,0 @@
-(:name japanese-holidays
-       :description "Japanese Holidays"
-       :type http
-       :url "http://www.meadowy.org/meadow/netinstall/export/799/branches/3.00/pkginfo/japanese-holidays/japanese-holidays.el")
