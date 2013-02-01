@@ -39,6 +39,7 @@
         '(ruby-electric
           sass-mode
           color-theme-solarized
+          key-chord
           recentf-ext
           helm-c-yasnippet
           ))
