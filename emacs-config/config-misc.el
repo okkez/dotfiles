@@ -45,6 +45,9 @@
  ;; Your init file should contain only one such instance.
  )
 
+;; カーソルの点滅を止める
+(blink-cursor-mode 0)
+
 ;; emacs -> 他アプリへのコピペ
 (setq x-select-enable-clipboard t)
 (setq selection-coding-system 'compound-text-with-extensions)
