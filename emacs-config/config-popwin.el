@@ -18,3 +18,10 @@
         :position right
         :width 100)
       popwin:special-display-config)
+
+;; po-mode
+(push '("\\*.*\\.po\\*"
+        :regexp t
+        :position bottom
+        :height 20)
+      popwin:special-display-config)
