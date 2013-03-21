@@ -52,7 +52,7 @@ preexec_functions+=_set_rprompt_vcs
 
 function _set_prompt_ruby() {
     local ruby_version
-    ruby_version=$(rvm-prompt i v p g s 2> /dev/null)
+    ruby_version=$(rbenv version | cut -d" " -f1)
     if [ $? != '0' ]; then
         PROMPT=$DEFAULT_PROMPT
     else
@@ -88,9 +88,10 @@ compdef _rake rake
 #
 [ -f ~/dotfiles/zshrc.private ] && source ~/dotfiles/zshrc.private
 
-## load rvm
-if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# load rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+source $HOME/.rbenv/completions/rbenv.zsh
 
 ## load dir_colors
 DIRCOLORS=$HOME/src/dircolors-solarized/dircolors.ansi-universal
