@@ -26,4 +26,4 @@ then
   fi
 fi
 # ---- language-env end DON'T MODIFY THIS LINE!
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
