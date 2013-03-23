@@ -5,28 +5,22 @@ my dotfile.
 
 = How to use.
 
-Please execute below commands.
+Please execute a below command.
 
-  $ ln -s ~/dotfiles/zshrc ~/.zshrc
-  $ ln -s ~/dotfiles/zsh.mine ~/.zsh.mine
-  $ ln -s ~/dotfiles/bash_profile ~/.bash_profile
-  $ ln -s ~/dotfiles/bashrc ~/.bashrc
-  $ ln -s ~/dotfiles/emacs ~/.emacs
-  $ ln -s ~/dotfiles/screenrc ~/.screenrc
-  $ ln -s ~/dotfiles/irbrc ~/.irbrc
+  $ ./setup.sh
 
-  $ mkdir -p ~/.elisp/repos
+This script create symbolic links for dotfiles as followings:
 
-Please install below elisp.
-
-* rcodetools
-
-  $ sudo gem install rcodetools
-
-copy *.el from rcodetools' directory.
+  * $HOME/.zshrc
+  * $HOME/.bash_profile
+  * $HOME/.bashrc
+  * $HOME/.emacs
+  * $HOME/.screenrc
+  * $HOME/.irbrc
 
 = Debian Packages
 
+  * el-get
   * develock-el
   * global
   * migemo
