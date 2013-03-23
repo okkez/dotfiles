@@ -3,6 +3,7 @@
 files="
 zshrc
 bash_profile
+bashrc
 emacs
 screenrc
 irbrc
