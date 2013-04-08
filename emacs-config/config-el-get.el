@@ -41,7 +41,7 @@
           color-theme-solarized
           key-chord
           recentf-ext
-          grep-edit
+          all-ext
           helm-c-yasnippet
           ))
 
