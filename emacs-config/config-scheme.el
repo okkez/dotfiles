@@ -10,5 +10,7 @@
    (get-buffer-create "*scheme*"))
   (run-scheme scheme-program-name))
 
-(define-key global-map
-  "\C-cs" 'scheme-other-window)
+(add-hook 'scheme-mode-hook
+          '(lambda ()
+             (define-key scheme-mode-map
+               (kbd "C-c C-s") 'scheme-other-window)))
