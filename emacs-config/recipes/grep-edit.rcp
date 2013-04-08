@@ -1,4 +1,0 @@
-(:name grep-edit
-       :description "Edit grep result"
-       :type emacs-wiki
-       :features (grep-edit))
