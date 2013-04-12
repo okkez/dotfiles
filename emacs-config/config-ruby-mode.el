@@ -1,3 +1,11 @@
+(require 'ruby-mode)
+(require 'ruby-electric)
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (ruby-electric-mode t)))
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (define-key ruby-mode-map (kbd "RET") 'newline-and-indent)))
 ;; ruby-mode で Develock の桁数変更
 (plist-put develock-max-column-plist 'ruby-mode 100)
 
