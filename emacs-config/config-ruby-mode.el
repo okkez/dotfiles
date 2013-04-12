@@ -44,7 +44,7 @@
              (file-writable-p (file-name-directory buffer-file-name)))
         (flymake-mode))
     ;; エラー行で C-c d するとエラーの内容をミニバッファで表示する
-    (define-key ruby-mode-map "\C-cd" 'credmp/flymake-display-err-minibuf)))
+    (define-key ruby-mode-map (kbd "C-c d") 'credmp/flymake-display-err-minibuf)))
 
 (defun credmp/flymake-display-err-minibuf ()
   "Displays the error/warning for the current line in the minibuffer"
