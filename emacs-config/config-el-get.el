@@ -36,7 +36,8 @@
 ;; 設定ファイル名とレシピ名が一致しないものは自分で追加
 (mapcar '(lambda (elem)
            (add-to-list 'my-el-get-packages elem))
-        '(ruby-electric
+        '(ruby-mode-trunk
+          ruby-electric-trunk
           sass-mode
           color-theme-solarized
           key-chord
