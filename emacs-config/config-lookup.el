@@ -6,9 +6,9 @@
 (setq lookup-enable-splash nil)
 
 ;; 起動するキーの設定
-(define-key ctl-x-map "l" 'lookup)              ; C-x l - lookup
-(define-key ctl-x-map "y" 'lookup-region)       ; C-x y - lookup-region
-(define-key ctl-x-map "\C-y" 'lookup-pattern)   ; C-x C-y - lookup-pattern
+(define-key global-map (kbd "C-x l")   'lookup)
+(define-key global-map (kbd "C-x y")   'lookup-region)
+(define-key global-map (kbd "C-x C-y") 'lookup-pattern)
 
 ;; マウスで起動する場合
 ;(global-set-key [S-mouse-1] 'mouse-set-point)
@@ -24,11 +24,11 @@
 
 ;;; lookup 用 search-agents 定義
 (setq lookup-search-agents '(
-                             (ndeb "~/.dic/OALD_7")(ndspell)
-                             ;(ndeb "~/.dic/readers")(ndspell)
-                             ;(ndeb "~/.dic/EIJIRO77")(ndspell)
-                             ;(ndeb "~/.dic/ROGET")(ndspell)
-                             ;(ndeb "~/.dic/mypaedia")(ndspell)
-                             ;(ndtp "localhost")(ndspell)
+                             (ndeb "~/.dic/OALD_7") (ndspell)
+                             ;(ndeb "~/.dic/readers") (ndspell)
+                             ;(ndeb "~/.dic/EIJIRO77") (ndspell)
+                             ;(ndeb "~/.dic/ROGET") (ndspell)
+                             ;(ndeb "~/.dic/mypaedia") (ndspell)
+                             ;(ndtp "localhost") (ndspell)
                              ))
 
