@@ -1,4 +1,5 @@
 #!/bin/bash
+# -*- indent-tabs-mode: nil; sh-basic-offset: 2; sh-indentation: 2 -*-
 
 files="
 zshrc
@@ -16,3 +17,7 @@ for f in $files; do
   fi
 done
 
+if test -d $HOME/.rbenv; then
+  git clone git://github.com/sstephenson/rbenv.git $HOME/.rbenv
+  git clone git://github.com/sstephenson/ruby-build.git $HOME/.rben/plugins/ruby-build
+fi
