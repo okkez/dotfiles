@@ -92,6 +92,7 @@ compdef _rake rake
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 source $HOME/.rbenv/completions/rbenv.zsh
+export RUBY_CONFIGURE_OPTS="--enable-shared --disable-install-doc"
 
 ## load dir_colors
 DIRCOLORS=$HOME/src/dircolors-solarized/dircolors.ansi-universal
