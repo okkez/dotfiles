@@ -8,6 +8,9 @@
 (push "*vc-diff*" popwin:special-display-config)
 (push "*vc-change-log*" popwin:special-display-config)
 
+;; ag
+(push "*ag*" popwin:special-display-config)
+
 ;; helm
 ;(setq helm-samewindow nil)
 ;(push '("\\*[Hh]elm"
