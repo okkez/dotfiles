@@ -1,4 +1,4 @@
-(:name ruby-electric
+(:name ruby-electric-trunk
        :description "Electric commands editing for ruby files"
        :type http
        :url "http://svn.ruby-lang.org/repos/ruby/trunk/misc/ruby-electric.el"
