@@ -1,5 +1,6 @@
-(require 'ruby-mode)
-(require 'ruby-electric)
+;(require 'ruby-mode)
+;(require 'ruby-electric)
+(autoload 'ruby-electric-mode "ruby-electric" nil t)
 (add-hook 'ruby-mode-hook
           (lambda ()
             (ruby-electric-mode t)))
