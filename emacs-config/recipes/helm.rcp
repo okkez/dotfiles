@@ -1,6 +1,0 @@
-(:name helm
-       :description "Helm is incremental completion and selection narrowing framework for Emacs."
-       :type git
-       :url "https://github.com/emacs-helm/helm.git"
-       :load-path (".")
-       :features helm-config)

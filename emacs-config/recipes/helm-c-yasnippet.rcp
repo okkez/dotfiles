@@ -1,7 +1,0 @@
-(:name helm-c-yasnippet
-       :description "Helm source for yasnippet"
-       :website "https://github.com/emacs-helm/helm-c-yasnippet"
-       :type git
-       :url "https://github.com/emacs-helm/helm-c-yasnippet.git"
-       :features "helm-c-yasnippet"
-       :depends (helm yasnippet))
