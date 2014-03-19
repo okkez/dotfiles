@@ -24,7 +24,7 @@ autoload -U add-zsh-hook 2>/dev/null || return
 
 __timetrack_threshold=20 # seconds
 read -r -d '' __timetrack_ignore_progs <<EOF
-less
+less lv
 emacs vi vim
 ssh mosh telnet nc netcat
 gdb
