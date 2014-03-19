@@ -3,6 +3,8 @@ bindkey "^?" backward-delete-char
 bindkey "[3~" backward-delete-char
 setopt ignoreeof
 
+REPORTTIME=10
+
 export RUBYLIB="${RUBYLIB}":/usr/local/lib/site_ruby
 export PATH=$HOME/bin:"${PATH}"
 #export PATH=~/.gems/bin:"${PATH}"
@@ -87,6 +89,9 @@ compdef _rake rake
 ## load private .zshrc configuration file
 #
 [ -f ~/dotfiles/zshrc.private ] && source ~/dotfiles/zshrc.private
+
+# load notify.zsh
+[ -f $HOME/dotfiles/notify.zsh ] && source $HOME/dotfiles/notify.zsh
 
 # load rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
