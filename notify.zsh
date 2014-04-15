@@ -22,10 +22,11 @@ autoload -U add-zsh-hook 2>/dev/null || return
 # http://qiita.com/hayamiz/items/d64730b61b7918fbb970
 #
 
-__timetrack_threshold=20 # seconds
+__timetrack_threshold=30 # seconds
 read -r -d '' __timetrack_ignore_progs <<EOF
 less lv
 emacs vi vim
+screen
 ssh mosh telnet nc netcat
 gdb
 EOF
