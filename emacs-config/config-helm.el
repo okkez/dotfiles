@@ -80,10 +80,10 @@
 (defun my-helm-mini ()
   "My Helm mini source"
   (interactive)
-  (helm-other-buffer '(helm-c-source-buffers-list
-                       helm-c-source-recentf
-                       helm-c-source-files-in-current-dir
-                       helm-c-source-buffer-not-found)
+  (helm-other-buffer '(helm-source-buffers-list
+                       helm-source-recentf
+                       helm-source-files-in-current-dir
+                       helm-source-buffer-not-found)
                      "*my helm mini*"))
 
 (set-face-background 'helm-selection "#0a2832")
