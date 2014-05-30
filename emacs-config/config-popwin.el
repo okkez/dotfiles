@@ -23,7 +23,8 @@
 ;        :width 100)
 ;      popwin:special-display-config)
 ;
-po-mode
+
+;; po-mode
 (push '("\\*.*\\.po\\*"
        :regexp t
        :position bottom
