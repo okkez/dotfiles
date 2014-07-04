@@ -13,6 +13,9 @@ export PATH=$HOME/bin:"${PATH}"
 export HREF_DATADIR=~/.href
 export EDITOR=vim
 
+export GOPATH=$HOME/go
+export PATH="$GOPATH/bin:$PATH"
+
 alias gosh="rlwrap gosh"
 alias g="goruby -rirb -e'IRB.start'"
 alias ec=emacsclient
