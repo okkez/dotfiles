@@ -90,8 +90,10 @@ compdef _rake rake
 #
 [ -f ~/dotfiles/zshrc.private ] && source ~/dotfiles/zshrc.private
 
-# load notify.zsh
-[ -f $HOME/dotfiles/notify.zsh ] && source $HOME/dotfiles/notify.zsh
+# load utilities
+for f in $HOME/dotfiles/zsh/*.zsh; do
+    source $f
+done
 
 # load rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
