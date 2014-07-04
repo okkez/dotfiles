@@ -23,3 +23,4 @@ function peco-cdr () {
     zle clear-screen
 }
 zle -N peco-cdr
+bindkey '^@' peco-cdr
