@@ -113,6 +113,7 @@ HISTSIZE=10000000
 SAVEHIST=10000000
 setopt hist_no_store        # ignore history command
 setopt hist_ignore_dups     # ignore duplication command history list
+setopt hist_ignore_all_dups
 setopt hist_reduce_blanks   # reduce blanks
 setopt hist_ignore_space    # ignore the command starts with blanks
 setopt share_history        # share command history data
