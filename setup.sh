@@ -23,3 +23,8 @@ if ! test -d $HOME/.rbenv; then
   git clone git://github.com/sstephenson/rbenv-gem-rehash.git $HOME/.rbenv/plugins/rbenv-gem-rehash
   git clone git://github.com/sstephenson/rbenv-default-gems.git $HOME/.rbenv/plugins/rbenv-default-gems
 fi
+
+if ! dpkg -l golang > /dev/null 2>&1; then
+  sudo apt-get install -y golang
+  go get github.com/peco/peco/cmd/peco
+fi
