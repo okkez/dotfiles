@@ -5,7 +5,6 @@ files="
 zshrc
 bash_profile
 bashrc
-emacs
 screenrc
 irbrc
 "
@@ -16,6 +15,12 @@ for f in $files; do
     ln -f -s $HOME/dotfiles/$f $HOME/.$f
   fi
 done
+
+if test -L $HOME/.emacs.d/init.el; then
+  echo init.el
+else
+  ln -f -s $HOME/dotfiles/emacs.d/init.el $HOME/.emacs.d/init.el
+fi
 
 if ! test -d $HOME/.rbenv; then
   git clone git://github.com/sstephenson/rbenv.git $HOME/.rbenv
