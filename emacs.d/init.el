@@ -37,4 +37,4 @@
   (setq-default init-loader-show-log-after-init t
                 init-loader-byte-compile t)
   (init-loader-load
-   (concat (file-name-directory load-file-name) "emacs-config")))
+   (expand-file-name "~/dotfiles/emacs.d/init-loader")))
