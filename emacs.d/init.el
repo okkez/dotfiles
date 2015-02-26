@@ -11,7 +11,7 @@
 
 ;; additional recipes path
 (add-to-list 'el-get-recipe-path
-             (concat (file-name-directory load-file-name) "recipes"))
+             (expand-file-name "~/dotfiles/emacs.d/recipes"))
 
 ;; el-get-list-packages で f でレシピを開く
 (defun el-get-current-recipe ()
