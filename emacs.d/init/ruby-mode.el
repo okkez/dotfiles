@@ -1,3 +1,7 @@
+(el-get-bundle ruby-mode-trunk
+  :features ruby-mode)
+(el-get-bundle ruby-electric-trunk
+  :features ruby-electric)
 ;(require 'ruby-mode)
 ;(require 'ruby-electric)
 (autoload 'ruby-electric-mode "ruby-electric" nil t)
