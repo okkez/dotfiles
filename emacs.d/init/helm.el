@@ -23,7 +23,7 @@
 
 (define-key helm-find-files-map (kbd "C-h") nil)
 (define-key helm-map (kbd "C-h") nil)
-(set-face-background 'helm-selection "#0a2832")
+(set-face-background 'helm-selection "#104e8b")
 
 ;;; http://d.hatena.ne.jp/syohex/20120718/1342620627
 ;; List files in git repos
