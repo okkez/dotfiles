@@ -1,3 +1,4 @@
+(el-get-bundle! s)
 (el-get-bundle flycheck
   (with-eval-after-load 'flycheck
     (setq flycheck-display-errors-function
