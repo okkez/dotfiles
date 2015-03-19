@@ -19,6 +19,7 @@ INIT_LOADER_DIR.each_entry do |entry|
   end
 end
 
+create_link("ace-isearch.el", 50)
 create_link("auto-complete.el", 10)
 create_link("base.el", 0)
 create_link("c-mode.el", 60)

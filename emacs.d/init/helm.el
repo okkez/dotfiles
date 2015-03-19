@@ -35,6 +35,11 @@
              (local-set-key (kbd "M-?") 'helm-gtags-find-symbol)
              (local-set-key (kbd "M-*") 'helm-gtags-pop-stack)))
 
+(el-get-bundle helm-migemo
+  (require 'helm-migemo))
+(el-get-bundle helm-swoop
+  (require 'helm-swoop))
+
 ;;; http://d.hatena.ne.jp/syohex/20120718/1342620627
 ;; List files in git repos
 (defun helm-c-sources-git-project-for (pwd)
