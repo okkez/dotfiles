@@ -31,9 +31,9 @@
 (add-hook 'helm-gtags-mode-hook
           '(lambda ()
              (local-set-key (kbd "M-.") 'helm-gtags-find-tag)
-              (local-set-key (kbd "M-,") 'helm-gtags-find-rtag)
-              (local-set-key (kbd "M-?") 'helm-gtags-find-symbol)
-              (local-set-key (kbd "M-*") 'helm-gtags-pop-stack)))
+             (local-set-key (kbd "M-,") 'helm-gtags-find-rtag)
+             (local-set-key (kbd "M-?") 'helm-gtags-find-symbol)
+             (local-set-key (kbd "M-*") 'helm-gtags-pop-stack)))
 
 ;;; http://d.hatena.ne.jp/syohex/20120718/1342620627
 ;; List files in git repos
