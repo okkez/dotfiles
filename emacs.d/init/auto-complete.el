@@ -3,8 +3,7 @@
   (with-eval-after-load-feature 'auto-complete-config
     (ac-config-default)
     (global-auto-complete-mode t)
-    (define-key ac-complete-mode-map "\C-n" 'ac-next)
-    (define-key ac-complete-mode-map "\C-p" 'ac-previous)
+    (setq ac-use-menu-map t)
     (setq ac-dwim t)
     (setq ac-delay 0.1)
     (setq ac-auto-show-menu 0.1)
