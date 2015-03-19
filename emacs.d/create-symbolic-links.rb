@@ -12,7 +12,7 @@ def create_link(name, priority)
 end
 
 INIT_LOADER_DIR.each_entry do |entry|
-  next if ".gitignore" == entry
+  next if /.gitignore/ =~ entry.to_path
   path = (INIT_LOADER_DIR + entry)
   if path.file? or path.symlink?
     path.unlink
