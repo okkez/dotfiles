@@ -39,6 +39,11 @@
   (require 'helm-migemo))
 (el-get-bundle helm-swoop
   (require 'helm-swoop))
+(el-get-bundle helm-ag
+  (require 'helm-ag)
+  (global-set-key (kbd "M-g .") 'helm-ag)
+  (global-set-key (kbd "M-g ,") 'helm-ag-pop-stack)
+  (global-set-key (kbd "C-M-s") 'helm-ag-this-file))
 
 ;;; http://d.hatena.ne.jp/syohex/20120718/1342620627
 ;; List files in git repos
