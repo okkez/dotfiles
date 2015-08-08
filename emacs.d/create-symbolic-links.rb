@@ -46,6 +46,7 @@ create_link("rd-mode.el", 60)
 #create_link("rhtml-mode.el", 60)
 create_link("ruby-mode.el", 60)
 create_link("scheme.el", 60)
+create_link("ts-mode.el", 60)
 #create_link("view.el", 60)
 create_link("yasnippet.el", 55)
 
