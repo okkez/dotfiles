@@ -113,7 +113,7 @@
 
 (defun magit-enable-helm ()
   ;; 過去のコミットメッセージを挿入
-  (define-key magit-log-edit-mode-map
+  (define-key git-commit-mode-map
     (kbd "C-c i") 'helm-git-commit-messages))
 (add-hook 'magit-mode-hook
           'magit-enable-helm)
