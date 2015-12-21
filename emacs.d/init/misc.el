@@ -128,12 +128,5 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
     (move-to-column col)))
 (global-set-key (kbd "C-c +") 'increment-string-as-number)
 
-;; edit Chromium's textarea with emacs
-(if (locate-library "edit-server")
-    (progn
-      (require 'edit-server)
-      (setq edit-server-port 19292)
-      (edit-server-start)))
-
 ;; emacsclient
 (server-start)
