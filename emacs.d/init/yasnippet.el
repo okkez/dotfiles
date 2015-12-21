@@ -2,6 +2,7 @@
 ; git clone https://github.com/capitaomorte/yasnippet.git
 ; git clone git://github.com/eschulte/yasnippets-rails.git
 
+(el-get-bundle yasnippets-rails)
 (el-get-bundle helm-c-yasnippet
   (require 'yasnippet)
   (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
