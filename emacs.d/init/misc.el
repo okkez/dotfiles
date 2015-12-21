@@ -128,5 +128,11 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
     (move-to-column col)))
 (global-set-key (kbd "C-c +") 'increment-string-as-number)
 
+(defun insert-current-date ()
+  (interactive)
+  (let ((system-time-locale "C"))
+    (insert (format-time-string "%a %b %e %Y"))))
+(global-set-key (kbd "C-c d") 'insert-current-date)
+
 ;; emacsclient
 (server-start)
