@@ -30,6 +30,12 @@ if ! test -d $HOME/.rbenv; then
   git clone https://github.com/aripollak/rbenv-bundler-ruby-version.git $HOME/.rbenv/plugins/rbenv-bundler-ruby-version
 fi
 
+if ! test -d $HOME/.nvm; then
+  git clone https://github.com/creationix/nvm.git ~/.nvm \
+    && cd ~/.nvm \
+    && git checkout $(git describe --abbrev=0 --tags)
+fi
+
 if ! dpkg -l golang > /dev/null 2>&1; then
   sudo apt-get install -y golang
   go get github.com/peco/peco/cmd/peco
