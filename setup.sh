@@ -27,6 +27,7 @@ if ! test -d $HOME/.rbenv; then
   git clone git://github.com/sstephenson/ruby-build.git $HOME/.rbenv/plugins/ruby-build
   git clone git://github.com/sstephenson/rbenv-gem-rehash.git $HOME/.rbenv/plugins/rbenv-gem-rehash
   git clone git://github.com/sstephenson/rbenv-default-gems.git $HOME/.rbenv/plugins/rbenv-default-gems
+  git clone git://github.com/aripollak/rbenv-bundler-ruby-version.git $HOME/.rbenv/plugins/rbenv-bundler-ruby-version
 fi
 
 if ! dpkg -l golang > /dev/null 2>&1; then
