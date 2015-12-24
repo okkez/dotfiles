@@ -57,8 +57,14 @@ preexec_functions+=_set_rprompt_vcs
 
 function _set_prompt_ruby() {
     local ruby_version
-    ruby_version=$(rbenv version | cut -d" " -f1)
-    if [ $? != '0' ]; then
+    local rbenv_ruby_version
+    rbenv_bundler_version=$(rbenv bundler-ruby-version)
+    if [ -n "${rbenv_bundler_version}" ]; then
+        ruby_version=$rbenv_bundler_version
+    else
+        ruby_version=$(rbenv version | cut -d" " -f1)
+    fi
+    if [ -z "${ruby_version}"  ]; then
         PROMPT=$DEFAULT_PROMPT
     else
         PROMPT="%{${fg[green]}%}${ruby_version}%{${reset_color}%}"$'\n'"${DEFAULT_PROMPT}"
