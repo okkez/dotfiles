@@ -59,10 +59,10 @@ function _set_prompt_ruby() {
     local ruby_version
     local rbenv_ruby_version
     rbenv_bundler_version=$(rbenv bundler-ruby-version)
-    if [ -n "${rbenv_bundler_version}" ]; then
-        ruby_version=$rbenv_bundler_version
-    else
+    if [ -z "${rbenv_bundler_version}" ]; then
         ruby_version=$(rbenv version | cut -d" " -f1)
+    else
+        ruby_version=$rbenv_bundler_version
     fi
     if [ -z "${ruby_version}"  ]; then
         PROMPT=$DEFAULT_PROMPT
