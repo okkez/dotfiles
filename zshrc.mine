@@ -55,22 +55,30 @@ function _set_rprompt_vcs() {
 chpwd_functions+=_set_rprompt_vcs
 preexec_functions+=_set_rprompt_vcs
 
-function _set_prompt_ruby() {
+function _set_prompt_lang() {
     local ruby_version
+    local colored_ruby_version
     local rbenv_ruby_version
+    local node_version
+    local colored_node_version
+    colored_ruby_version=""
+    colored_node_version=""
+    node_version=$(nvm version)
     rbenv_bundler_version=$(rbenv bundler-ruby-version)
-    if [ -z "${rbenv_bundler_version}" ]; then
-        ruby_version=$(rbenv version | cut -d" " -f1)
-    else
+    if [ -n "${rbenv_bundler_version}" ]; then
         ruby_version=$rbenv_bundler_version
-    fi
-    if [ -z "${ruby_version}"  ]; then
-        PROMPT=$DEFAULT_PROMPT
     else
-        PROMPT="%{${fg[green]}%}${ruby_version}%{${reset_color}%}"$'\n'"${DEFAULT_PROMPT}"
+        ruby_version=$(rbenv version | cut -d" " -f1)
     fi
+    if [ -n "${ruby_version}"  ]; then
+        colored_ruby_version="%{${fg[green]}%}${ruby_version}%{${reset_color}%}"
+    fi
+    if [ -n "${node_version}" ]; then
+        colored_node_version="%{${fg[green]}%}${node_version}%{${reset_color}%}"
+    fi
+    PROMPT="${colored_ruby_version} | ${colored_node_version}"$'\n'"${DEFAULT_PROMPT}"
 }
-preexec_functions+=_set_prompt_ruby
+preexec_functions+=_set_prompt_lang
 
 completion_list () {
   mkdir -p ~/.zsh/completion
