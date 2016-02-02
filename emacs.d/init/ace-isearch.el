@@ -6,6 +6,4 @@
    '(ace-isearch-input-length 6)
    '(ace-isearch-input-idle-delay 0.7)
    '(ace-isearch-submode 'ace-jump-char-mode)
-   '(ace-isearch-use-ace-jump 'printing-char))
-
-  (ace-isearch-set-ace-jump-after-isearch-exit t))
+   '(ace-isearch-use-ace-jump 'printing-char)))
