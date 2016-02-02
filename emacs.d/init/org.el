@@ -1,8 +1,9 @@
 ;;; org-mode
 ;;; http://d.hatena.ne.jp/rubikitch/20090121
-(require 'org-install)
+(require 'ox-md)
 (setq org-startup-truncated nil)
 (setq org-return-follows-link t)
+(setq org-src-fontify-natively t)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;(require 'org-remember)
 ;(org-remember-insinuate)
@@ -99,4 +100,12 @@ If the link is in hidden text, expose it."
 
 ;; ~/memo/agenda.org を開く
 (define-key global-map (kbd "C-z a")
-  '(lambda () (interactive) (find-file "~/memo/agenda.org")))
+  '(lambda () (interactive) (find-file "~/Dropbox/memo/agenda.org")))
+;; ~/Dropbox/memo/standup-meeting.org を開く
+(define-key global-map (kbd "C-z s")
+  '(lambda () (interactive) (find-file "~/Dropbox/memo/standup-meeting.org")))
+
+(defun insert-next-date ()
+  (let* ((time (decode-time (current-time))))
+    (setf (elt time 3) (+ (elt time 3) 1))
+    (format-time-string "%Y-%m-%d(%a)" (apply 'encode-time time))))
