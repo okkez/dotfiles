@@ -2,6 +2,8 @@
   :features ruby-mode)
 (el-get-bundle ruby-electric-trunk
   :features ruby-electric)
+(el-get-bundle rbenv
+  (global-rbenv-mode t))
 ;(require 'ruby-mode)
 ;(require 'ruby-electric)
 (autoload 'ruby-electric-mode "ruby-electric" nil t)
