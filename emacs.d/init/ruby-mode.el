@@ -9,10 +9,23 @@
 (autoload 'ruby-electric-mode "ruby-electric" nil t)
 (add-hook 'ruby-mode-hook
           (lambda ()
-            (ruby-electric-mode t)))
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (define-key ruby-mode-map (kbd "RET") 'newline-and-indent)))
+            (ruby-electric-mode t)
+            (define-key ruby-mode-map (kbd "RET") 'newline-and-indent)
+            (setq ruby-deep-indent-paren-style nil)
+            (defadvice ruby-indent-line (after unindent-closing-paren activate)
+              (let ((column (current-column))
+                    indent offset)
+                (save-excursion
+                  (back-to-indentation)
+                  (let ((state (syntax-ppss)))
+                    (setq offset (- column (current-column)))
+                    (when (and (eq (char-after) ?\))
+                               (not (zerop (car state))))
+                      (goto-char (cadr state))
+                      (setq indent (current-indentation)))))
+                (when indent
+                  (indent-line-to indent)
+                  (when (> offset 0) (forward-char offset)))))))
 ;; ruby-mode で Develock の桁数変更
 (plist-put develock-max-column-plist 'ruby-mode 100)
 
