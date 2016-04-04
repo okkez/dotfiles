@@ -13,28 +13,6 @@
   (define-key enh-ruby-mode-map (kbd "RET") 'newline-and-indent)
   (ruby-electric-mode t))
 
-(defun setup-enh-ruby-mode-faces ()
-  (set-face-attribute 'enh-ruby-heredoc-delimiter-face nil
-                      :foreground nil
-                      :background nil
-                      :inherit 'font-lock-string-face)
-  (set-face-attribute 'enh-ruby-op-face nil
-                      :foreground nil
-                      :background nil
-                      :inherit 'default)
-  (set-face-attribute 'enh-ruby-regexp-delimiter-face nil
-                      :foreground nil
-                      :background nil
-                      :inherit 'font-lock-string-face)
-  (set-face-attribute 'enh-ruby-regexp-face nil
-                      :foreground nil
-                      :background nil
-                      :inherit 'font-lock-string-face)
-  (set-face-attribute 'enh-ruby-string-delimiter-face nil
-                      :foreground nil
-                      :background nil
-                      :inherit 'font-lock-string-face))
-
 ;; enh-ruby-mode で Develock の桁数変更
 (plist-put develock-max-column-plist 'enh-ruby-mode 100)
 
@@ -53,5 +31,4 @@
                               (list rel))))
 
 (add-hook 'enh-ruby-mode-hook 'setup-enh-ruby-mode)
-(add-hook 'enh-ruby-mode-hook 'setup-enh-ruby-mode-faces)
 (add-hook 'enh-ruby-mode-hook 'flycheck-mode)
