@@ -141,6 +141,13 @@ setopt hist_expand
 setopt no_beep
 setopt numeric_glob_sort
 
+## word delimiter
+#
+autoload -Uz select-word-style
+select-word-style default
+zstyle ':zle:*' word-chars ' /=;@:{}[]()<>,|.'
+zstyle ':zle:*' word-style unspecified
+
 ## expansion
 #
 setopt magic_equal_subst    # expand filename after equal mark.
