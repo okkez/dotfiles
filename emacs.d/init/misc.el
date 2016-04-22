@@ -91,7 +91,7 @@
   (define-key calendar-mode-map "f" 'calendar-forward-day)
   (define-key calendar-mode-map "n" 'calendar-forward-day)
   (define-key calendar-mode-map "b" 'calendar-backward-day)
-  (setq mark-holidays-in-calendar t)
+  (setq calendar-mark-holidays-flag t)
   (setq calendar-weekend-marker 'diary)
   (add-hook 'today-visible-calendar-hook 'calendar-mark-weekend)
   (add-hook 'today-invisible-calendar-hook 'calendar-mark-weekend))
