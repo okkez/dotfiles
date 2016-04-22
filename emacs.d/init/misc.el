@@ -47,7 +47,7 @@
  ;; Your init file should contain only one such instance.
  )
 
-(setq show-paren-mode t)
+(show-paren-mode t)
 
 ;; カーソルの点滅を止める
 (blink-cursor-mode 0)
