@@ -38,7 +38,8 @@
 (el-get-bundle helm-migemo
   (require 'helm-migemo))
 (el-get-bundle helm-swoop
-  (require 'helm-swoop))
+  (require 'helm-swoop)
+  (global-set-key (kbd "M-o") 'helm-swoop))
 (el-get-bundle helm-ag
   (require 'helm-ag)
   (global-set-key (kbd "M-g .") 'helm-ag)
