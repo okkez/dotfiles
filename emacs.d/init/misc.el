@@ -49,6 +49,7 @@
 
 (show-paren-mode t)
 (setq show-paren-style 'mixed)
+(electric-pair-mode t)
 
 ;; カーソルの点滅を止める
 (blink-cursor-mode 0)
