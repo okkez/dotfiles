@@ -1,20 +1,19 @@
+(require 'ruby-mode)
 (el-get-bundle enh-ruby-mode
   :features enh-ruby-mode
-  (setq enh-ruby-add-encoding-comment-on-save nil))
-(el-get-bundle ruby-electric-trunk
-  :features ruby-electric)
+  (custom-set-variables
+   '(enh-ruby-deep-indent-paren nil)
+   '(enh-ruby-use-ruby-mode-show-parens-config t)
+   '(enh-ruby-add-encoding-comment-on-save nil)))
+(el-get-bundle ruby-end)
 (el-get-bundle rbenv
   (global-rbenv-mode t))
-;(require 'ruby-mode)
-;(require 'ruby-electric)
-(autoload 'ruby-electric-mode "ruby-electric" nil t)
-(defun setup-enh-ruby-mode ()
-  (setq enh-ruby-deep-indent-paren nil)
-  (define-key enh-ruby-mode-map (kbd "RET") 'newline-and-indent)
-  (ruby-electric-mode t))
 
-;; enh-ruby-mode で Develock の桁数変更
-(plist-put develock-max-column-plist 'enh-ruby-mode 100)
+(defun setup-enh-ruby-mode ()
+  (define-key enh-ruby-mode-map (kbd "RET") 'newline-and-indent)
+  ;(ruby-electric-mode t)
+  ;; enh-ruby-mode で Develock の桁数変更
+  (plist-put develock-max-column-plist 'enh-ruby-mode 100))
 
 ;; Rakefile も enh-ruby-mode になるように
 (add-to-list 'auto-mode-alist '("Rakefile$" . enh-ruby-mode))
