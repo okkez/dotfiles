@@ -21,6 +21,7 @@
 (setq org-todo-keywords '("TODO" "Wait" "DONE")
       org-todo-interpretation 'sequence)
 ;; for code reading
+;; http://d.hatena.ne.jp/rubikitch/20090121/1232468026
 (defvar org-code-reading-software-name nil)
 ;; ~/memo/code-reading.org に記録する
 (defvar org-code-reading-file "code-reading.org")
