@@ -77,6 +77,7 @@
 (setq user-mail-address "okkez000@gmail.com")
 
 ;; backup files
+(setq make-backup-files nil)
 (setq backup-directory-alist
       '(("/Dropbox/*.*" . "~/.emacs.d/backup/")
         ))
