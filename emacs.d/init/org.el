@@ -89,12 +89,12 @@ If the link is in hidden text, expose it."
       (goto-char pos)
       (setq org-link-search-failed t)
       (error "No further link found"))))
-(define-key org-mode-map "\M-n" 'org-next-visible-link)
-(define-key org-mode-map "\M-p" 'org-previous-visible-link)
+(define-key org-mode-map (kbd "M-n") 'org-next-visible-link)
+(define-key org-mode-map (kbd "M-p") 'org-previous-visible-link)
 
 
 ;; agenda
-(define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map (kbd "C-ca") 'org-agenda)
 
 ;; key-chord
 (key-chord-define-global "op" 'org-remember)
