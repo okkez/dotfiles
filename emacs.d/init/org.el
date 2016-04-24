@@ -105,6 +105,9 @@ If the link is in hidden text, expose it."
 ;; ~/Dropbox/memo/standup-meeting.org を開く
 (define-key global-map (kbd "C-z s")
   '(lambda () (interactive) (find-file "~/Dropbox/memo/standup-meeting.org")))
+;; ~/Dropbox/memo/cheat-sheet.org を開く
+(define-key global-map (kbd "C-z c")
+  '(lambda () (interactive) (find-file "~/Dropbox/memo/cheat-sheet.org")))
 
 (defun insert-next-date ()
   (let* ((time (decode-time (current-time))))
