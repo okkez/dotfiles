@@ -94,7 +94,7 @@ If the link is in hidden text, expose it."
 
 
 ;; agenda
-(define-key global-map (kbd "C-ca") 'org-agenda)
+(define-key global-map (kbd "C-c a") 'org-agenda)
 
 ;; key-chord
 (key-chord-define-global "op" 'org-remember)
