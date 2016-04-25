@@ -51,7 +51,7 @@
 (setq show-paren-style 'mixed)
 (set-face-attribute 'show-paren-match-face nil
                     :foreground nil
-                    :background "#140099"
+                    :background "#073642"
                     :underline nil)
 (electric-pair-mode t)
 
