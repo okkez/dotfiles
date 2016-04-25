@@ -1,5 +1,0 @@
-(:name ruby-mode-trunk
-       :description "Major mode for editing Ruby files."
-       :type http
-       :url "http://svn.ruby-lang.org/repos/ruby/trunk/misc/ruby-mode.el"
-       :feature "ruby-mode")

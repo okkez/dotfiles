@@ -1,7 +1,0 @@
-(:name ruby-electric-trunk
-       :description "Electric commands editing for ruby files"
-       :type http
-       :url "http://svn.ruby-lang.org/repos/ruby/trunk/misc/ruby-electric.el"
-       :post-init (lambda ()
-                    (add-hook 'ruby-mode-hook 'ruby-electric-mode))
-       :feature "ruby-electric")
