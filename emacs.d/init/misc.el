@@ -49,6 +49,10 @@
 
 (show-paren-mode t)
 (setq show-paren-style 'mixed)
+(set-face-attribute 'show-paren-match-face nil
+                    :foreground nil
+                    :background "#140099"
+                    :underline nil)
 (electric-pair-mode t)
 
 ;; カーソルの点滅を止める
