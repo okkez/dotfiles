@@ -120,6 +120,7 @@ setopt share_history        # share command history data
 setopt extended_history     # save timestamp and elapsed time to history file
 setopt hist_save_no_dups
 setopt hist_find_no_dups
+setopt inc_append_history
 
 
 ## Completion configuration
