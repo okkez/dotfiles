@@ -11,6 +11,7 @@
 (define-key global-map (kbd "C-:") 'helm-git-project)
 
 (helm-mode 1)
+(helm-migemo-mode 1)
 (custom-set-variables
  '(helm-command-map-prefix-key "\C-z")
  '(helm-ff-smart-completion nil)
@@ -35,8 +36,6 @@
              (local-set-key (kbd "M-?") 'helm-gtags-find-symbol)
              (local-set-key (kbd "M-*") 'helm-gtags-pop-stack)))
 
-(el-get-bundle helm-migemo
-  (require 'helm-migemo))
 (el-get-bundle helm-swoop
   (require 'helm-swoop)
   (global-set-key (kbd "M-o") 'helm-swoop))
