@@ -49,7 +49,7 @@
 
 (show-paren-mode t)
 (setq show-paren-style 'mixed)
-(set-face-attribute 'show-paren-match-face nil
+(set-face-attribute 'show-paren-match nil
                     :foreground nil
                     :background "#073642"
                     :underline nil)
