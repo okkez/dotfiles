@@ -8,7 +8,6 @@
 (define-key global-map (kbd "M-x") 'helm-M-x)
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
 (define-key global-map (kbd "C-x b") 'helm-mini)
-(define-key global-map (kbd "C-:") 'helm-git-project)
 
 (helm-mode 1)
 (helm-migemo-mode 1)
@@ -25,6 +24,7 @@
 (define-key helm-find-files-map (kbd "C-h") nil)
 (define-key helm-map (kbd "C-h") nil)
 (set-face-background 'helm-selection "#104e8b")
+(set-face-foreground 'helm-source-header "gray")
 
 (el-get-bundle helm-gtags
   (require 'helm-gtags))
@@ -45,45 +45,11 @@
   (global-set-key (kbd "M-g ,") 'helm-ag-pop-stack)
   (global-set-key (kbd "C-M-s") 'helm-ag-this-file))
 
-;;; http://d.hatena.ne.jp/syohex/20120718/1342620627
-;; List files in git repos
-(defun helm-c-sources-git-project-for (pwd)
-  (loop for elt in
-        '(("Modified files" . "--modified")
-          ("Untracked files" . "--others --exclude-standard")
-          ("All controlled files in this project" . nil))
-        for title  = (format "%s (%s)" (car elt) pwd)
-        for option = (cdr elt)
-        for cmd    = (format "git ls-files %s" (or option ""))
-        collect
-        `((name . ,title)
-          (init . (lambda ()
-                    (unless (and (not ,option) (helm-candidate-buffer))
-                      (with-current-buffer (helm-candidate-buffer 'global)
-                        (call-process-shell-command ,cmd nil t nil)))))
-          (candidates-in-buffer)
-          (type . file))))
-
-(defun helm-git-project-topdir ()
-  (file-name-as-directory
-   (replace-regexp-in-string
-    "\n" ""
-    (shell-command-to-string "git rev-parse --show-toplevel"))))
-
-(defun helm-git-project ()
-  (interactive)
-  (let ((topdir (helm-git-project-topdir)))
-    (if (file-directory-p topdir)
-        (let* ((default-directory topdir)
-               (sources (helm-c-sources-git-project-for default-directory)))
-          (helm-other-buffer sources
-                             (format "*helm git project in %s*" default-directory)))
-      (helm-other-buffer nil
-                         "I'm not in Git Repository!!"))))
-
-
-(defun string-strip (string)
-  (replace-regexp-in-string "\\`[ \r\n]*\\|[ \r\n]*\\'" "" string))
+(el-get-bundle helm-ls-git
+  (require 'helm-ls-git)
+  (global-set-key (kbd "C-:") 'helm-ls-git-ls)
+  (custom-set-variables
+   '(helm-ls-git-show-abs-or-relative 'relative)))
 
 (defvar helm-c-source-git-commit-messages
   '((name . "Git Commit Messages")
