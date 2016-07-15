@@ -1,2 +1,3 @@
-(el-get-bundle editorconfig)
+(el-get-bundle editorconfig
+  (editorconfig-mode 1))
 
