@@ -21,5 +21,13 @@
     ;(global-set-key (kbd "M-i") 'ac-start)
 
     (add-to-list 'ac-modes 'rhtml-mode)
-    (add-to-list 'ac-modes 'rd-mode)))
+    (add-to-list 'ac-modes 'rd-mode)
+    (add-to-list 'ac-modes 'org-mode)))
 
+(el-get-bundle ac-emoji
+  (add-hook 'markdown-mode-hook 'ac-emoji-setup)
+  (add-hook 'git-commit-mode-hook 'ac-emoji-setup)
+  (add-hook 'org-mode-hook 'ac-emoji-setup)
+  (set-fontset-font
+   t 'symbol
+   (font-spec :family "Symbola") nil 'prepend))
