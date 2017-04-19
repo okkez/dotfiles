@@ -15,5 +15,9 @@
              (save-excursion
                (back-to-indentation)
                (point))))
-        (skip-chars-forward "\s " point-of-indentation)))))
+        (skip-chars-forward "\s " point-of-indentation))))
+  (with-eval-after-load 'js2-jsx-mode
+    (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
+    (add-hook 'js2-jsx-mode '(lambda ()
+                               (setq js2-basic-offset 2)))))
 
