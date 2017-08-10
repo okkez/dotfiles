@@ -4,7 +4,8 @@
   (custom-set-variables
    '(enh-ruby-deep-indent-paren nil)
    '(enh-ruby-use-ruby-mode-show-parens-config t)
-   '(enh-ruby-add-encoding-comment-on-save nil)))
+   '(enh-ruby-add-encoding-comment-on-save nil)
+   '(flycheck-disabled-checkers '(ruby-reek))))
 (el-get-bundle ruby-end)
 (el-get-bundle rbenv
   (global-rbenv-mode t))
