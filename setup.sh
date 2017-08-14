@@ -36,7 +36,19 @@ if ! test -d $HOME/.nvm; then
     && git checkout $(git describe --abbrev=0 --tags)
 fi
 
-if ! dpkg -l golang > /dev/null 2>&1; then
-  sudo apt-get install -y golang
-  go get github.com/peco/peco/cmd/peco
+if ! test -e $HOME/bin/peco; then
+  if type jq > /dev/null; then
+    url=$(curl https://api.github.com/repos/peco/peco/releases/latest |
+            jq -r '.assets[] | select(.name == "peco_linux_amd64.tar.gz").browser_download_url')
+  else
+    url=$(curl https://api.github.com/repos/peco/peco/releases/latest |
+            sed -n -e 's/browser_download_url.\+\(https:.\+peco_linux_amd64.tar.gz\)\"/\1/p' |
+            sed -e 's/\"//' -e 's/ //g')
+  fi
+  curl -O $url
+  tar xf peco_linux_amd64.tar.gz
+  mkdir -p $HOME/bin
+  mv peco_linux_amd64/peco $HOME/bin/peco
+  rm -rf peco_linux_amd64.tar.gz
+  rm -rf peco_linux_amd64
 fi
