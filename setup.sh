@@ -45,7 +45,7 @@ if ! test -e $HOME/bin/peco; then
             sed -n -e 's/browser_download_url.\+\(https:.\+peco_linux_amd64.tar.gz\)\"/\1/p' |
             sed -e 's/\"//' -e 's/ //g')
   fi
-  curl -O $url
+  curl -L -O $url
   tar xf peco_linux_amd64.tar.gz
   mkdir -p $HOME/bin
   mv peco_linux_amd64/peco $HOME/bin/peco
