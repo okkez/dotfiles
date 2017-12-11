@@ -17,6 +17,7 @@
 ;; default font
 (set-frame-font "VL ゴシック" 10)
 (set-default-coding-systems 'utf-8-unix)
+(add-to-list 'default-frame-alist '(font . "VL ゴシック-10"))
 
 ;; 起動時に最大化
 (set-frame-parameter nil 'fullscreen 'maximized)
