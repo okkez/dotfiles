@@ -1,6 +1,16 @@
 #!/bin/bash
 # -*- indent-tabs-mode: nil; sh-basic-offset: 2; sh-indentation: 2 -*-
 
+packages="
+git
+curl
+jq
+"
+
+for package in $packages; do
+  dpkg -l | grep -q $package || sudo apt install $package
+done
+
 files="
 zshrc
 bash_profile
