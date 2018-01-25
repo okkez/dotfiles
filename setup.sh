@@ -26,10 +26,11 @@ for f in $files; do
   fi
 done
 
+mkdir -p $HOME/.emacs.d/
+
 if test -L $HOME/.emacs.d/init.el; then
   echo init.el
 else
-  mkdir -p $HOME/.emacs.d/
   ln -f -s $HOME/dotfiles/emacs.d/init.el $HOME/.emacs.d/init.el
 fi
 
