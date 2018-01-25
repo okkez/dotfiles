@@ -63,3 +63,14 @@ if ! test -e $HOME/bin/peco; then
   rm -rf peco_linux_amd64.tar.gz
   rm -rf peco_linux_amd64
 fi
+
+if ! test -e $HOME/bin/hub; then
+  url=$(curl https://api.github.com/repos/github/hub/releases/latest |
+          jq -r '.assets[] | select(.name | startswith("hub-linux-amd64")).browser_download_url')
+  curl -L -O $url
+  tar xf $(basename $url)
+  mkdir -p $HOME/bin
+  mv $(basename -s .tgz $url)/bin/hub $HOME/bin/hub
+  rm -rf $(basename $url)
+  rm -rf $(basename -s .tgz $url)
+fi
