@@ -30,3 +30,4 @@
 ;(setq visible-bell t)
 (setq ring-bell-function 'ignore)
 (el-get-bundle tarao/with-eval-after-load-feature-el)
+(el-get-bundle use-package)
