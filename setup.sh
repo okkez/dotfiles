@@ -75,3 +75,9 @@ if ! test -e $HOME/bin/hub; then
   rm -rf $(basename $url)
   rm -rf $(basename -s .tgz $url)
 fi
+
+mkdir -p $HOME/wc
+
+if ! test -d $HOME/wc/gnome-terminal-colors-solarized; then
+  git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git $HOME/wc/gnome-terminal-colors-solarized
+fi
