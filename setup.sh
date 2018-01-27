@@ -65,6 +65,12 @@ if ! test -e $HOME/bin/peco; then
   rm -rf peco_linux_amd64
 fi
 
+mkdir -p $HOME/.peco
+
+if test -L $HOME/.peco/config.json; then
+  ln -f -s $HOME/dotfiles/peco-config.json $HOME/.peco/config.json
+fi
+
 if ! test -e $HOME/bin/hub; then
   url=$(curl https://api.github.com/repos/github/hub/releases/latest |
           jq -r '.assets[] | select(.name | startswith("hub-linux-amd64")).browser_download_url')

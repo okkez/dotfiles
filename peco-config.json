@@ -1,0 +1,13 @@
+{
+    "SingleKeyJump": {
+        "ShowPrefix": true
+    },
+    "Keymap": {
+        "C-g": "peco.Cancel",
+        "@": "peco.ToggleSingleKeyJump"
+    },
+    "Style": {
+        "Selected": ["underline", "on_white", "black"]
+    }
+}
+
