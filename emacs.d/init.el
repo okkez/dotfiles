@@ -1,4 +1,10 @@
 ; -*- mode: emacs-lisp -*-
+
+;; customizeの出力先設定
+(setq custom-file "~/.emacs.d/custom-file.el")
+(if (file-exists-p (expand-file-name "~/.emacs.d/custom-file.el"))
+    (load (expand-file-name custom-file) t nil nil))
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
