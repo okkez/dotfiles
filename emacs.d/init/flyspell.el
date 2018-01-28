@@ -1,8 +1,7 @@
 ;;; flyspell-mode
-(require 'flyspell)
+(autoload 'flyspell-mode "flyspell" "spell checking at runtime")
 (el-get-bundle popup
-  (require 'popup)
-  (with-eval-after-load 'popup
+  (with-eval-after-load-feature 'popup
     ;; Do no change M-TAB key bind
     (setq flyspell-use-meta-tab nil)
 
