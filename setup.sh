@@ -5,6 +5,8 @@ packages="
 git
 curl
 jq
+apel
+rdtoo-elisp
 "
 
 for package in $packages; do
