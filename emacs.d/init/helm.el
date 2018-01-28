@@ -11,8 +11,8 @@
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
 (define-key global-map (kbd "C-x b") 'helm-mini)
 
-(helm-mode 1)
-(helm-migemo-mode 1)
+(helm-mode +1)
+(helm-migemo-mode +1)
 (custom-set-variables
  '(helm-command-map-prefix-key "\C-z")
  '(helm-ff-smart-completion nil)
