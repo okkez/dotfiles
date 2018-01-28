@@ -1,5 +1,7 @@
 ; -*- mode: emacs-lisp -*-
 
+(setq gc-cons-threshold (* 128 1024 1024))
+
 ;; customizeの出力先設定
 (setq custom-file "~/.emacs.d/custom-file.el")
 (if (file-exists-p (expand-file-name "~/.emacs.d/custom-file.el"))
