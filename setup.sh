@@ -68,6 +68,8 @@ fi
 mkdir -p $HOME/.peco
 
 if test -L $HOME/.peco/config.json; then
+  echo $HOME/.peco/config.json
+else
   ln -f -s $HOME/dotfiles/peco-config.json $HOME/.peco/config.json
 fi
 
