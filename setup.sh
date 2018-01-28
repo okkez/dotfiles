@@ -7,6 +7,7 @@ curl
 jq
 apel
 rdtoo-elisp
+elpa-magit
 "
 
 for package in $packages; do
