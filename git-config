@@ -1,0 +1,34 @@
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  br = branch
+  up = pull --rebase
+  cherryv = cherry -v --abbrev
+  cm = cherry -v --abbrev master
+  ga = "!f(){ git branch -a | grep -v '\\->' | tr -d '*' | xargs git grep $1;};f"
+  wlog = log -p --stat --word-diff-regex="\\\\w"
+  dlog = log -p --stat --ext-diff
+  graph = log --graph --decorate --oneline
+  wt = worktree
+
+[color]
+  ui = auto
+
+[grep]
+  linenumber = true
+
+[core]
+  excludesfile = ~/.gitignore
+  pager = less
+  attributesfile = ~/.config/git/attributes
+
+[push]
+  default = simple
+
+[diff]
+  renames = true
+  #external = ~/bin/git-docdiff
+
+[include]
+  path = ~/.config/git/config.private

@@ -37,6 +37,12 @@ else
   ln -f -s $HOME/dotfiles/emacs.d/init.el $HOME/.emacs.d/init.el
 fi
 
+mkdir -p $HOME/.config/git
+
+if ! test -L $HOME/.config/git/config; then
+  ln -f -s $HOME/dotfiles/git-config $HOME/.config/git/config
+fi
+
 if ! test -d $HOME/.rbenv; then
   git clone https://github.com/sstephenson/rbenv.git $HOME/.rbenv
   git clone https://github.com/sstephenson/ruby-build.git $HOME/.rbenv/plugins/ruby-build
