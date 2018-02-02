@@ -6,7 +6,7 @@ git
 curl
 jq
 apel
-rdtoo-elisp
+rdtool-elisp
 elpa-magit
 "
 
