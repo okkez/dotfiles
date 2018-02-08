@@ -63,6 +63,7 @@ function _set_prompt_lang() {
     local colored_node_version
     colored_ruby_version=""
     colored_node_version=""
+    colored_virrualenv_info="%{${fg[green]}%}none%{${reset_color}%}"
     node_version=$(nvm version)
     rbenv_bundler_version=$(rbenv bundler-ruby-version)
     if [ -n "${rbenv_bundler_version}" ]; then
@@ -76,7 +77,11 @@ function _set_prompt_lang() {
     if [ -n "${node_version}" ]; then
         colored_node_version="%{${fg[green]}%}${node_version}%{${reset_color}%}"
     fi
-    PROMPT="${colored_ruby_version} | ${colored_node_version}"$'\n'"${DEFAULT_PROMPT}"
+    if [ -n "${VIRTUAL_ENV}" ]; then
+        _virtualenv_prompt_info=$(basename $VIRTUAL_ENV)
+        colored_virrualenv_info="%{${fg[green]}%}${_virtualenv_prompt_info}%{${reset_color}%}"
+    fi
+    PROMPT="${colored_ruby_version} | ${colored_node_version} | ${colored_virrualenv_info}"$'\n'"${DEFAULT_PROMPT}"
 }
 preexec_functions+=_set_prompt_lang
 
@@ -121,6 +126,12 @@ export RUBY_CONFIGURE_OPTS="--enable-shared --disable-install-doc"
 # load nvm
 if [[ -f $HOME/.nvm/nvm.sh ]]; then
     source $HOME/.nvm/nvm.sh
+fi
+
+# load virtualenv
+if [[ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]];then
+  export WORKON_HOME=$HOME/.virtualenvs
+  source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 fi
 
 ## load dir_colors
