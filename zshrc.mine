@@ -130,8 +130,9 @@ fi
 
 # load virtualenv
 if [[ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]];then
-  export WORKON_HOME=$HOME/.virtualenvs
-  source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+    export WORKON_HOME=$HOME/.virtualenvs
+    export VIRTUAL_ENV_DISABLE_PROMPT=1
+    source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 fi
 
 ## load dir_colors
