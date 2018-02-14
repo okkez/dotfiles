@@ -44,10 +44,11 @@ if ! test -L $HOME/.config/git/config; then
 fi
 
 if ! test -d $HOME/.rbenv; then
-  git clone https://github.com/sstephenson/rbenv.git $HOME/.rbenv
-  git clone https://github.com/sstephenson/ruby-build.git $HOME/.rbenv/plugins/ruby-build
-  git clone https://github.com/sstephenson/rbenv-gem-rehash.git $HOME/.rbenv/plugins/rbenv-gem-rehash
-  git clone https://github.com/sstephenson/rbenv-default-gems.git $HOME/.rbenv/plugins/rbenv-default-gems
+  git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv
+  git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
+  git clone https://github.com/rbenv/rbenv-gem-rehash.git $HOME/.rbenv/plugins/rbenv-gem-rehash
+  git clone https://github.com/rbenv/rbenv-default-gems.git $HOME/.rbenv/plugins/rbenv-default-gems
+  git clone https://github.com/rbenv/rbenv-each.git $HOME/.rbenv/plugins/plugins/rbenv-each
   git clone https://github.com/aripollak/rbenv-bundler-ruby-version.git $HOME/.rbenv/plugins/rbenv-bundler-ruby-version
 fi
 
