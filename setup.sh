@@ -10,6 +10,7 @@ rdtool-elisp
 emacs25
 elpa-magit
 cmigemo
+rsync
 ruby
 screen
 zsh
