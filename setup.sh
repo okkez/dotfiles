@@ -7,12 +7,15 @@ curl
 jq
 apel
 rdtool-elisp
+emacs25
 elpa-magit
+cmigemo
+ruby
+screen
+zsh
 "
 
-for package in $packages; do
-  dpkg -l | grep -q $package || sudo apt install $package
-done
+sudo apt install -y $packages
 
 files="
 zshrc
