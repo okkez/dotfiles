@@ -14,6 +14,8 @@ rsync
 ruby
 screen
 zsh
+build-essential
+ddskk
 "
 
 sudo apt install -y $packages
