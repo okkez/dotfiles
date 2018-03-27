@@ -57,7 +57,7 @@
                 (error "Ispell: error in Ispell process"))
                (t
                 ;; The word is incorrect, we have to propose a replacement.
-                (flyspell-do-correct (popup-menu* (car (cddr poss)) :scroll-bar t :margin t)
+                (flyspell-correct-word (popup-menu* (car (cddr poss)) :scroll-bar t :margin t)
                                      poss word cursor-location start end cursor-location)))
               (ispell-pdict-save t)))))
 
