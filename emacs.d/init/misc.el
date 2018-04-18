@@ -60,7 +60,7 @@
 (blink-cursor-mode 0)
 
 ;; emacs -> 他アプリへのコピペ
-(setq x-select-enable-clipboard t)
+(setq select-enable-clipboard t)
 (setq selection-coding-system 'compound-text-with-extensions)
 (set-clipboard-coding-system 'utf-8-unix)
 ;; C-Del でクリップボードにカット
