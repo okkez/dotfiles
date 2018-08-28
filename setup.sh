@@ -59,8 +59,8 @@ if ! test -d $HOME/.rbenv; then
 fi
 
 if ! test -d $HOME/.nvm; then
-  git clone https://github.com/creationix/nvm.git ~/.nvm \
-    && cd ~/.nvm \
+  git clone https://github.com/creationix/nvm.git $HOME/.nvm \
+    && cd $HOME/.nvm \
     && git checkout $(git describe --abbrev=0 --tags)
 fi
 
