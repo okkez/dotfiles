@@ -135,6 +135,11 @@ if [[ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]];then
     source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 fi
 
+# load luaenv
+export PATH="$HOME/.luaenv/bin:$PATH"
+eval "$(luaenv init -)"
+source $HOME/.luaenv/completions/luaenv.zsh
+
 # Embulk
 export PATH="$HOME/.embulk/bin:$PATH"
 

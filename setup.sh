@@ -64,6 +64,12 @@ if ! test -d $HOME/.nvm; then
     && git checkout $(git describe --abbrev=0 --tags)
 fi
 
+if ! test -d $HOME/.luaenv; then
+  git clone https://github.com/cehoffman/luaenv.git $HOME/.luaenv
+  git clone https://github.com/cehoffman/lua-build.git $HOME/.luaenv/plugins/lua-build
+  git clone https://github.com/xpol/luaenv-luarocks.git $HOME/.luaenv/plugins/luaenv-luarocks
+fi
+
 if ! test -e $HOME/bin/peco; then
   if type jq > /dev/null; then
     url=$(curl https://api.github.com/repos/peco/peco/releases/latest |
