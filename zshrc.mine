@@ -148,3 +148,6 @@ DIRCOLORS=$HOME/src/dircolors-solarized/dircolors.ansi-universal
 test -s $DIRCOLORS && eval $(dircolors $DIRCOLORS)
 
 fpath=(~/.zsh/Completion $fpath)
+
+# k8s
+type kubectl > /dev/null && source <(kubectl completion zsh)
