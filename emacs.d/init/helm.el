@@ -2,10 +2,8 @@
 (el-get-bundle helm
   (require 'helm)
   (require 'helm-buffers)
-  (require 'helm-files))
-
-(require 'helm)
-
+  (require 'helm-files)
+  (require 'magit)
 (define-key global-map (kbd "C-;") 'helm-mini)
 (define-key global-map (kbd "M-x") 'helm-M-x)
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
@@ -62,3 +60,6 @@
     (kbd "C-c i") 'helm-git-commit-messages))
 (add-hook 'magit-mode-hook
           'magit-enable-helm)
+
+)
+
