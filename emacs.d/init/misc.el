@@ -49,7 +49,8 @@
  )
 
 (show-paren-mode t)
-(setq show-paren-style 'mixed)
+(custom-set-variables
+ '(show-paren-style 'mixed))
 (set-face-attribute 'show-paren-match nil
                     :foreground nil
                     :background "#073642"
