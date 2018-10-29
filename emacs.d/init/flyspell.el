@@ -1,7 +1,7 @@
 ;;; flyspell-mode
-(autoload 'flyspell-mode "flyspell" "spell checking at runtime")
-(el-get-bundle popup
-  (with-eval-after-load-feature 'popup
+(require 'flyspell)
+(require 'popup)
+  (with-eval-after-load 'popup
     ;; Do no change M-TAB key bind
     (setq flyspell-use-meta-tab nil)
 
@@ -57,7 +57,7 @@
                 (error "Ispell: error in Ispell process"))
                (t
                 ;; The word is incorrect, we have to propose a replacement.
-                (flyspell-correct-word (popup-menu* (car (cddr poss)) :scroll-bar t :margin t)
+                (flyspell-do-correct (popup-menu* (car (cddr poss)) :scroll-bar t :margin t)
                                      poss word cursor-location start end cursor-location)))
               (ispell-pdict-save t)))))
 
@@ -65,4 +65,4 @@
     (add-hook 'flyspell-mode-hook
               (lambda ()
                 (define-key flyspell-mode-map (kbd "C-1")
-                  'flyspell-correct-word-popup-el)))))
+                  'flyspell-correct-word-popup-el))))
