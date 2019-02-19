@@ -3,7 +3,7 @@
   ci = commit
   co = checkout
   br = branch
-  up = pull --rebase
+  up = pull --rebase --autostash
   cherryv = cherry -v --abbrev
   cm = cherry -v --abbrev master
   ga = "!f(){ git branch -a | grep -v '\\->' | tr -d '*' | xargs git grep $1;};f"
