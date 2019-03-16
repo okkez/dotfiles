@@ -113,3 +113,7 @@ If the link is in hidden text, expose it."
   (let* ((time (decode-time (current-time))))
     (setf (elt time 3) (+ (elt time 3) 1))
     (format-time-string "%Y-%m-%d(%a)" (apply 'encode-time time))))
+
+(defun insert-this-date ()
+  (let* ((time (decode-time (current-time))))
+    (format-time-string "%Y-%m-%d(%a)" (apply 'encode-time time))))
