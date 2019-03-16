@@ -14,11 +14,12 @@
     (add-hook 'emacs-lisp-mode-hook
               (lambda () (add-to-list 'ac-sources 'ac-source-symbols t)))
     ;(ac-rcodetools-initialize)
-    ;; M-/ で補完開始
+    ;; M-i で補完開始
     ;(setq ac-auto-start nil)
     (setq ac-auto-start 4)
-    ;(global-set-key (kbd "M-i") 'ac-start)
+    (global-set-key (kbd "M-i") 'ac-start)
 
+    (add-to-list 'ac-modes 'markdown-mode)
     (add-to-list 'ac-modes 'rhtml-mode)
     (add-to-list 'ac-modes 'rd-mode)
     (add-to-list 'ac-modes 'org-mode)))
