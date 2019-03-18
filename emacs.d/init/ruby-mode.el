@@ -23,6 +23,7 @@
 
     (add-hook 'enh-ruby-mode-hook 'setup-enh-ruby-mode)
     (add-hook 'enh-ruby-mode-hook 'flycheck-mode)
+    (add-hook 'enh-ruby-mode-hook #'lsp)
 
     (custom-set-variables
      '(enh-ruby-deep-indent-paren nil)
