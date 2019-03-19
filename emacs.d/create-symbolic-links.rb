@@ -1,14 +1,15 @@
 #!/usr/bin/env ruby
 
+require "fileutils"
 require "pathname"
 
 INIT_DIR = Pathname("init").realpath
 INIT_LOADER_DIR = Pathname("init-loader").realpath
 
 def create_link(name, priority)
-  system("ln", "-f", "-s",
-         (INIT_DIR + name).to_path,
-         (INIT_LOADER_DIR + "#{"%02d" % [priority]}-#{name}").to_path)
+  FileUtils.ln_s((INIT_DIR + name).to_path,
+                 (INIT_LOADER_DIR + "#{"%02d" % [priority]}-#{name}").to_path,
+                 force: true)
 end
 
 INIT_LOADER_DIR.each_entry do |entry|
