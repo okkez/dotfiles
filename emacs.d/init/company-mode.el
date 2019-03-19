@@ -1,10 +1,9 @@
 (el-get-bundle company-mode
-  (with-eval-after-load-feature 'company-mode
+  (global-company-mode t)
+  (with-eval-after-load-feature 'company
     (custom-set-variables
      '(company-idle-delay nil)
      '(company-selection-wrap-around t))
-
-    (global-company-mode)
 
     (set-face-attribute 'company-tooltip nil
                         :foreground "black" :background "lightgrey")
@@ -44,7 +43,6 @@
 
     ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
     (define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
-    (define-key enh-ruby-mode-map (kbd "C-M-i") 'company-complete)
     ))
 
 (el-get-bundle company-quickhelp

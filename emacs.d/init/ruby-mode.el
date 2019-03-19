@@ -25,6 +25,8 @@
     (add-hook 'enh-ruby-mode-hook 'flycheck-mode)
     (add-hook 'enh-ruby-mode-hook #'lsp)
 
+    (define-key enh-ruby-mode-map (kbd "C-M-i") 'company-complete)
+
     (custom-set-variables
      '(enh-ruby-deep-indent-paren nil)
      '(enh-ruby-use-ruby-mode-show-parens-config t)
