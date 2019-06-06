@@ -29,6 +29,7 @@
 
     (custom-set-variables
      '(enh-ruby-deep-indent-paren nil)
+     '(enh-ruby-bounce-deep-indent t)
      '(enh-ruby-use-ruby-mode-show-parens-config t)
      '(enh-ruby-add-encoding-comment-on-save nil)
      '(flycheck-disabled-checkers '(ruby-reek)))))
