@@ -118,9 +118,11 @@ for f in $HOME/dotfiles/zsh/*.zsh; do
 done
 
 # load rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-source $HOME/.rbenv/completions/rbenv.zsh
+if [[ -f $HOME/.rbenv/bin/rbenv ]]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+    source $HOME/.rbenv/completions/rbenv.zsh
+fi
 export RUBY_CONFIGURE_OPTS="--enable-shared --disable-install-doc"
 
 # load nvm
@@ -129,16 +131,24 @@ if [[ -f $HOME/.nvm/nvm.sh ]]; then
 fi
 
 # load virtualenv
-if [[ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]];then
+if [[ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export VIRTUAL_ENV_DISABLE_PROMPT=1
     source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 fi
 
 # load luaenv
-export PATH="$HOME/.luaenv/bin:$PATH"
-eval "$(luaenv init -)"
-source $HOME/.luaenv/completions/luaenv.zsh
+if [[ -f $HOME/.luaenv/bin/luaenv ]]; then
+    export PATH="$HOME/.luaenv/bin:$PATH"
+    eval "$(luaenv init -)"
+    source $HOME/.luaenv/completions/luaenv.zsh
+fi
+
+# Rust
+if [[ -f $HOME/.cargo/bin/rustup ]]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+    source <(rustup completions zsh)
+fi
 
 # Embulk
 export PATH="$HOME/.embulk/bin:$PATH"
