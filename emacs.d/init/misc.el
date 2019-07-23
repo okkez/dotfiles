@@ -48,6 +48,11 @@
  ;; Your init file should contain only one such instance.
  )
 
+(add-hook 'skk-mode-hook
+          (lambda ()
+            (and (skk-in-minibuffer-p)
+                 (skk-mode-exit))))
+
 (show-paren-mode t)
 (custom-set-variables
  '(show-paren-style 'mixed))
