@@ -7,8 +7,10 @@ curl
 jq
 apel
 rdtool-elisp
-emacs25
+emacs
 elpa-magit
+elpa-flycheck
+develock-el
 cmigemo
 rsync
 ruby
