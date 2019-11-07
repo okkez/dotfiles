@@ -19,7 +19,7 @@
 (set-default-coding-systems 'utf-8-unix)
 ;(add-to-list 'default-frame-alist '(font . "VL Gothic-10"))
 (defun set-font-size-by-resolution ()
-  (let ((size (if (>= (x-display-pixel-width) 2000) 15 10)))
+  (let ((size (if (> (x-display-pixel-height) 1500) 15 10)))
     (condition-case err
         (let ((myfont (format "VL ゴシック-%d" size)))
           (set-frame-font myfont)
