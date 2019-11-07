@@ -18,12 +18,14 @@
 ;(set-frame-font "VL Gothic" 10)
 (set-default-coding-systems 'utf-8-unix)
 ;(add-to-list 'default-frame-alist '(font . "VL Gothic-10"))
-(let ((size (if (>= (x-display-pixel-width) 2000) 15 10)))
-  (condition-case err
-      (let ((myfont (format "VL ゴシック-%d" size)))
-        (set-frame-font myfont)
-        (add-to-list 'default-frame-alist `(font . ,myfont)))
-    (error (message "%s" err))))
+(defun set-font-size-by-resolution ()
+  (let ((size (if (>= (x-display-pixel-width) 2000) 15 10)))
+    (condition-case err
+        (let ((myfont (format "VL ゴシック-%d" size)))
+          (set-frame-font myfont)
+          (add-to-list 'default-frame-alist `(font . ,myfont)))
+      (error (message "%s" err)))))
+(set-font-size-by-resolution)
 
 ;; 起動時に最大化
 (set-frame-parameter nil 'fullscreen 'maximized)
