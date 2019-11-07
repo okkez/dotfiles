@@ -161,3 +161,6 @@ fpath=(~/.zsh/Completion $fpath)
 
 # k8s
 type kubectl > /dev/null && source <(kubectl completion zsh)
+
+export PATH="$HOME/.local/bin:$PATH"
+
