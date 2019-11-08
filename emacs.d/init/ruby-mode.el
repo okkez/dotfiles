@@ -14,6 +14,8 @@
     (add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
     ;; *.gemspec も enh-ruby-mode になるように
     (add-to-list 'auto-mode-alist '("\\.gemspec$" . enh-ruby-mode))
+    ;; *.cap も enh-ruby-mode になるように
+    (add-to-list 'auto-mode-alist '("\\.cap$" . enh-ruby-mode))
 
     ;; ruby-electric-mode 優先順位を最下位にする。[ruby-list:45511]
     (let ((rel (assq 'ruby-electric-mode minor-mode-map-alist)))
