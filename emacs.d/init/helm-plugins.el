@@ -22,3 +22,12 @@
   (global-set-key (kbd "C-:") 'helm-ls-git-ls)
   (custom-set-variables
    '(helm-ls-git-show-abs-or-relative 'relative)))
+
+(el-get-bundle helm-ghq
+  (require 'helm-ghq)
+  (global-set-key (kbd "C-c C-:") 'helm-ghq))
+
+(el-get-bundle helm-git-grep
+  (require 'helm-git-grep)
+  (global-set-key (kbd "C-c .") 'helm-git-grep)
+  (global-set-key (kbd "C-c ,") 'helm-git-grep-at-point))
