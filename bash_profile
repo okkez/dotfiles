@@ -15,11 +15,11 @@ if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
 fi
 # ---- language-env DON'T MODIFY THIS LINE!
-# .bash_profile �ϡ�����������˼¹Ԥ���롣
+# .bash_profile は、ログイン時に実行される。
 if [ -f ~/.bashrc ]
 then
-  # �����������Ǥ� .bash_profile �� .bashrc ��¹Ԥ��Ƥ����顢
-  # ʣ�Ť��Ƥϼ¹Ԥ��ʤ���
+  # ただし、すでに .bash_profile が .bashrc を実行していたら、
+  # 複重しては実行しない。
   if [ -z "$BASHRC_DONE" ]
   then
     . ~/.bashrc
