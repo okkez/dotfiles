@@ -97,17 +97,17 @@ If the link is in hidden text, expose it."
 (define-key global-map (kbd "C-c a") 'org-agenda)
 
 ;; key-chord
-(key-chord-define-global "op" 'org-remember)
+; (key-chord-define-global "op" 'org-remember)
 
 ;; ~/memo/agenda.org を開く
 (define-key global-map (kbd "C-z a")
-  '(lambda () (interactive) (find-file "~/Dropbox/memo/agenda.org")))
-;; ~/Dropbox/memo/standup-meeting.org を開く
+  '(lambda () (interactive) (find-file "~/Nextcloud/memo/agenda.org")))
+;; ~/Nextcloud/memo/standup-meeting.org を開く
 (define-key global-map (kbd "C-z s")
-  '(lambda () (interactive) (find-file "~/Dropbox/memo/standup-meeting.org")))
-;; ~/Dropbox/memo/cheat-sheet.org を開く
+  '(lambda () (interactive) (find-file "~/Nextcloud/memo/standup-meeting.org")))
+;; ~/Nextcloud/memo/cheat-sheet.org を開く
 (define-key global-map (kbd "C-z c")
-  '(lambda () (interactive) (find-file "~/Dropbox/memo/cheat-sheet.org")))
+  '(lambda () (interactive) (find-file "~/Nextcloud/memo/cheat-sheet.org")))
 
 (defun insert-next-date ()
   (let* ((time (decode-time (current-time))))
