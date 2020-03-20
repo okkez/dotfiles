@@ -18,6 +18,7 @@ screen
 zsh
 build-essential
 ddskk
+unzip
 "
 
 sudo apt install -y $packages
@@ -106,6 +107,18 @@ if ! test -e $HOME/bin/hub; then
   mv $(basename -s .tgz $url)/bin/hub $HOME/bin/hub
   rm -rf $(basename $url)
   rm -rf $(basename -s .tgz $url)
+fi
+
+if ! test -e $HOME/bin/ghq; then
+  url=$(curl https://api.github.com/repos/motemen/ghq/releases/latest |
+          jq -r '.assets[] | select(.name == "ghq_linux_amd64.zip").browser_download_url')
+  curl -L -O $url
+  unzip $(basename $url)
+  mkdir -p $HOME/bin
+  mv $(basename -s .zip $url)/ghq $HOME/bin/ghq
+  mv $(basename -s .zip $url)/misc/zsh/_ghq $HOME/dotfiles/zsh/ghq.sh
+  rm -rf $(basename $url)
+  rm -rf $(basename -s .zip $url)
 fi
 
 mkdir -p $HOME/wc
