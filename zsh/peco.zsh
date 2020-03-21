@@ -42,7 +42,7 @@ function peco-cdr () {
     zle clear-screen
 }
 zle -N peco-cdr
-bindkey '^@' peco-cdr
+#bindkey '^@' peco-cdr
 
 function peco-ghq () {
     local repo=$(ghq list | peco --query "$LBUFFER")
@@ -53,14 +53,6 @@ function peco-ghq () {
     fi
     zle clear-screen
 }
-zle -N peco-ghq
-bindkey '^]' peco-ghq
+#zle -N peco-ghq
+#bindkey '^]' peco-ghq
 
-function cdgem() {
-  local gem_name=$(bundle list | sed -e 's/^ *\* *//g' | peco | cut -d \  -f 1)
-  if [ -n "$gem_name" ]; then
-    local gem_dir=$(bundle info --path ${gem_name})
-    echo "cd to ${gem_dir}"
-    cd ${gem_dir}
-  fi
-}
