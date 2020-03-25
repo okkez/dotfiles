@@ -17,7 +17,7 @@ function clh-add-history() {
 add-zsh-hook preexec clh-add-history
 
 function clh-search-history() {
-    BUFFER=$(curl --silent https://clh.okkez.net/?pwd=${PWD} | jq -r 'map(.command) | join("\n")' | sk --query "$LBUFFER")
+    BUFFER=$(curl --silent https://clh.okkez.net/?pwd=${PWD} | jq -r 'map(.command) | join("\n")' | sk --layout=reverse --query "$LBUFFER")
     CURSOR=$#BUFFER
     zle clear-screen
 }
@@ -25,7 +25,7 @@ zle -N clh-search-history
 bindkey '^s' clh-search-history
 
 function clh-search-history-all() {
-    BUFFER=$(curl --silent https://clh.okkez.net/ | jq -r 'map(.command) | join("\n")' | sk --query "$LBUFFER")
+    BUFFER=$(curl --silent https://clh.okkez.net/ | jq -r 'map(.command) | join("\n")' | sk --layout=reverse --query "$LBUFFER")
     CURSOR=$#BUFFER
     zle clear-screen
 }

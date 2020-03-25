@@ -1,8 +1,8 @@
 export SKIM_DEFAULT_COMMAND="fdfind --type f || git ls-tree -r --name-only HEAD || rg --files || find . -type f"
-export SKIM_DEFAULT_OPTIONS="--ansi --layout=default --prompt='Q> '"
+export SKIM_DEFAULT_OPTIONS="--ansi --prompt='Q> '"
 
 function skim-select-history() {
-    BUFFER=$(history -n 1 | sk --tac --query "$LBUFFER")
+    BUFFER=$(history -n 1 | sk --layout=reverse --tac --query "$LBUFFER")
     CURSOR=$#BUFFER
     zle clear-screen
 }
@@ -10,7 +10,7 @@ zle -N skim-select-history
 bindkey '^r' skim-select-history
 
 function skim-cdr () {
-    local selected_dir=$(cdr -l | awk '{ print $2 }' | sk)
+    local selected_dir=$(cdr -l | awk '{ print $2 }' | sk --layout=reverse)
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
         zle accept-line
@@ -21,7 +21,7 @@ zle -N skim-cdr
 bindkey '^@' skim-cdr
 
 function skim-ghq () {
-    local repo=$(ghq list | sk --query "$LBUFFER")
+    local repo=$(ghq list | sk --layout=reverse --query "$LBUFFER")
     if [ -n "$repo" ]; then
         repo=$(ghq list --full-path --exact $repo)
         BUFFER="cd ${repo}"
