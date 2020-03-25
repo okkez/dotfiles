@@ -2,6 +2,7 @@ function clh-add-history() {
     command=${1}
     test ${#command} -lt 4 && return
     echo -n ${command} | grep -E "^ " && return
+    echo -n ${command} | grep -E "^ll? " && return
 
     # 何も表示させないためにサブシェルで POST する
     (
