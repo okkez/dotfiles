@@ -8,6 +8,7 @@ function clh-add-history() {
     (
         setopt LOCAL_OPTIONS NO_NOTIFY NO_MONITOR
         curl --silent -X POST \
+             --user ${CLH_USER}:${CLH_PASS} \
              -H "Content-Type: application/x-www-form-urlencoded" \
              --data-urlencode "hostname=$(hostname)" \
              --data-urlencode "working_directory=${PWD}" \
@@ -18,7 +19,11 @@ function clh-add-history() {
 add-zsh-hook preexec clh-add-history
 
 function clh-search-history() {
-    BUFFER=$(curl --silent https://clh.okkez.net/?pwd=${PWD} | jq -r 'map(.command) | join("\n")' | sk --layout=reverse --query "$LBUFFER")
+    BUFFER=$(curl --silent --user ${CLH_USER}:${CLH_PASS}  https://clh.okkez.net/?pwd=${PWD} | \
+                 jq -r 'map("https://clh.okkez.net/" + (.id | tostring) + "\t" + .command) | join("\n")' | \
+                 sk --layout=reverse --query "$LBUFFER" --delimiter '\t' --with-nth 2 --nth 1 \
+                    --bind 'ctrl-k:execute-silent(echo {} | cut -f1 | xargs -n 1 curl --user ${CLH_USER}:${CLH_PASS} --silent -o /dev/null -X DELETE)' | \
+                 cut -f 2)
     CURSOR=$#BUFFER
     zle clear-screen
 }
@@ -26,7 +31,11 @@ zle -N clh-search-history
 bindkey '^s' clh-search-history
 
 function clh-search-history-all() {
-    BUFFER=$(curl --silent https://clh.okkez.net/ | jq -r 'map(.command) | join("\n")' | sk --layout=reverse --query "$LBUFFER")
+    BUFFER=$(curl --silent --user ${CLH_USER}:${CLH_PASS} https://clh.okkez.net/ | \
+                 jq -r 'map("https://clh.okkez.net/" + (.id | tostring) + "\t" + .command) | join("\n")' |
+                 sk --layout=reverse --query "$LBUFFER" --delimiter '\t' --with-nth 2 --nth 1 \
+                    --bind 'ctrl-k:execute-silent(echo {} | cut -f1 | xargs -n 1 curl --user ${CLH_USER}:${CLH_PASS} --silent -o /dev/null -X DELETE)' | \
+                 cut -f 2)
     CURSOR=$#BUFFER
     zle clear-screen
 }
