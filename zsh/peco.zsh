@@ -12,7 +12,7 @@ function peco-select-history() {
     zle clear-screen
 }
 zle -N peco-select-history
-bindkey '^r' peco-select-history
+#bindkey '^r' peco-select-history
 
 function peco-delete-history() {
     local tac
@@ -31,7 +31,7 @@ function peco-delete-history() {
     zle clear-screen
 }
 zle -N peco-delete-history
-bindkey '^x' peco-delete-history
+#bindkey '^x' peco-delete-history
 
 function peco-cdr () {
     local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
