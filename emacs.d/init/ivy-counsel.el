@@ -22,6 +22,8 @@
   (global-set-key (kbd "C-;") 'counsel-switch-buffer)
   (global-set-key (kbd "M-y") 'counsel-yank-pop)
 
+  (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
+
   (with-eval-after-load-feature 'counsel-find-file
     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory))
 
