@@ -10,6 +10,4 @@
     (yas-load-directory "~/.emacs.d/el-get/yasnippets-rails/rails-snippets")
     (yas-load-directory "~/.emacs.d/el-get/yasnippet-snippets/snippets/")
     (yas-load-directory "~/dotfiles/emacs.d/snippets")))
-(el-get-bundle helm-c-yasnippet
-  (with-eval-after-load-feature 'helm-c-yasnippet
-    (global-set-key (kbd "C-c y") 'helm-c-yas-complete)))
+
