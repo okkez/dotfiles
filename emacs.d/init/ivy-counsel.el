@@ -5,6 +5,8 @@
   (with-eval-after-load-feature 'ivy-rich
     (ivy-rich-mode 1))
   (with-eval-after-load-feature 'ivy-posframe
+    (setq ivy-posframe-height-alist
+          '((t . 30)))
     (setq ivy-posframe-display-functions-alist
           '((counsel-M-x . ivy-posframe-display-at-point)
             (counsel-yank-pop . ivy-posframe-display-at-point)
