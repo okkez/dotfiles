@@ -28,6 +28,7 @@
 
     ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
     (define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
+    (define-key lisp-interaction-mode-map (kbd "C-M-i") 'company-complete)
     ))
 
 (el-get-bundle company-quickhelp
