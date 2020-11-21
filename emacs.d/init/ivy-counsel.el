@@ -14,6 +14,7 @@
 
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-b") 'counsel-ibuffer)
+  (global-set-key (kbd "C-:") 'counsel-git)
   (global-set-key (kbd "C-;") 'counsel-switch-buffer)
   (global-set-key (kbd "M-y") 'counsel-yank-pop)
 
@@ -23,3 +24,7 @@
   (with-eval-after-load "magit"
     (setq magit-completing-read-function 'ivy-completing-read))
 )
+
+(el-get-bundle windymelt/counsel-ghq
+  (with-eval-after-load-feature 'counsel-ghq
+    (global-set-key (kbd "C-\]") 'counsel-ghq)))
