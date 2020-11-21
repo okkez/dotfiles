@@ -18,7 +18,7 @@
   (global-set-key (kbd "C-;") 'counsel-switch-buffer)
   (global-set-key (kbd "M-y") 'counsel-yank-pop)
 
-  (with-eval-after-load-feature 'counsel
+  (with-eval-after-load-feature 'counsel-find-file
     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory))
 
   (with-eval-after-load "magit"
