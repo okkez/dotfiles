@@ -2,7 +2,7 @@
   (global-company-mode t)
   (with-eval-after-load-feature 'company
     (custom-set-variables
-     '(company-idle-delay nil)
+     '(company-idle-delay 0.5)
      '(company-selection-wrap-around t))
 
     (global-set-key (kbd "C-M-i") 'company-complete)
