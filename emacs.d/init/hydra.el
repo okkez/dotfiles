@@ -16,7 +16,8 @@
 Counsel: describ-_f_unction   _i_nfo-lookup-symbol    _d_escbinds
          _y_ank-pop           _l_ocate                _a_g
          describ-_v_ariable   find-_L_ibrary          _u_nicode-char
-         _m_ark-ring          _g_it-grep              _r_g"
+         _m_ark-ring          _g_it-grep              _r_g
+         org-_c_apture"
     ("d" counsel-descbinds)
     ("y" counsel-yank-pop)
     ("m" counsel-mark-ring)
@@ -29,7 +30,8 @@ Counsel: describ-_f_unction   _i_nfo-lookup-symbol    _d_escbinds
     ("i" counsel-git)
     ("a" counsel-ag)
     ("r" counsel-rg)
-    ("l" counsel-locate))
+    ("l" counsel-locate)
+    ("c" counsel-org-capture))
   (defhydra hydra-window (:color red :hint nil)
     "
 Window: _v_sprit  _h_sprit  _o_ther  _s_wap  e_x_change  _a_ce-window del_0_:_1_
