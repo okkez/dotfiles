@@ -26,5 +26,4 @@
 )
 
 (el-get-bundle windymelt/counsel-ghq
-  (with-eval-after-load-feature 'counsel-ghq
-    (global-set-key (kbd "C-\]") 'counsel-ghq)))
+  (global-set-key (kbd "C-\]") 'counsel-ghq))
