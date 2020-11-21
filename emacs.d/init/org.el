@@ -1,48 +1,82 @@
 ;;; org-mode
 ;;; http://d.hatena.ne.jp/rubikitch/20090121
-(require 'ox-md)
+(el-get-bundle org)
+(el-get-bundle org-bullets)
+(el-get-bundle browse-at-remote
+  (setq browse-at-remote-prefer-symbolic nil))
+
 (setq org-startup-truncated nil)
 (setq org-return-follows-link t)
 (setq org-src-fontify-natively t)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-;(require 'org-remember)
-;(org-remember-insinuate)
-(setq org-directory "~/memo/")
+
+;;; https://ladicle.com/post/20200625_123915/
+(defconst okkez/org-journal-dir "~/Nextcloud/org/journal/")
+(defconst okkez/org-journal-file-format (concat okkez/org-journal-dir "%Y-%m-%d.org"))
+
+(defvar org-code-capture--store-file "")
+(defvar org-code-capture--store-header "")
+
+;; This function is used in combination with a coding template of org-capture.
+(defun org-code-capture--store-here ()
+  "Register current subtree as a capture point."
+  (interactive)
+  (setq org-code-capture--store-file (buffer-file-name))
+  (setq org-code-capture--store-header (nth 4 (org-heading-components))))
+
+;; This function is used with a capture-template for (function) type.
+;; Look for headline that registered at `org-code-capture--store-header`.
+;; If the matching subtree is not found, create a new Capture tree.
+(defun org-code-capture--find-store-point ()
+  "Find registered capture point and move the cursor to it."
+  (let ((filename (if (string= "" org-code-capture--store-file)
+                      (format-time-string okkez/org-journal-file-format)
+                    org-code-capture--store-file)))
+    (set-buffer (org-capture-target-buffer filename)))
+  (goto-char (point-min))
+  (unless (derived-mode-p 'org-mode)
+    (error
+     "Target buffer \"%s\" for org-code-capture--find-store-file should be in Org mode"
+     (current-buffer))
+    (current-buffer))
+  (if (re-search-forward org-code-capture--store-header nil t)
+      (goto-char (point-at-bol))
+    (goto-char (point-max))
+    (or (bolp) (insert "\n"))
+    (insert "* Capture\n")
+    (beginning-of-line 0))
+  (org-end-of-subtree))
+
+;; Capture templates for code-reading
+(setq org-capture-templates
+      '(("code-link"
+         "Store the code-reading notes with GitHub and file links for the current cursor position."
+         plain
+         (function org-code-capture--find-store-point)
+         "%^{Summary}\n%(with-current-buffer (org-capture-get :original-buffer) (browse-at-remote-get-url))\n# %a"
+         :immediate-finish t)
+        ("just-code-link"
+         "Immediately store GitHub and file links for the current cursor position to the current code-reading notes."
+         plain
+         (function org-code-capture--find-store-point)
+         "%(with-current-buffer (org-capture-get :original-buffer) (browse-at-remote-get-url))\n# %a"
+         :immediate-finish t)
+        ("t" "Todo" entry (file+headline org-default-notes-file "Inbox")
+         "** TODO %?\n   %i\n   %a\n   %t")
+        ("b" "Bug" entry (file+headline org-default-notes-file "Inbox")
+         "** TODO %?   :bug:\n   %i\n   %a\n   %t")
+        ("i" "Idea" entry (file+headline org-default-notes-file "New Ideas")
+         "** %?\n   %i\n   %a\n   %t")
+        ))
+
+(setq org-directory "~/Nextcloud/memo/")
 (setq org-default-notes-file (concat org-directory "agenda.org"))
 ;; 祝日を表示する 不要？
 ;(setq org-agenda-files (list org-default-notes-file
 ;                             (format-time-string "~/memo/holidays.%Y.org")))
-(setq org-remember-templates
-      '(("Todo" ?t "** TODO %?\n   %i\n   %a\n   %t" nil "Inbox")
-        ("Bug" ?b "** TODO %?   :bug:\n   %i\n   %a\n   %t" nil "Inbox")
-        ("Idea" ?i "** %?\n   %i\n   %a\n   %t" nil "New Ideas")
-        ))
 ;; TODO の状態
 (setq org-todo-keywords '("TODO" "Wait" "DONE")
       org-todo-interpretation 'sequence)
-;; for code reading
-;; http://d.hatena.ne.jp/rubikitch/20090121/1232468026
-(defvar org-code-reading-software-name nil)
-;; ~/memo/code-reading.org に記録する
-(defvar org-code-reading-file "code-reading.org")
-(defun org-code-reading-read-software-name ()
-  (set (make-local-variable 'org-code-reading-software-name)
-       (read-string "Code Reading Software: "
-                    (or org-code-reading-software-name
-                        (file-name-nondirectory
-                         (buffer-file-name))))))
-
-(defun org-code-reading-get-prefix (lang)
-  (concat "[" lang "]"
-          "[" (org-code-reading-read-software-name) "]"))
-(defun org-remember-code-reading ()
-  (interactive)
-  (let* ((prefix (org-code-reading-get-prefix
-                  (substring (symbol-name major-mode) 0 -5)))
-         (org-remember-templates
-          `(("CodeReading" ?r "** %(identity prefix)%?\n   \n   %a\n   %t"
-             ,org-code-reading-file "Memo"))))
-    (org-remember)))
 
 ;; for link
 (defun org-next-visible-link ()
