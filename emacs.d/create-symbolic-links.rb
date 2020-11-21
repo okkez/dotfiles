@@ -20,7 +20,8 @@ INIT_LOADER_DIR.each_entry do |entry|
   end
 end
 
-# create_link("ace-isearch.el", 51)
+create_link("ace-isearch.el", 51)
+create_link("ace-window.el", 52)
 create_link("anzu.el", 51)
 # create_link("auto-complete.el", 10)
 create_link("base.el", 0)

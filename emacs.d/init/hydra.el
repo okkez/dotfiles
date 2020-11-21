@@ -32,13 +32,14 @@ Counsel: describ-_f_unction   _i_nfo-lookup-symbol    _d_escbinds
     ("l" counsel-locate))
   (defhydra hydra-window (:color red :hint nil)
     "
-Window: _v_sprit  _h_sprit  _o_ther  _s_wap  e_x_change  del_0_:_1_
+Window: _v_sprit  _h_sprit  _o_ther  _s_wap  e_x_change  _a_ce-window del_0_:_1_
 Frame: _n_ew  _m_ove  _d_el"
     ("v" split-window-right)
     ("h" split-window-below)
     ("o" other-window-or-split)
     ("s" window-swap-states)
     ("x" window-toggle-division)
+    ("a" ace-window :exit t)
     ("0" delete-window :exit t)
     ("1" delete-other-windows :exit t)
     ;; Common setting with hydra-work
