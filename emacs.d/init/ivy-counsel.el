@@ -42,6 +42,7 @@
   (with-eval-after-load "magit"
     (add-hook 'magit-mode-hook
               '(lambda ()
+                 (define-key git-commit-mode-map (kbd "C-c i") 'counsel-git-log)
                  (key-chord-mode -1)))
     (setq magit-completing-read-function 'ivy-completing-read))
 )
