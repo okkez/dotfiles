@@ -8,10 +8,12 @@
   (ivy-rich-mode 1)
   (setq ivy-posframe-height-alist
         '((counsel-org-capture . 10)
+          (counsel-git-log . 10)
           (t . 30)))
   (setq ivy-posframe-display-functions-alist
         '((counsel-M-x . ivy-posframe-display-at-point)
           (counsel-yank-pop . ivy-posframe-display-at-point)
+          (counsel-git-log . ivy-posframe-display-at-point)
           (swiper . ivy-posframe-display-at-frame-bottom-window-center)
           (t . ivy-posframe-display)
           ))
@@ -29,8 +31,13 @@
   (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
   (with-eval-after-load-feature 'counsel
+    (setq counsel-git-log-cmd
+          "GIT_PAGER=cat git log --no-color --format=%%x00%%B --grep '%s'")
+    (add-to-list 'counsel-async-split-string-re-alist '(counsel-git-log . "\0"))
+    (add-to-list 'counsel-async-ignore-re-alist '(counsel-git-log . "^[ \n]*$"))
     (define-key isearch-mode-map (kbd "M-i") 'swiper-from-isearch)
     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory))
+
   (with-eval-after-load-feature 'swiper
     ;; https://github.com/abo-abo/swiper/issues/589#issuecomment-234670692
     (define-key swiper-map (kbd "C-c C-e")
