@@ -12,6 +12,7 @@
   (setq ivy-posframe-display-functions-alist
         '((counsel-M-x . ivy-posframe-display-at-point)
           (counsel-yank-pop . ivy-posframe-display-at-point)
+          (swiper . ivy-posframe-display-at-frame-bottom-window-center)
           (t . ivy-posframe-display)
           ))
   (setq ivy-posframe-min-width (round (* (frame-width) 0.45)))
