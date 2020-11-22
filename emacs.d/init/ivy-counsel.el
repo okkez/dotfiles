@@ -1,9 +1,10 @@
 (el-get-bundle amx)
 (el-get-bundle ivy-rich)
 (el-get-bundle ivy-posframe)
+(el-get-bundle all-the-icons-ivy-rich)
 (el-get-bundle counsel
-  (with-eval-after-load-feature 'ivy-rich
-    (ivy-rich-mode 1))
+  (all-the-icons-ivy-rich-mode 1)
+  (ivy-rich-mode 1)
   (with-eval-after-load-feature 'ivy-posframe
     (setq ivy-posframe-height-alist
           '((counsel-org-capture . 10)
