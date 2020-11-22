@@ -119,6 +119,11 @@
   (add-hook 'today-visible-calendar-hook 'calendar-mark-weekend)
   (add-hook 'today-invisible-calendar-hook 'calendar-mark-weekend))
 
+;; Emacs Lisp mode
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda ()
+             (plist-put develock-max-column-plist 'emacs-lisp-mode 100)))
+
 ;; uniquify
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
