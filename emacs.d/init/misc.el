@@ -100,6 +100,7 @@
 (setq make-backup-files nil)
 (setq backup-directory-alist
       '(("/Dropbox/*.*" . "~/.emacs.d/backup/")
+        ("~/Nextcloud/*.*" . "~/.emacs.d/backup/")
         ))
 
 ;; racc-mode
