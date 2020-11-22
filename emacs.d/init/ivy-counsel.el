@@ -24,7 +24,7 @@
 
   (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
-  (with-eval-after-load-feature 'counsel-find-file
+  (with-eval-after-load-feature 'counsel
     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory))
 
   (with-eval-after-load "magit"
