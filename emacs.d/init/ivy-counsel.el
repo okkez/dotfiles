@@ -24,6 +24,7 @@
   (global-set-key (kbd "C-:") 'counsel-git)
   (global-set-key (kbd "C-;") 'counsel-switch-buffer)
   (global-set-key (kbd "M-y") 'counsel-yank-pop)
+  (global-set-key (kbd "C-c .") 'counsel-rg)
 
   (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
