@@ -5,16 +5,15 @@
 (el-get-bundle counsel
   (all-the-icons-ivy-rich-mode 1)
   (ivy-rich-mode 1)
-  (with-eval-after-load-feature 'ivy-posframe
-    (setq ivy-posframe-height-alist
-          '((counsel-org-capture . 10)
-            (t . 30)))
-    (setq ivy-posframe-display-functions-alist
-          '((counsel-M-x . ivy-posframe-display-at-point)
-            (counsel-yank-pop . ivy-posframe-display-at-point)
-            (t . ivy-posframe-display)
-            ))
-    (ivy-posframe-mode 1))
+  (setq ivy-posframe-height-alist
+        '((counsel-org-capture . 10)
+          (t . 30)))
+  (setq ivy-posframe-display-functions-alist
+        '((counsel-M-x . ivy-posframe-display-at-point)
+          (counsel-yank-pop . ivy-posframe-display-at-point)
+          (t . ivy-posframe-display)
+          ))
+  (ivy-posframe-mode 1)
 
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
