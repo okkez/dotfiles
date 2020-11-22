@@ -40,6 +40,9 @@
          (ivy-occur))))
 
   (with-eval-after-load "magit"
+    (add-hook 'magit-mode-hook
+              '(lambda ()
+                 (key-chord-mode -1)))
     (setq magit-completing-read-function 'ivy-completing-read))
 )
 
