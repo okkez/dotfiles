@@ -35,6 +35,11 @@
           "GIT_PAGER=cat git log --no-color --format=%%x00%%B --grep '%s'")
     (add-to-list 'counsel-async-split-string-re-alist '(counsel-git-log . "\0"))
     (add-to-list 'counsel-async-ignore-re-alist '(counsel-git-log . "^[ \n]*$"))
+    (define-key counsel-ag-map (kbd "C-c C-e")
+      '(lambda ()
+         (interactive)
+         (run-at-time nil nil (lambda () (ivy-wgrep-change-to-wgrep-mode)))
+         (ivy-occur)))
     (define-key isearch-mode-map (kbd "M-i") 'swiper-from-isearch)
     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory))
 
