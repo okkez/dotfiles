@@ -14,6 +14,7 @@
           (counsel-yank-pop . ivy-posframe-display-at-point)
           (t . ivy-posframe-display)
           ))
+  (setq ivy-posframe-min-width (round (* (frame-width) 0.45)))
   (ivy-posframe-mode 1)
 
   (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -26,6 +27,7 @@
   (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
   (with-eval-after-load-feature 'counsel
+    (define-key isearch-mode-map (kbd "M-i") 'swiper-from-isearch)
     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory))
 
   (with-eval-after-load "magit"
