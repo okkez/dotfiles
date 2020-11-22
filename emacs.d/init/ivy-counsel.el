@@ -2,6 +2,7 @@
 (el-get-bundle ivy-rich)
 (el-get-bundle ivy-posframe)
 (el-get-bundle all-the-icons-ivy-rich)
+(el-get-bundle wgrep)
 (el-get-bundle counsel
   (all-the-icons-ivy-rich-mode 1)
   (ivy-rich-mode 1)
