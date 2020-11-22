@@ -30,6 +30,13 @@
   (with-eval-after-load-feature 'counsel
     (define-key isearch-mode-map (kbd "M-i") 'swiper-from-isearch)
     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory))
+  (with-eval-after-load-feature 'swiper
+    ;; https://github.com/abo-abo/swiper/issues/589#issuecomment-234670692
+    (define-key swiper-map (kbd "C-c C-e")
+      '(lambda ()
+         (interactive)
+         (run-at-time nil nil (lambda () (ivy-wgrep-change-to-wgrep-mode)))
+         (ivy-occur))))
 
   (with-eval-after-load "magit"
     (setq magit-completing-read-function 'ivy-completing-read))
