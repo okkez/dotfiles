@@ -40,6 +40,7 @@
   (with-eval-after-load-feature 'counsel
     (setq counsel-git-log-cmd
           "GIT_PAGER=cat git log --no-color --format=%%x00%%B --grep '%s'")
+    (setq counsel-fzf-cmd "sk -f \"%s\"")
     (add-to-list 'counsel-async-split-string-re-alist '(counsel-git-log . "\0"))
     (add-to-list 'counsel-async-ignore-re-alist '(counsel-git-log . "^[ \n]*$"))
     (define-key counsel-ag-map (kbd "C-c C-e") 'okkez/ivy-occur-editable)
