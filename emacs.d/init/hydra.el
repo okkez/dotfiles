@@ -4,7 +4,7 @@
 
 (el-get-bundle hydra
   (with-eval-after-load-feature 'hydra-posframe
-    (hydra-posframe-mode))
+    (hydra-posframe-mode 1))
 
   (defhydra hydra-zoom ()
     "zoom"
@@ -13,16 +13,18 @@
 
   (defhydra hydra-counsel (:hint nil :exit t)
     "
-Counsel: describ-_f_unction   _i_nfo-lookup-symbol    _d_escbinds
-         _y_ank-pop           _l_ocate                _a_g
-         describ-_v_ariable   find-_L_ibrary          _u_nicode-char
-         _m_ark-ring          _g_it-grep              _r_g
-         org-_c_apture"
+Counsel: describ-_f_unction     find-_L_ibrary   _u_nicode-char
+         _d_escbinds            _l_ocate         _y_ank-pop
+         describ-_v_ariable     _a_g             _m_ark-ring
+         _i_nfo-lookup-symbol   _g_it-grep       org-_c_apture
+         a_p_ropos              _r_g             _s_k
+         "
     ("d" counsel-descbinds)
     ("y" counsel-yank-pop)
     ("m" counsel-mark-ring)
     ("f" counsel-describe-function)
     ("v" counsel-describe-variable)
+    ("p" counsel-apropos)
     ("L" counsel-find-library)
     ("i" counsel-info-lookup-symbol)
     ("u" counsel-unicode-char)
@@ -31,6 +33,7 @@ Counsel: describ-_f_unction   _i_nfo-lookup-symbol    _d_escbinds
     ("a" counsel-ag)
     ("r" counsel-rg)
     ("l" counsel-locate)
+    ("s" counsel-sk)
     ("c" counsel-org-capture))
   (defhydra hydra-window (:color red :hint nil)
     "
