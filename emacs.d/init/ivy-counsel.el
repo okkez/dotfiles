@@ -4,8 +4,6 @@
 (el-get-bundle all-the-icons-ivy-rich)
 (el-get-bundle wgrep)
 (el-get-bundle counsel
-  (all-the-icons-ivy-rich-mode 1)
-  (ivy-rich-mode 1)
   (setq ivy-posframe-height-alist
         '((counsel-org-capture . 10)
           (counsel-git-log . 10)
@@ -18,7 +16,12 @@
           (t . ivy-posframe-display)
           ))
   (setq ivy-posframe-min-width (round (* (frame-width) 0.45)))
-  (ivy-posframe-mode 1)
+
+  (add-hook 'ivy-mode-hook
+            '(lambda ()
+               (all-the-icons-ivy-rich-mode 1)
+               (ivy-rich-mode 1)
+               (ivy-posframe-mode 1)))
 
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
