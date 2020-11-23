@@ -41,6 +41,14 @@
     (ivy-occur))
 
   (with-eval-after-load-feature 'counsel
+    (defun counsel-sk (&optional initial-input initial-directory)
+      "Open a file using the sk shell command.
+INITIAL-INPUT can be given as the initial minibuffer input.
+INITIAL-DIRECTORY, if non-nil, is used as the root directory for search."
+      (interactive
+       (counsel-fzf nil nil "sk: ")))
+    (defun counsel-sk-with-dir (initial-directory)
+      (counsel-fzf nil initial-directory "sk: "))
     (setq counsel-git-log-cmd
           "GIT_PAGER=cat git log --no-color --format=%%x00%%B --grep '%s'")
     (setq counsel-fzf-cmd "sk -f \"%s\"")
@@ -62,4 +70,9 @@
 )
 
 (el-get-bundle windymelt/counsel-ghq
-  (global-set-key (kbd "C-\]") 'counsel-ghq))
+  (setq counsel-ghq-command-ghq-arg-list '("list" "--full-path"))
+  (with-eval-after-load-feature 'counsel-ghq
+    ;; NOTE: ivy-add-actions だと2回目以降で元の default に戻ってしまうため全部上書きする
+    (ivy-set-actions 'counsel-ghq
+                     '(("o" counsel-sk-with-dir "Open File with counsel-sk")))
+    (global-set-key (kbd "C-\]") 'counsel-ghq)))
