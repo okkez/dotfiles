@@ -6,7 +6,7 @@
   (with-eval-after-load-feature 'hydra-posframe
     (hydra-posframe-mode))
 
-  (defhydra hydra-zoom (global-map "<f2>")
+  (defhydra hydra-zoom ()
     "zoom"
     ("g" text-scale-increase "in")
     ("l" text-scale-decrease "out"))
@@ -51,5 +51,6 @@ Frame: _n_ew  _m_ove  _d_el"
     ("d" delete-frame :exit t))
   (with-eval-after-load-feature 'key-chord
     (key-chord-define-global "cc" 'hydra-counsel/body)
-    (key-chord-define-global "ww" 'hydra-window/body))
+    (key-chord-define-global "ww" 'hydra-window/body)
+    (key-chord-define-global "zz" 'hydra-zoom/body))
   )
