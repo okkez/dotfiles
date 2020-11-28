@@ -31,7 +31,8 @@
   (global-set-key (kbd "M-y") 'counsel-yank-pop)
   (global-set-key (kbd "C-c .") 'counsel-rg)
 
-  (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
+  (with-eval-after-load-feature 'ivy
+    (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit))
 
   ;; https://github.com/abo-abo/swiper/issues/589#issuecomment-234670692
   (defun okkez/ivy-occur-editable ()
