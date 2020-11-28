@@ -58,6 +58,7 @@ INITIAL-DIRECTORY, if non-nil, is used as the root directory for search."
     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory))
 
   (with-eval-after-load-feature 'swiper
+    (define-key swiper-map (kbd "C-c C-e") 'okkez/ivy-occur-editable)
     (define-key counsel-ag-map (kbd "C-c C-e") 'okkez/ivy-occur-editable))
 
   (with-eval-after-load "magit"
