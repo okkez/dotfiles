@@ -37,8 +37,7 @@
 (tool-bar-mode 0)
 
 ;; 行番号
-(line-number-mode t)
-(global-linum-mode t)
+(global-display-line-numbers-mode t)
 ;; 桁番号
 (column-number-mode t)
 (set-scroll-bar-mode 'right)
