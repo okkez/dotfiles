@@ -54,7 +54,6 @@ INITIAL-DIRECTORY, if non-nil, is used as the root directory for search."
     (setq counsel-fzf-cmd "sk -f \"%s\"")
     (add-to-list 'counsel-async-split-string-re-alist '(counsel-git-log . "\0"))
     (add-to-list 'counsel-async-ignore-re-alist '(counsel-git-log . "^[ \n]*$"))
-    (define-key counsel-ag-map (kbd "C-c C-e") 'okkez/ivy-occur-editable)
     (define-key isearch-mode-map (kbd "M-i") 'swiper-from-isearch)
     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory))
 
