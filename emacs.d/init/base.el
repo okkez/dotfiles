@@ -29,4 +29,4 @@
 ;; stop bell
 ;(setq visible-bell t)
 (setq ring-bell-function 'ignore)
-(el-get-bundle with-eval-after-load-feature)
+(el-get-bundle! with-eval-after-load-feature)
