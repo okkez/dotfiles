@@ -55,6 +55,12 @@
  ;; Your init file should contain only one such instance.
  )
 
+(custom-set-variables
+ '(skk-server-host "localhost")
+ '(skk-server-port 1178)
+ '(skk-aux-large-jisyo "/usr/share/skk/SKK-JISYO.L")
+ '(skk-server-report-response t))
+
 (add-hook 'skk-mode-hook
           (lambda ()
             (and (skk-in-minibuffer-p)
