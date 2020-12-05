@@ -61,10 +61,11 @@
  '(skk-aux-large-jisyo "/usr/share/skk/SKK-JISYO.L")
  '(skk-server-report-response t))
 
-(add-hook 'skk-mode-hook
-          (lambda ()
-            (and (skk-in-minibuffer-p)
-                 (skk-mode-exit))))
+(with-eval-after-load-feature skk
+  (add-hook 'skk-mode-hook
+            (lambda ()
+              (and (skk-in-minibuffer-p)
+                   (skk-mode-exit)))))
 
 (show-paren-mode t)
 (custom-set-variables
@@ -113,14 +114,14 @@
 (setq auto-mode-alist (append '(("\\.ry$" . racc-mode)) auto-mode-alist))
 
 ;; calendar show holidays
-(autoload 'calendar "calendar" nil t)
-(with-eval-after-load 'calendar
-  (setq  number-of-diary-entries 31)
+(custom-set-variables
+ '(diary-number-of-entries 31)
+ '(alendar-mark-holidays-flag t)
+ '(alendar-weekend-marker 'diary))
+(with-eval-after-load-feature calendar
   (define-key calendar-mode-map "f" 'calendar-forward-day)
   (define-key calendar-mode-map "n" 'calendar-forward-day)
   (define-key calendar-mode-map "b" 'calendar-backward-day)
-  (setq calendar-mark-holidays-flag t)
-  (setq calendar-weekend-marker 'diary)
   (add-hook 'today-visible-calendar-hook 'calendar-mark-weekend)
   (add-hook 'today-invisible-calendar-hook 'calendar-mark-weekend))
 
