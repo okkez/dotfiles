@@ -1,27 +1,36 @@
-(el-get-bundle amx)
-(el-get-bundle ivy-rich)
-(el-get-bundle ivy-posframe)
-(el-get-bundle all-the-icons-ivy-rich)
-(el-get-bundle wgrep)
 (el-get-bundle counsel
-  (setq ivy-posframe-height-alist
-        '((counsel-org-capture . 10)
-          (counsel-git-log . 10)
-          (t . 30)))
-  (setq ivy-posframe-display-functions-alist
-        '((counsel-M-x . ivy-posframe-display-at-point)
-          (counsel-yank-pop . ivy-posframe-display-at-point)
-          (counsel-git-log . ivy-posframe-display-at-point)
-          (swiper . ivy-posframe-display-at-frame-bottom-window-center)
-          (t . ivy-posframe-display)
-          ))
-  (setq ivy-posframe-min-width (round (* (frame-width) 0.45)))
+  :depends (amx ivy-rich ivy-posframe all-the-icons-ivy-rich wgrep)
 
-  (add-hook 'ivy-mode-hook
-            '(lambda ()
-               (all-the-icons-ivy-rich-mode 1)
-               (ivy-rich-mode 1)
-               (ivy-posframe-mode 1)))
+  (add-hook 'ivy-mode-hook 'ivy-rich-mode)
+  (add-hook 'ivy-mode-hook 'all-the-icons-ivy-rich-mode)
+  (add-hook 'ivy-mode-hook 'ivy-posframe-mode)
+  (ivy-mode t)
+  (custom-set-variables
+   '(ivy-posframe-height-alist
+     '((counsel-org-capture . 10)
+       (counsel-git-log . 10)
+       (t . 30)))
+   '(ivy-posframe-display-functions-alist
+     '((counsel-M-x . ivy-posframe-display-at-point)
+       (counsel-yank-pop . ivy-posframe-display-at-point)
+       (counsel-git-log . ivy-posframe-display-at-point)
+       (swiper . ivy-posframe-display-at-frame-bottom-window-center)
+       (t . ivy-posframe-display)))
+   '(ivy-initial-inputs-alist
+     '((counsel-minor . "^+")
+       (counsel-package . "^+")
+       (counsel-org-capture . "^")
+       (counsel-describe-symbol . "^")
+       (org-refile . "^")
+       (org-agenda-refile . "^")
+       (org-capture-refile . "^")
+       (Man-completion-table . "^")
+       (woman . "^")))
+   '(ivy-posframe-min-width (round (* (frame-width) 0.45)))
+   '(ivy-reaad-action-function 'ivy-hydra-read-action)
+   '(ivy-truncate-lines nil)
+   '(ivy-use-virtual-buffers t)
+   '(ivy-wrap t))
 
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
@@ -57,7 +66,34 @@ INITIAL-DIRECTORY, if non-nil, is used as the root directory for search."
     (add-to-list 'counsel-async-ignore-re-alist '(counsel-git-log . "^[ \n]*$"))
     (define-key isearch-mode-map (kbd "M-i") 'swiper-from-isearch)
     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory)
-    (define-key counsel-ag-map (kbd "C-c C-e") 'okkez/ivy-occur-editable))
+    (define-key counsel-ag-map (kbd "C-c C-e") 'okkez/ivy-occur-editable)
+
+    (with-eval-after-load-feature 'hydra
+      (defhydra hydra-counsel (:hint nil :exit t)
+        "
+Counsel: describ-_f_unction     find-_L_ibrary   _u_nicode-char
+         _d_escbinds            _l_ocate         _y_ank-pop
+         describ-_v_ariable     _a_g             _m_ark-ring
+         _i_nfo-lookup-symbol   _g_it-grep       org-_c_apture
+         a_p_ropos              _r_g             _s_k
+        "
+        ("d" counsel-descbinds)
+        ("y" counsel-yank-pop)
+        ("m" counsel-mark-ring)
+        ("f" counsel-describe-function)
+        ("v" counsel-describe-variable)
+        ("p" counsel-apropos)
+        ("L" counsel-find-library)
+        ("i" counsel-info-lookup-symbol)
+        ("u" counsel-unicode-char)
+        ("g" counsel-git-grep)
+        ("i" counsel-git)
+        ("a" counsel-ag)
+        ("r" counsel-rg)
+        ("l" counsel-locate)
+        ("s" counsel-sk)
+        ("c" counsel-org-capture)))
+    )
 
   (with-eval-after-load-feature 'swiper
     (define-key swiper-map (kbd "C-c C-e") 'okkez/ivy-occur-editable))
@@ -71,8 +107,7 @@ INITIAL-DIRECTORY, if non-nil, is used as the root directory for search."
 
 (el-get-bundle windymelt/counsel-ghq
   (setq counsel-ghq-command-ghq-arg-list '("list" "--full-path"))
-  (with-eval-after-load-feature 'counsel-ghq
-    ;; NOTE: ivy-add-actions だと2回目以降で元の default に戻ってしまうため全部上書きする
-    (ivy-set-actions 'counsel-ghq
-                     '(("o" counsel-sk-with-dir "Open File with counsel-sk")))
-    (global-set-key (kbd "C-\]") 'counsel-ghq)))
+  ;; NOTE: ivy-add-actions だと2回目以降で元の default に戻ってしまうため全部上書きする
+  (ivy-set-actions 'counsel-ghq
+                   '(("o" counsel-sk-with-dir "Open File with counsel-sk")))
+  (global-set-key (kbd "C-\]") 'counsel-ghq))
