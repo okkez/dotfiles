@@ -1,6 +1,6 @@
-(autoload 'ruby-mode "ruby-mode" "Major mode for Ruby")
 (el-get-bundle enh-ruby-mode
-  (with-eval-after-load-feature 'enh-ruby-mode
+  :depends (ruby-end rbenv)
+  (with-eval-after-load 'enh-ruby-mode
     (defun setup-enh-ruby-mode ()
       (define-key enh-ruby-mode-map (kbd "RET") 'newline-and-indent)
       ;(ruby-electric-mode t)
@@ -14,8 +14,9 @@
     (add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
     ;; *.gemspec も enh-ruby-mode になるように
     (add-to-list 'auto-mode-alist '("\\.gemspec$" . enh-ruby-mode))
-    ;; *.cap も enh-ruby-mode になるように
+    ;; *.cap と Capfile も enh-ruby-mode になるように
     (add-to-list 'auto-mode-alist '("\\.cap$" . enh-ruby-mode))
+    (add-to-list 'auto-mode-alist '("Capfile$" . enh-ruby-mode))
 
     ;; ruby-electric-mode 優先順位を最下位にする。[ruby-list:45511]
     (let ((rel (assq 'ruby-electric-mode minor-mode-map-alist)))
@@ -29,15 +30,11 @@
 
     (define-key enh-ruby-mode-map (kbd "C-M-i") 'company-complete)
 
+    (global-rbenv-mode t)
+
     (custom-set-variables
      '(enh-ruby-deep-indent-paren nil)
      '(enh-ruby-bounce-deep-indent t)
      '(enh-ruby-use-ruby-mode-show-parens-config t)
      '(enh-ruby-add-encoding-comment-on-save nil)
      '(flycheck-disabled-checkers '(ruby-reek)))))
-
-(el-get-bundle ruby-end)
-(el-get-bundle rbenv
-  (with-eval-after-load-feature 'rbenv
-    (global-rbenv-mode t)))
-
