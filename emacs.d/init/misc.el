@@ -27,6 +27,9 @@
       (error (message "%s" err)))))
 (set-font-size-by-resolution)
 
+;; Emoji
+(set-fontset-font t 'symbol "Noto Color Emoji")
+
 ;; 起動時に最大化
 (set-frame-parameter nil 'fullscreen 'maximized)
 
