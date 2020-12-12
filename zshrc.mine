@@ -38,53 +38,6 @@ function reload() {
   source ~/.zshrc
 }
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '(%s)-[%b]'
-zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
-
-typeset -ga chpwd_functions
-typeset -ga preexec_functions
-function _set_rprompt_vcs() {
-  LANG=C vcs_info >&/dev/null
-  if [ -n "${vcs_info_msg_0_}" ]; then
-    RPROMPT="${DEFAULT_RPROMPT}:%{${fg[green]}%}${vcs_info_msg_0_}%{${reset_color}%}"
-  else
-    RPROMPT=$DEFAULT_RPROMPT
-  fi
-}
-chpwd_functions+=_set_rprompt_vcs
-preexec_functions+=_set_rprompt_vcs
-
-function _set_prompt_lang() {
-    local ruby_version
-    local colored_ruby_version
-    local rbenv_ruby_version
-    local node_version
-    local colored_node_version
-    colored_ruby_version=""
-    colored_node_version=""
-    colored_virrualenv_info="%{${fg[green]}%}none%{${reset_color}%}"
-    node_version=$(nvm version)
-    rbenv_bundler_version=$(rbenv bundler-ruby-version)
-    if [ -n "${rbenv_bundler_version}" ]; then
-        ruby_version=$rbenv_bundler_version
-    else
-        ruby_version=$(rbenv version | cut -d" " -f1)
-    fi
-    if [ -n "${ruby_version}"  ]; then
-        colored_ruby_version="%{${fg[green]}%}${ruby_version}%{${reset_color}%}"
-    fi
-    if [ -n "${node_version}" ]; then
-        colored_node_version="%{${fg[green]}%}${node_version}%{${reset_color}%}"
-    fi
-    if [ -n "${VIRTUAL_ENV}" ]; then
-        _virtualenv_prompt_info=$(basename $VIRTUAL_ENV)
-        colored_virrualenv_info="%{${fg[green]}%}${_virtualenv_prompt_info}%{${reset_color}%}"
-    fi
-    PROMPT="${colored_ruby_version} | ${colored_node_version} | ${colored_virrualenv_info}"$'\n'"${DEFAULT_PROMPT}"
-}
-preexec_functions+=_set_prompt_lang
-
 completion_list () {
   mkdir -p ~/.zsh/completion
   if [ ! -f ~/.zsh/completion/$*[-1] ]; then
@@ -107,6 +60,9 @@ _rake () {
 }
 
 compdef _rake rake
+
+## load prompt configuration
+eval "$(starship init zsh)"
 
 ## load private .zshrc configuration file
 #

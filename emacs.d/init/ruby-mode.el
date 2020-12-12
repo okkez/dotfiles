@@ -26,7 +26,7 @@
 
     (add-hook 'enh-ruby-mode-hook 'setup-enh-ruby-mode)
     (add-hook 'enh-ruby-mode-hook 'flycheck-mode)
-    (add-hook 'enh-ruby-mode-hook #'lsp)
+    (add-hook 'enh-ruby-mode-hook #'lsp-deferred)
 
     (define-key enh-ruby-mode-map (kbd "C-M-i") 'company-complete)
 
