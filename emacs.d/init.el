@@ -23,9 +23,17 @@
       (goto-char (point-max))
       (eval-print-last-sexp))))
 
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+
 ;; additional recipes path
 (add-to-list 'el-get-recipe-path
              (expand-file-name "~/dotfiles/emacs.d/recipes"))
+(unless
+    (file-directory-p
+     (expand-file-name "~/.emacs.d/el-get/el-get/recipes/elpa"))
+     (el-get-elpa-build-local-recipes))
+(el-get 'sync)
 
 (el-get-bundle! emacs-jp/init-loader
   (setq-default init-loader-show-log-after-init t
