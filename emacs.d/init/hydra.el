@@ -1,6 +1,4 @@
-(el-get-bundle Ladicle/hydra-posframe
-  :features (hydra-posframe)
-  :depends (posframe hydra))
+(el-get-bundle hydra-posframe)
 
 (el-get-bundle hydra
   (defhydra hydra-zoom ()
