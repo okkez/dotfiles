@@ -1,0 +1,6 @@
+(:name counsel-ghq
+       :description "counsel-ghq"
+       :type github
+       :pkgname "windymelt/counsel-ghq")
+
+
