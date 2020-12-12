@@ -37,7 +37,3 @@
 
 (el-get-bundle company-emoji
   (add-to-list 'company-backends 'company-emoji))
-
-(el-get-bundle tigersoldier/company-lsp
-  (with-eval-after-load-feature 'company-mode
-    (add-to-list 'company-backends 'company-lsp)))
