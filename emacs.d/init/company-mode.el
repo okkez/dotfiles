@@ -34,6 +34,3 @@
 (el-get-bundle company-quickhelp
   (custom-set-variables
    '(company-quickhelp-mode t)))
-
-(el-get-bundle company-emoji
-  (add-to-list 'company-backends 'company-emoji))
