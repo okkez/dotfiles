@@ -31,7 +31,20 @@
        ("b" "Bug" entry (file+headline org-default-notes-file "Inbox")
         "** TODO %?   :bug:\n   %i\n   %a\n   %t")
        ("i" "Idea" entry (file+headline org-default-notes-file "New Ideas")
-        "** %?\n   %i\n   %a\n   %t"))))
+        "** %?\n   %i\n   %a\n   %t")))
+   ;; '(org-bullets-bullet-list ("" "" "" "" "" "" "" ""))
+   )
+
+  (custom-set-faces
+   '(org-level-1 ((t (:foreground "#859900"))))
+   '(org-level-2 ((t (:foreground "#859900"))))
+   '(org-level-3 ((t (:foreground "#859900"))))
+   '(org-level-4 ((t (:foreground "#859900"))))
+   '(org-level-5 ((t (:foreground "#859900"))))
+   '(org-level-6 ((t (:foreground "#859900"))))
+   '(org-level-7 ((t (:foreground "#859900"))))
+   '(org-level-8 ((t (:foreground "#859900"))))
+   '(org-link ((t (:foreground "#839496" :weight normal)))))
 
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
   (add-hook 'org-mode-hook '(lambda ()
