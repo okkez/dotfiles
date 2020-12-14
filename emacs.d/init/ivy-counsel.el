@@ -71,27 +71,20 @@ INITIAL-DIRECTORY, if non-nil, is used as the root directory for search."
   (with-eval-after-load-feature 'hydra
     (defhydra hydra-counsel (:hint nil :exit t)
       "
-Counsel: describ-_f_unction     find-_L_ibrary   _u_nicode-char
-         _d_escbinds            _l_ocate         _y_ank-pop
-         describ-_v_ariable     _a_g             _m_ark-ring
-         _i_nfo-lookup-symbol   _g_it-grep       org-_c_apture
-         a_p_ropos              _r_g             _s_k
+Counsel: describ-_f_unction     find-_L_ibrary        _u_nicode-char
+         desc_b_inds            _i_nfo-lookup-symbol  _y_ank-pop
+         describ-_v_ariable     a_p_ropos             _m_ark-ring
+                                                      org-_c_apture
       "
-      ("d" counsel-descbinds)
-      ("y" counsel-yank-pop)
-      ("m" counsel-mark-ring)
+      ("b" counsel-descbinds)
       ("f" counsel-describe-function)
       ("v" counsel-describe-variable)
       ("p" counsel-apropos)
       ("L" counsel-find-library)
       ("i" counsel-info-lookup-symbol)
       ("u" counsel-unicode-char)
-      ("g" counsel-git-grep)
-      ("i" counsel-git)
-      ("a" counsel-ag)
-      ("r" counsel-rg)
-      ("l" counsel-locate)
-      ("s" counsel-sk)
+      ("y" counsel-yank-pop)
+      ("m" counsel-mark-ring)
       ("c" counsel-org-capture)))
 
   (with-eval-after-load-feature 'swiper

@@ -26,7 +26,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     )
 
   (with-eval-after-load-feature 'key-chord
-    (key-chord-define-global "cc" 'hydra-counsel/body)
+    (key-chord-define-global "cx" 'hydra-counsel/body)
     (key-chord-define-global "ww" 'hydra-window/body)
     (key-chord-define-global "zz" 'hydra-zoom/body))
 
