@@ -85,7 +85,8 @@ Counsel: describ-_f_unction     find-_L_ibrary        _u_nicode-char
       ("u" counsel-unicode-char)
       ("y" counsel-yank-pop)
       ("m" counsel-mark-ring)
-      ("c" counsel-org-capture)))
+      ("c" counsel-org-capture))
+    (key-chord-define-global "cx" 'hydra-counsel/body))
 
   (with-eval-after-load-feature 'swiper
     (define-key swiper-map (kbd "C-c C-e") 'okkez/ivy-occur-editable))
