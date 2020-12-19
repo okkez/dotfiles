@@ -100,15 +100,12 @@ else
   ln -f -s $HOME/dotfiles/peco-config.json $HOME/.peco/config.json
 fi
 
-if ! test -e $HOME/bin/hub; then
-  url=$(curl https://api.github.com/repos/github/hub/releases/latest |
-          jq -r '.assets[] | select(.name | startswith("hub-linux-amd64")).browser_download_url')
+if ! dpkg -l gh; then
+  url=$(curl https://api.github.com/repos/cli/cli/releases/latest |
+          jq -r '.assets[] | select(.name | test("gh_.*linux_amd64.deb")).browser_download_url')
   curl -L -O $url
-  tar xf $(basename $url)
-  mkdir -p $HOME/bin
-  mv $(basename -s .tgz $url)/bin/hub $HOME/bin/hub
-  rm -rf $(basename $url)
-  rm -rf $(basename -s .tgz $url)
+  sudo apt install $(basename $url)
+  rm -f $(basename $url)
 fi
 
 if ! test -e $HOME/bin/ghq; then
