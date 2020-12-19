@@ -3,17 +3,18 @@
 (autoload 'lookup-region "lookup" nil t)
 (autoload 'lookup-pattern "lookup" nil t)
 (autoload 'lookup-word "lookup" nil t)
-(with-eval-after-load 'lookup
-  (setq lookup-enable-splash nil)
-  ;;; lookup 用 search-agents 定義
-  (setq lookup-search-agents '(
-                               (ndeb "~/.dic/OALD_7") (ndspell)
-                               ;(ndeb "~/.dic/readers") (ndspell)
-                               ;(ndeb "~/.dic/EIJIRO77") (ndspell)
-                               ;(ndeb "~/.dic/ROGET") (ndspell)
-                               ;(ndeb "~/.dic/mypaedia") (ndspell)
-                               ;(ndtp "localhost") (ndspell)
-                               )))
+(custom-set-variables
+ '(lookup-enable-splash nil)
+ ;;; lookup 用 search-agents 定義
+ '(lookup-search-agents
+   '((ndeb "~/.dic/OALD_7") (ndspell)
+     ;(ndeb "~/.dic/readers") (ndspell)
+     ;(ndeb "~/.dic/EIJIRO77") (ndspell)
+     ;(ndeb "~/.dic/ROGET") (ndspell)
+     ;(ndeb "~/.dic/mypaedia") (ndspell)
+     ;(ndtp "localhost") (ndspell)
+     ))
+ )
 
 ;; 起動するキーの設定
 (define-key global-map (kbd "C-x l")   'lookup)
@@ -31,6 +32,3 @@
 ;; (setq auto-lookup-backend 'lookup)
 ;; (autoload 'auto-lookup-mode "autolookup" "" t)
 ;; (autoload 'global-auto-lookup-mode "autolookup" "" t)
-
-
-
