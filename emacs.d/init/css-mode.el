@@ -1,3 +1,2 @@
 (custom-set-variables
- '(cssm-indent-level 2)
- '(cssm-indent-function #'cssm-c-style-indenter))
+ '(css-indent-offset 2))
