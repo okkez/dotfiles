@@ -68,26 +68,6 @@ INITIAL-DIRECTORY, if non-nil, is used as the root directory for search."
     (define-key counsel-find-file-map (kbd "C-l") 'counsel-up-directory)
     (define-key counsel-ag-map (kbd "C-c C-e") 'okkez/ivy-occur-editable))
 
-  (with-eval-after-load-feature 'hydra
-    (defhydra hydra-counsel (:hint nil :exit t)
-      "
-Counsel: describ-_f_unction     find-_L_ibrary        _u_nicode-char
-         desc_b_inds            _i_nfo-lookup-symbol  _y_ank-pop
-         describ-_v_ariable     a_p_ropos             _m_ark-ring
-                                                      org-_c_apture
-      "
-      ("b" counsel-descbinds)
-      ("f" counsel-describe-function)
-      ("v" counsel-describe-variable)
-      ("p" counsel-apropos)
-      ("L" counsel-find-library)
-      ("i" counsel-info-lookup-symbol)
-      ("u" counsel-unicode-char)
-      ("y" counsel-yank-pop)
-      ("m" counsel-mark-ring)
-      ("c" counsel-org-capture))
-    (key-chord-define-global "cx" 'hydra-counsel/body))
-
   (with-eval-after-load-feature 'swiper
     (define-key swiper-map (kbd "C-c C-e") 'okkez/ivy-occur-editable))
 

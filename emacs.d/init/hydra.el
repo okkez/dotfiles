@@ -25,7 +25,26 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     ; ("d" delete-frame :exit t)
     )
 
+  (defhydra hydra-counsel (:hint nil :exit t)
+    "
+Counsel: describ-_f_unction     find-_L_ibrary        _u_nicode-char
+         desc_b_inds            _i_nfo-lookup-symbol  _y_ank-pop
+         describ-_v_ariable     a_p_ropos             _m_ark-ring
+                                                      org-_c_apture
+    "
+      ("b" counsel-descbinds)
+      ("f" counsel-describe-function)
+      ("v" counsel-describe-variable)
+      ("p" counsel-apropos)
+      ("L" counsel-find-library)
+      ("i" counsel-info-lookup-symbol)
+      ("u" counsel-unicode-char)
+      ("y" counsel-yank-pop)
+      ("m" counsel-mark-ring)
+      ("c" counsel-org-capture))
+
   (with-eval-after-load-feature 'key-chord
+    (key-chord-define-global "cx" 'hydra-counsel/body)
     (key-chord-define-global "ww" 'hydra-window/body)
     (key-chord-define-global "zz" 'hydra-zoom/body))
 
