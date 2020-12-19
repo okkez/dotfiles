@@ -50,6 +50,8 @@
   (add-hook 'org-mode-hook '(lambda ()
                               (org-bullets-mode 1)
                               (key-chord-define-local "cx" 'org-toggle-checkbox)))
+  (with-eval-after-load-feature 'org
+    (require 'ox-md))
 
   ;;; start https://ladicle.com/post/20200625_123915/
   (defconst okkez/org-journal-dir "~/Nextcloud/org/journal/")
