@@ -75,32 +75,23 @@ if ! test -d $HOME/.luaenv; then
   git clone https://github.com/xpol/luaenv-luarocks.git $HOME/.luaenv/plugins/luaenv-luarocks
 fi
 
-if ! test -e $HOME/bin/peco; then
-  if type jq > /dev/null; then
-    url=$(curl https://api.github.com/repos/peco/peco/releases/latest |
-            jq -r '.assets[] | select(.name == "peco_linux_amd64.tar.gz").browser_download_url')
-  else
-    url=$(curl https://api.github.com/repos/peco/peco/releases/latest |
-            sed -n -e 's/browser_download_url.\+\(https:.\+peco_linux_amd64.tar.gz\)\"/\1/p' |
-            sed -e 's/\"//' -e 's/ //g')
-  fi
-  curl -L -O $url
-  tar xf peco_linux_amd64.tar.gz
-  mkdir -p $HOME/bin
-  mv peco_linux_amd64/peco $HOME/bin/peco
-  rm -rf peco_linux_amd64.tar.gz
-  rm -rf peco_linux_amd64
+if test -x $HOME/.cargo/bin/rustup; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
-mkdir -p $HOME/.peco
+rustup update
+cargo install -j skim
+cargo install -j starship
 
-if test -L $HOME/.peco/config.json; then
-  echo $HOME/.peco/config.json
+if test -L $HOME/.config/starship.toml; then
+  echo $HOME/.config/starship.toml
 else
-  ln -f -s $HOME/dotfiles/peco-config.json $HOME/.peco/config.json
+  ln -f -s $HOME/dotfiles/starship.toml $HOME/.config/starship.toml
 fi
 
-if ! dpkg -l gh; then
+if dpkg -l gh; then
+  :
+else
   url=$(curl https://api.github.com/repos/cli/cli/releases/latest |
           jq -r '.assets[] | select(.name | test("gh_.*linux_amd64.deb")).browser_download_url')
   curl -L -O $url
