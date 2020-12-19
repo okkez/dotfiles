@@ -2,8 +2,9 @@
   (smart-jump-setup-default-registers)
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 
-  (setq dumb-jump-default-project "")
-  (setq dumb-jump-prefer-searcher 'rg)
+  (custom-set-variables
+   '(dumb-jump-default-project "")
+   '(dumb-jump-prefer-searcher 'rg))
 
   (with-eval-after-load-feature 'hydra
     (defhydra hydra-dumb-jump (:color blue :columns 3)
