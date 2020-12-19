@@ -19,6 +19,7 @@ zsh
 build-essential
 ddskk
 unzip
+aspell
 "
 
 sudo apt install -y $packages
@@ -29,6 +30,7 @@ bash_profile
 bashrc
 screenrc
 irbrc
+aspell.conf
 "
 for f in $files; do
   if test -L $HOME/.$f; then
