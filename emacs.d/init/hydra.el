@@ -50,6 +50,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
 
   (defhydra hydra-avy (:exit t :hint nil)
     "
+ Avy^^
  Line^^       Region^^        Goto
 ----------------------------------------------------------
  [_y_] yank   [_Y_] yank      [_c_] timed char  [_C_] char
@@ -68,9 +69,32 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     ("y" avy-copy-line)
     ("Y" avy-copy-region))
 
+  (defhydra hydra-yasnippet (:exit t :hint nil)
+    "
+ YASnippets^^
+ Modes^^      Load/Visit^^      Actions
+---------------------------------------------------------
+[_g_] global  [_d_] directory  [_i_] insert
+[_m_] minor   [_f_] file       [_t_] tryout
+[_e_] extra   [_l_] list       [_n_] new
+^^            [_a_] reload-all
+"
+    ("d" yas-load-directory)
+    ("e" yas-activate-extra-mode)
+    ("i" yas-insert-snippet)
+    ("t" yas-tryout-snippet)
+    ("n" yas-new-snippet)
+    ("f" yas-visit-snippet-file)
+    ("l" yas-describe-tables)
+    ("g" yas-global-mode)
+    ("m" yas-minor-mode)
+    ("a" yas-reload-all))
+
+  (global-set-key (kbd "C-c c") 'hydra-counsel/body)
+  (global-set-key (kbd "C-c y") 'hydra-yasnippet/body)
+
   (with-eval-after-load-feature 'key-chord
     (key-chord-define-global "gg" 'hydra-avy/body)
-    (key-chord-define-global "cx" 'hydra-counsel/body)
     (key-chord-define-global "ww" 'hydra-window/body)
     (key-chord-define-global "zz" 'hydra-zoom/body))
 
