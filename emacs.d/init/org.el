@@ -1,7 +1,7 @@
 ;;; org-mode
 ;;; http://d.hatena.ne.jp/rubikitch/20090121
 (el-get-bundle org
-  :depends (org-bullets browse-at-remote)
+  :depends (org-bullets)
   (custom-set-variables
    '(browse-at-remote-prefer-symbolic nil)
    '(org-startup-truncated nil)
