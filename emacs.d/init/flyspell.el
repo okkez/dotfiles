@@ -1,13 +1,13 @@
 ;;; flyspell-mode
 (el-get-bundle flyspell-correct-popup)
-
+(setenv "DICTIONARY" "en_US")
 (custom-set-variables
  ;; Do no change M-TAB key bind
  '(flyspell-use-meta-tab nil)
  '(flyspell-auto-correct-binding (kbd "C-z C-;"))
  '(ispell-program-name "hunspell")
  '(ispell-really-hunspell t)
- '(isqpell-dictionary "american"))
+ '(isqpell-dictionary "en_US"))
 
 (with-eval-after-load-feature 'flyspell
   (define-key flyspell-mode-map (kbd "C-1") 'flyspell-correct-wrapper))
