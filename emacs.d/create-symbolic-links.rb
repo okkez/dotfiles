@@ -23,6 +23,7 @@ end
 # create_link("ace-isearch.el", 51)
 create_link("ace-window.el", 52)
 create_link("anzu.el", 51)
+create_link("avy.el", 50)
 # create_link("auto-complete.el", 10)
 create_link("base.el", 0)
 create_link("c-mode.el", 60)
