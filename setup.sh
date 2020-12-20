@@ -20,6 +20,7 @@ build-essential
 ddskk
 unzip
 aspell
+hunspell
 "
 
 sudo apt install -y $packages

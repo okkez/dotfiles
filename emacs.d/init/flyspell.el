@@ -5,7 +5,8 @@
  ;; Do no change M-TAB key bind
  '(flyspell-use-meta-tab nil)
  '(flyspell-auto-correct-binding (kbd "C-z C-;"))
- '(ispell-program-name "aspell")
+ '(ispell-program-name "hunspell")
+ '(ispell-really-hunspell t)
  '(isqpell-dictionary "american"))
 
 (with-eval-after-load-feature 'flyspell
