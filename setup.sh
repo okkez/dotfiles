@@ -55,27 +55,6 @@ if ! test -L $HOME/.config/git/config; then
   ln -f -s $HOME/dotfiles/git-config $HOME/.config/git/config
 fi
 
-if ! test -d $HOME/.rbenv; then
-  git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv
-  git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
-  git clone https://github.com/rbenv/rbenv-gem-rehash.git $HOME/.rbenv/plugins/rbenv-gem-rehash
-  git clone https://github.com/rbenv/rbenv-default-gems.git $HOME/.rbenv/plugins/rbenv-default-gems
-  git clone https://github.com/rbenv/rbenv-each.git $HOME/.rbenv/plugins/rbenv-each
-  git clone https://github.com/aripollak/rbenv-bundler-ruby-version.git $HOME/.rbenv/plugins/rbenv-bundler-ruby-version
-fi
-
-if ! test -d $HOME/.nvm; then
-  git clone https://github.com/creationix/nvm.git $HOME/.nvm \
-    && cd $HOME/.nvm \
-    && git checkout $(git describe --abbrev=0 --tags)
-fi
-
-if ! test -d $HOME/.luaenv; then
-  git clone https://github.com/cehoffman/luaenv.git $HOME/.luaenv
-  git clone https://github.com/cehoffman/lua-build.git $HOME/.luaenv/plugins/lua-build
-  git clone https://github.com/xpol/luaenv-luarocks.git $HOME/.luaenv/plugins/luaenv-luarocks
-fi
-
 if test -x $HOME/.cargo/bin/rustup; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
