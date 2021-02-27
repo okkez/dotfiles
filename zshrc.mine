@@ -73,31 +73,22 @@ for f in $HOME/dotfiles/zsh/*.zsh; do
     source $f
 done
 
-# load rbenv
-if [[ -f $HOME/.rbenv/bin/rbenv ]]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
-    source $HOME/.rbenv/completions/rbenv.zsh
+if [[ -f $HOME/wc/src/github.com/asdf-vm/asdf/asdf.sh ]]; then
+    source $HOME/wc/src/github.com/asdf-vm/asdf/asdf.sh
+    # append completions to fpath
+    fpath=(${ASDF_DIR}/completions $fpath)
+    # initialise completions with ZSH's compinit
+    autoload -Uz compinit
+    compinit
 fi
-export RUBY_CONFIGURE_OPTS="--enable-shared --disable-install-doc"
 
-# load nvm
-if [[ -f $HOME/.nvm/nvm.sh ]]; then
-    source $HOME/.nvm/nvm.sh
-fi
+export RUBY_CONFIGURE_OPTS="--enable-shared --disable-install-doc"
 
 # load virtualenv
 if [[ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export VIRTUAL_ENV_DISABLE_PROMPT=1
     source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-fi
-
-# load luaenv
-if [[ -f $HOME/.luaenv/bin/luaenv ]]; then
-    export PATH="$HOME/.luaenv/bin:$PATH"
-    eval "$(luaenv init -)"
-    source $HOME/.luaenv/completions/luaenv.zsh
 fi
 
 # Rust
@@ -114,6 +105,8 @@ DIRCOLORS=$HOME/src/dircolors-solarized/dircolors.ansi-universal
 test -s $DIRCOLORS && eval $(dircolors $DIRCOLORS)
 
 fpath=(~/.zsh/Completion $fpath)
+
+eval "$(direnv hook zsh)"
 
 # k8s
 type kubectl > /dev/null && source <(kubectl completion zsh)
