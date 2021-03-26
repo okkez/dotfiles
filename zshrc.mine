@@ -82,6 +82,9 @@ if [[ -f $HOME/wc/src/github.com/asdf-vm/asdf/asdf.sh ]]; then
     compinit
 fi
 
+test -f $HOME/wc/src/github.com/asdf-vm/asdf/plugins/java/set-java-home.zsh && \
+    source $HOME/wc/src/github.com/asdf-vm/asdf/plugins/java/set-java-home.zsh
+
 export RUBY_CONFIGURE_OPTS="--enable-shared --disable-install-doc"
 
 # load virtualenv
