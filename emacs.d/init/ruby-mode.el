@@ -1,5 +1,5 @@
 (el-get-bundle enh-ruby-mode
-  :depends (ruby-end rbenv)
+  :depends (ruby-end)
   (with-eval-after-load 'enh-ruby-mode
     (defun setup-enh-ruby-mode ()
       (define-key enh-ruby-mode-map (kbd "RET") 'newline-and-indent)
@@ -29,8 +29,6 @@
     (add-hook 'enh-ruby-mode-hook #'lsp-deferred)
 
     (define-key enh-ruby-mode-map (kbd "C-M-i") 'company-complete)
-
-    (global-rbenv-mode t)
 
     (custom-set-variables
      '(enh-ruby-deep-indent-paren nil)
