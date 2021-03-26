@@ -21,6 +21,7 @@ ddskk
 unzip
 aspell
 hunspell
+direnv
 "
 
 sudo apt install -y $packages
