@@ -1,0 +1,44 @@
+# プロンプトの先頭に改行を表示しない
+add_newline = false
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[git_branch]
+# symbol = "🌱 "
+# symbol = " "
+style = "bold green"
+
+[git_status]
+style = "green"
+
+[golang]
+format = " [$symbol$version]($style)"
+
+[java]
+format = " [$symbol$version]($style)"
+
+[ruby]
+format = " [$symbol$version]($style)"
+symbol = "♦ "
+
+[julia]
+format = " [$symbol$version]($style)"
+
+[lua]
+format = " [$symbol$version]($style)"
+
+[nodejs]
+format = " [$symbol$version]($style)"
+
+[perl]
+format = " [$symbol$version]($style)"
+
+[rust]
+format = " [$symbol$version]($style)"
+
+[terraform]
+format = " [$symbol$version]($style)"
