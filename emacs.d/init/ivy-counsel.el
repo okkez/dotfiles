@@ -38,9 +38,9 @@
 
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (global-set-key (kbd "C-x C-b") 'counsel-ibuffer)
+  (global-set-key (kbd "C-x C-b") 'counsel-switch-buffer)
   (global-set-key (kbd "C-:") 'counsel-git)
-  (global-set-key (kbd "C-;") 'counsel-switch-buffer)
+  (global-set-key (kbd "C-;") 'counsel-ibuffer)
   (global-set-key (kbd "M-y") 'counsel-yank-pop)
   (global-set-key (kbd "C-c .") 'counsel-rg)
 
