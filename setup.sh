@@ -61,8 +61,8 @@ if test -x $HOME/.cargo/bin/rustup; then
 fi
 
 rustup update
-cargo install -j skim
-cargo install -j starship
+cargo install skim
+cargo install starship
 
 if test -L $HOME/.config/starship.toml; then
   echo $HOME/.config/starship.toml
