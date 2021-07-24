@@ -98,4 +98,8 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     (key-chord-define-global "ww" 'hydra-window/body)
     (key-chord-define-global "zz" 'hydra-zoom/body))
 
+  (global-set-key (kbd "C-z g") 'hydra-aby/body)
+  (global-set-key (kbd "C-z w") 'hydra-window/body)
+  (global-set-key (kbd "C-z z") 'hydra-zoom/body)
+
   (hydra-posframe-mode 1))
