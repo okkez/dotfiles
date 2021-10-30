@@ -5,7 +5,7 @@
       (define-key enh-ruby-mode-map (kbd "RET") 'newline-and-indent)
       ;(ruby-electric-mode t)
       ;; enh-ruby-mode で Develock の桁数変更
-      (plist-put develock-max-column-plist 'enh-ruby-mode 100))
+      (plist-put develock-max-column-plist 'enh-ruby-mode 150))
 
     ;; Rakefile も enh-ruby-mode になるように
     (add-to-list 'auto-mode-alist '("Rakefile$" . enh-ruby-mode))
