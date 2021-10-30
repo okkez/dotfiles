@@ -33,7 +33,7 @@ zle -N skim-ghq
 bindkey '^]' skim-ghq
 
 function cdgem() {
-  local gem_name=$(bundle list | sed -e 's/^ *\* *//g' | sk | cut -d \  -f 1)
+  local gem_name=$(bundle list --unique | sed -e 's/^ *\* *//g' | sk | cut -d \  -f 1)
   if [ -n "$gem_name" ]; then
     local gem_dir=$(bundle info --path ${gem_name})
     echo "cd to ${gem_dir}"
