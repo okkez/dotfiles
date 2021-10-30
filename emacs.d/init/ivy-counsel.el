@@ -1,5 +1,5 @@
 (el-get-bundle counsel
-  :depends (amx ivy-rich ivy-posframe all-the-icons-ivy-rich wgrep)
+  :depends (amx ivy ivy-rich ivy-posframe all-the-icons-ivy-rich wgrep)
 
   (add-hook 'ivy-mode-hook 'ivy-rich-mode)
   (add-hook 'ivy-mode-hook 'all-the-icons-ivy-rich-mode)
@@ -33,7 +33,7 @@
    '(ivy-wrap t)
    '(counsel-git-log-cmd
      "GIT_PAGER=cat git log --no-color --format=%%x00%%B --grep '%s'")
-   '(counsel-fzf-cmd "sk -f \"%s\"")
+   '(counsel-fzf-cmd "fdfind --type file | sk -f \"%s\"")
    )
 
   (global-set-key (kbd "M-x") 'counsel-M-x)
