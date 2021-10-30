@@ -99,15 +99,15 @@
 
   )
 
-;; ~/memo/agenda.org を開く
-(define-key global-map (kbd "C-z a")
-  '(lambda () (interactive) (find-file "~/Nextcloud/memo/agenda.org")))
+;; ~/Nextcloud/memo/agenda.org を開く
+(defun my-open-agenda () (interactive) (find-file "~/Nextcloud/memo/agenda.org"))
+(define-key global-map (kbd "C-z a")  'my-open-agenda)
 ;; ~/Nextcloud/memo/standup-meeting.org を開く
-(define-key global-map (kbd "C-z s")
-  '(lambda () (interactive) (find-file "~/Nextcloud/memo/standup-meeting.org")))
+(defun my-open-standup-meeting () (interactive) (find-file "~/Nextcloud/memo/standup-meeting.org"))
+(define-key global-map (kbd "C-z s") 'my-open-standup-meeting)
 ;; ~/Nextcloud/memo/cheat-sheet.org を開く
-(define-key global-map (kbd "C-z c")
-  '(lambda () (interactive) (find-file "~/Nextcloud/memo/cheat-sheet.org")))
+(defun my-open-cheat-sheet ()(interactive) (find-file "~/Nextcloud/memo/cheat-sheet.org"))
+(define-key global-map (kbd "C-z c") 'my-open-cheat-sheet)
 
 ;; 祝日を表示する 不要？
 ;(setq org-agenda-files (list org-default-notes-file
