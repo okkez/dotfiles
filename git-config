@@ -25,6 +25,7 @@
   excludesfile = ~/.gitignore
   pager = less
   attributesfile = ~/.config/git/attributes
+  autocrlf = input
 
 [push]
   default = simple
@@ -39,3 +40,8 @@
 [ghq]
 	root = ~/go/src
 	root = ~/wc/src
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[init]
+	defaultBranch = main
