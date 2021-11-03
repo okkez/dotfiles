@@ -1037,7 +1037,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :ensure t
   :after git-commit magit-section with-editor)
 
-(leaf *programing
+(leaf *programming
   :config
   (leaf scheme-mode
     :custom ((scheme-program-name . "gosh -i"))
