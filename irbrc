@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# -*- mode: enh-ruby -*-
 
 # ri を使えるようにする
 # 例.
@@ -55,7 +56,7 @@ IRB.conf[:PROMPT_MODE] = :SIMPLE
 
 # ヒストリーを有効にする
 require 'irb/ext/save-history'
-IRB.conf[:SAVE_HISTORY] = 1000
+IRB.conf[:SAVE_HISTORY] = 10000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-save-history"
 
 # サブ irb の設定
@@ -72,5 +73,6 @@ def edit
   end
 end
 
-require 'pp'
-require 'yaml'
+require "json"
+require "time"
+require "yaml"
