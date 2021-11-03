@@ -1152,6 +1152,24 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
       (setq minor-mode-map-alist (append
                                   (delete rel minor-mode-map-alist)
                                   (list rel))))
+    (leaf rcodetools
+      :el-get (rcodetools/rcodetools
+               :url https://raw.githubusercontent.com/rcodetools/rcodetools/master/misc/rcodetools.el)
+      :require t
+      :preface
+      (defun make-ruby-scratch-buffer ()
+        (with-current-buffer (get-buffer-create "*ruby scratch*")
+          (enh-ruby-mode)
+          (current-buffer)))
+      (defun ruby-scratch ()
+        (interactive)
+        (pop-to-buffer (make-ruby-scratch-buffer)))
+      :bind ((:enh-ruby-mode-map
+              ("M-C-i" . rct-complete-symbol)
+              ("C-c C-t" . ruby-toggle-buffer)
+              ("C-c C-d" . xmp)
+              ("C-c C-f" . rct-ri)))
+      )
     )
   (leaf rhtml-mode
     :doc "major mode for editing RHTML files"
