@@ -216,6 +216,20 @@
     :tag "builtin" "files"
     :added "2021-11-03"
     :custom   ((uniquify-buffer-name-style . 'post-forward-angle-brackets)))
+
+  (leaf calendar
+    :doc "calendar functions"
+    :tag "builtin"
+    :added "2021-11-03"
+    :custom ((diary-number-of-entries . 31)
+             (calendar-mark-holidays-flag . t)
+             (calendar-weekend-marker 'diary))
+    :bind (:calendar-mode-map
+           ("f" . calendar-forward-day)
+           ("n" . calendar-forward-day)
+           ("b" . calendar-backward-day))
+    :hook ((today-visible-calendar-hook . calendar-mark-weekend)
+           (today-invisible-calendar-hook . calendar-mark-weekend)))
   )
 
 ;; どこに入れていいか迷うもの
@@ -417,16 +431,10 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
            (-when-let (messages (-keep #'flycheck-error-message errors))
                       (popup-tip (s-join "\n\n" messages))))))
 
-(leaf flyspell-correct-popup
-  :doc "Correcting words with flyspell via popup interface"
-  :req "flyspell-correct-0.6.1" "popup-0.5.3" "emacs-24"
-  :tag "emacs>=24"
-  :url "https://github.com/d12frosted/flyspell-correct"
-  :added "2021-10-30"
-  :emacs>= 24
-  :ensure t
-  :after flyspell-correct
-  :bind (("C-1" . flyspell-correct-wrapper))
+(leaf flyspell
+  :doc "On-the-fly spell checker"
+  :tag "builtin"
+  :added "2021-11-03"
   :custom
   `(;; Do no change M-TAB key bind
     (flyspell-use-meta-tab . nil)
@@ -436,6 +444,27 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
     (isqpell-dictionary . "en_US"))
   :hook ((text-mode-hook . flyspell-mode)
          ((prog-mode-hook enh-ruby-mode-hook ruby-mode-hook) . flyspell-prog-mode))
+  :config
+  (setenv "DICTIONARY" "en_US")
+  (leaf flyspell-correct
+    :doc "Correcting words with flyspell via custom interface"
+    :req "emacs-24"
+    :tag "emacs>=24"
+    :url "https://github.com/d12frosted/flyspell-correct"
+    :added "2021-11-03"
+    :emacs>= 24
+    :ensure t)
+
+  (leaf flyspell-correct-popup
+    :doc "Correcting words with flyspell via popup interface"
+    :req "flyspell-correct-0.6.1" "popup-0.5.3" "emacs-24"
+    :tag "emacs>=24"
+    :url "https://github.com/d12frosted/flyspell-correct"
+    :added "2021-10-30"
+    :emacs>= 24
+    :ensure t
+    :after flyspell-correct
+    :bind (("C-1" . flyspell-correct-wrapper)))
   )
 
 (leaf lookup
@@ -754,7 +783,7 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
     ("y" avy-copy-line)
     ("Y" avy-copy-region))
   :bind (([remap goto-line] . avy-goto-line)
-         ([remap goto-char] . avy-goto-char)
+         ([remap goto-char] . avy-goto-char-timer)
          ("C-z g" . hydra-avy/body)
          (:isearch-mode-map
           ("C-a" . avy-isearch)))
@@ -1011,21 +1040,20 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
 (leaf *programing
   :config
   (leaf scheme-mode
+    :custom ((scheme-program-name . "gosh -i"))
     :config
-    (setq scheme-program-name "gosh -i")
     (autoload 'scheme-mode "cmuscheme" "Major mode for Scheme." t)
     (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme process." t)
-    (with-eval-after-load 'scheme-mode
-      (defun scheme-other-window ()
-        "Run scheme on other window"
-        (interactive)
-        (switch-to-buffer-other-window
-         (get-buffer-create "*scheme*"))
-        (run-scheme scheme-program-name))
-      (add-hook 'scheme-mode-hook
-                '(lambda ()
-                   (define-key scheme-mode-map
-                     (kbd "C-c C-s") 'scheme-other-window)))))
+    (defun scheme-other-window ()
+      "Run scheme on other window"
+      (interactive)
+      (switch-to-buffer-other-window
+       (get-buffer-create "*scheme*"))
+      (run-scheme scheme-program-name))
+    (add-hook 'scheme-mode-hook
+              '(lambda ()
+                 (define-key scheme-mode-map
+                   (kbd "C-c C-s") 'scheme-other-window))))
   (leaf css-mode
     :doc "Major mode to edit CSS files"
     :tag "builtin"
@@ -1062,7 +1090,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :added "2021-10-31"
     :emacs>= 24.3
     :ensure t
-    :config (add-to-list 'auto-mode-alist '("\\.tf$" . hcl-mode)))
+    :mode "\\.tf$")
   (leaf js2-mode
     :doc "Improved JavaScript editing mode"
     :req "emacs-24.1" "cl-lib-0.5"
@@ -1076,7 +1104,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :bind ((:js2-mode-map
             ("C-m" . nil)
             ("C-i" . indent-and-back-to-indentation)))
-    :config
+    :preface
     (defun indent-and-back-to-indentation ()
       (interactive)
       (indent-for-tab-command)
@@ -1125,6 +1153,10 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
                                   (delete rel minor-mode-map-alist)
                                   (list rel))))
     )
+  (leaf rhtml-mode
+    :doc "major mode for editing RHTML files"
+    :added "2021-11-03"
+    :ensure t)
   (leaf rustic
     :doc "Rust development environment"
     :req "emacs-26.1" "rust-mode-0.5.0" "dash-2.13.0" "f-0.18.2" "let-alist-1.0.4" "markdown-mode-2.3" "project-0.3.0" "s-1.10.0" "seq-2.3" "spinner-1.7.3" "xterm-color-1.6"
