@@ -1073,7 +1073,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :url "https://github.com/dominikh/go-mode.el"
     :added "2021-10-31"
     :ensure t
-    :hook (go-mode-hook . lsp-deffered))
+    :hook (go-mode-hook . lsp-deferred))
   (leaf haml-mode
     :doc "Major mode for editing Haml files"
     :req "emacs-24" "cl-lib-0.5"
@@ -1142,7 +1142,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
       ("RET" . newline-and-indent)
       ("C-M-i" . company-complete)))
     :hook ((enh-ruby-mode-hook . flycheck-mode)
-           (enh-ruby-mode-hook . lsp-deffered))
+           (enh-ruby-mode-hook . lsp-deferred))
     :config
     (plist-put develock-max-column-plist 'enh-ruby-mode 150)
     (plist-put develock-max-column-plist 'ruby-mode 150)

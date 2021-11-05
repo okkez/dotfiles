@@ -1,7 +1,0 @@
-(:name rcodetools
-       :description "Tools for Ruby scripting"
-       :type http-tar
-       :url "http://rubyforge.org/frs/download.php/69915/rcodetools-0.8.7.0.tar.gz"
-       :options ("xf")
-       :load "rcodetools.el"
-       :features "rcodetools")
