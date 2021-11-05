@@ -1152,6 +1152,12 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
       (setq minor-mode-map-alist (append
                                   (delete rel minor-mode-map-alist)
                                   (list rel))))
+    (leaf ruby-end
+      :doc "Automatic insertion of end blocks for Ruby"
+      :tag "ruby" "convenience" "speed"
+      :url "http://github.com/rejeep/ruby-end"
+      :added "2021-11-05"
+      :ensure t)
     (leaf rcodetools
       :el-get (rcodetools/rcodetools
                :url https://raw.githubusercontent.com/rcodetools/rcodetools/master/misc/rcodetools.el)
