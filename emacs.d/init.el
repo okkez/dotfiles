@@ -76,11 +76,12 @@
   :config (exec-path-from-shell-initialize))
 
 (leaf key-chord
-  :tag "out-of-MELPA"
-  :added "2021-10-31"
-  :el-get (zk-phi/key-chord
-           :url "https://raw.githubusercontent.com/zk-phi/key-chord/master/key-chord.el")
-  :require t
+  :doc "map pairs of simultaneously pressed keys to commands"
+  :req "emacs-24"
+  :tag "input" "chord" "keyboard" "emacs>=24"
+  :added "2021-11-14"
+  :emacs>= 24
+  :ensure t
   :chord (("jk" . view-mode))
   :setq ((key-chord-two-keys-delay . 0.15)
          (key-chord-safety-interval-backward . 0.1)
