@@ -1121,6 +1121,15 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
              :url "https://raw.github.com/rabbit-shocker/rabbit/master/misc/emacs/rabbit-mode.el")
     :require t
     :mode "\\.rbt$" "\\.rab$")
+  (leaf json-mode
+    :doc "Major mode for editing JSON files."
+    :req "json-snatcher-1.0.0" "emacs-24.4"
+    :tag "emacs>=24.4"
+    :url "https://github.com/joshwnj/json-mode"
+    :added "2021-11-09"
+    :emacs>= 24.4
+    :ensure t
+    :after json-snatcher)
 
   (leaf enh-ruby-mode
     :doc "Major mode for editing Ruby files"
