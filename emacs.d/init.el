@@ -1360,7 +1360,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
          ("C-z a" . my-open-agenda)
          ("C-z s" . my-open-standup-meeting)
          ("C-z c" . my-open-cheat-sheet)
-         ("C-z d" . insert-this-date-to-curent-position))
+         ("C-z t" . insert-this-date-to-curent-position))
   :config
   (require 'ox-md)
   ;;; start https://ladicle.com/post/20200625_123915/
