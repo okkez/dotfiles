@@ -1115,13 +1115,13 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
                (point))))
         (skip-chars-forward "\s " point-of-indentation))))
 
-  (leaf rabbit-mode
-    :tag "out-of-MELPA"
-    :added "2021-10-31"
-    :el-get (rabbit-shocker/rabbit-mode
-             :url "https://raw.github.com/rabbit-shocker/rabbit/master/misc/emacs/rabbit-mode.el")
-    :require t
-    :mode "\\.rbt$" "\\.rab$")
+  ;; (leaf rabbit-mode
+  ;;   :tag "out-of-MELPA"
+  ;;   :added "2021-10-31"
+  ;;   :el-get (rabbit-shocker/rabbit-mode
+  ;;            :url "https://raw.github.com/rabbit-shocker/rabbit/master/misc/emacs/rabbit-mode.el")
+  ;;   :require t
+  ;;   :mode "\\.rbt$" "\\.rab$")
   (leaf json-mode
     :doc "Major mode for editing JSON files."
     :req "json-snatcher-1.0.0" "emacs-24.4"
@@ -1168,24 +1168,24 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
       :url "http://github.com/rejeep/ruby-end"
       :added "2021-11-05"
       :ensure t)
-    (leaf rcodetools
-      :el-get (rcodetools/rcodetools
-               :url https://raw.githubusercontent.com/rcodetools/rcodetools/master/misc/rcodetools.el)
-      :require t
-      :preface
-      (defun make-ruby-scratch-buffer ()
-        (with-current-buffer (get-buffer-create "*ruby scratch*")
-          (enh-ruby-mode)
-          (current-buffer)))
-      (defun ruby-scratch ()
-        (interactive)
-        (pop-to-buffer (make-ruby-scratch-buffer)))
-      :bind ((:enh-ruby-mode-map
-              ("M-C-i" . rct-complete-symbol)
-              ("C-c C-t" . ruby-toggle-buffer)
-              ("C-c C-d" . xmp)
-              ("C-c C-f" . rct-ri)))
-      )
+    ;; (leaf rcodetools
+    ;;   :el-get (rcodetools/rcodetools
+    ;;            :url https://raw.githubusercontent.com/rcodetools/rcodetools/master/misc/rcodetools.el)
+    ;;   :require t
+    ;;   :preface
+    ;;   (defun make-ruby-scratch-buffer ()
+    ;;     (with-current-buffer (get-buffer-create "*ruby scratch*")
+    ;;       (enh-ruby-mode)
+    ;;       (current-buffer)))
+    ;;   (defun ruby-scratch ()
+    ;;     (interactive)
+    ;;     (pop-to-buffer (make-ruby-scratch-buffer)))
+    ;;   :bind ((:enh-ruby-mode-map
+    ;;           ("M-C-i" . rct-complete-symbol)
+    ;;           ("C-c C-t" . ruby-toggle-buffer)
+    ;;           ("C-c C-d" . xmp)
+    ;;           ("C-c C-f" . rct-ri)))
+    ;;   )
     )
   (leaf rhtml-mode
     :doc "major mode for editing RHTML files"
