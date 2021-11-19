@@ -1,6 +1,10 @@
 ; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
+(defconst my:default-gc-cons-threshold gc-cons-threshold)
 (setq gc-cons-threshold (* 128 1024 1024))
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold my:default-gc-cons-threshold)))
 
 ;; this enables this running method
 ;;   emacs -q -l ~/.debug.emacs.d/{{pkg}}/init.el
