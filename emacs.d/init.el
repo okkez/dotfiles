@@ -1000,6 +1000,18 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :after nadvice
   :hook (emacs-startup-hook . editorconfig-mode))
 
+(leaf tree-sitter
+  :doc "Incremental parsing system"
+  :req "emacs-25.1" "tsc-0.16.1"
+  :tag "tree-sitter" "parsers" "tools" "languages" "emacs>=25.1"
+  :url "https://github.com/emacs-tree-sitter/elisp-tree-sitter"
+  :added "2021-12-22"
+  :emacs>= 25.1
+  :ensure t tree-sitter-langs
+  :after tsc
+  :hook ((emacs-startup-hook . global-tree-sitter-mode)
+         (tree-sitter-after-on-hook . tree-sitter-hl-mode)))
+
 (leaf atomic-chrome
   :doc "Edit Chrome text area with Emacs using Atomic Chrome"
   :req "emacs-24.4" "let-alist-1.0.4" "websocket-1.4"
