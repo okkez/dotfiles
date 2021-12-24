@@ -923,32 +923,6 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
          ("C-z l" . consult-line)
          ("C-c c" . hydra-consult/body)))
 
-(leaf amx
-  :doc "Alternative M-x with extra features."
-  :req "emacs-24.4" "s-0"
-  :tag "completion" "usability" "convenience" "emacs>=24.4"
-  :url "http://github.com/DarwinAwardWinner/amx/"
-  :added "2021-10-31"
-  :emacs>= 24.4
-  :ensure t)
-
-(leaf wgrep
-  :doc "Writable grep buffer and apply the changes to files"
-  :tag "extensions" "edit" "grep"
-  :url "http://github.com/mhayashi1120/Emacs-wgrep/raw/master/wgrep.el"
-  :added "2021-10-31"
-  :ensure t
-  :custom ((wgrep-enable-key . "e")))
-
-(leaf marginalia
-  :doc "Enrich existing commands with completion annotations"
-  :req "emacs-26.1"
-  :tag "emacs>=26.1"
-  :url "https://github.com/minad/marginalia"
-  :added "2021-10-31"
-  :emacs>= 26.1
-  :ensure t)
-
 (leaf embark-consult
   :doc "Consult integration for Embark"
   :req "emacs-25.1" "embark-0.9" "consult-0.1"
@@ -997,6 +971,23 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :emacs>= 26.1
   :ensure t
   :bind (("C-\]" . consult-ghq-find)))
+
+(leaf amx
+  :doc "Alternative M-x with extra features."
+  :req "emacs-24.4" "s-0"
+  :tag "completion" "usability" "convenience" "emacs>=24.4"
+  :url "http://github.com/DarwinAwardWinner/amx/"
+  :added "2021-10-31"
+  :emacs>= 24.4
+  :ensure t)
+
+(leaf wgrep
+  :doc "Writable grep buffer and apply the changes to files"
+  :tag "extensions" "edit" "grep"
+  :url "http://github.com/mhayashi1120/Emacs-wgrep/raw/master/wgrep.el"
+  :added "2021-10-31"
+  :ensure t
+  :custom ((wgrep-enable-key . "e")))
 
 (leaf editorconfig
   :doc "EditorConfig Emacs Plugin"
