@@ -1045,6 +1045,17 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :ensure t
   :after git-commit magit-section with-editor)
 
+(leaf magit-delta
+  :doc "Use Delta when displaying diffs in Magit"
+  :req "emacs-25.1" "magit-20200426" "xterm-color-2.0"
+  :tag "emacs>=25.1"
+  :url "https://github.com/dandavison/magit-delta"
+  :added "2021-12-25"
+  :emacs>= 25.1
+  :ensure t
+  :after magit xterm-color
+  :hook (magit-mode-hook . magit-delta-mode))
+
 (leaf *programming
   :config
   (leaf scheme-mode
