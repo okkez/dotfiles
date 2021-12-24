@@ -448,7 +448,7 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
     (ispell-really-hunspell . t)
     (isqpell-dictionary . "en_US"))
   :hook ((text-mode-hook . flyspell-mode)
-         ((prog-mode-hook enh-ruby-mode-hook ruby-mode-hook) . flyspell-prog-mode))
+         ((prog-mode-hook ruby-mode-hook) . flyspell-prog-mode))
   :config
   (setenv "DICTIONARY" "en_US")
   (leaf flyspell-correct
@@ -1139,60 +1139,29 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :ensure t
     :after json-snatcher)
 
-  (leaf enh-ruby-mode
+  (leaf ruby-mode
     :doc "Major mode for editing Ruby files"
-    :req "emacs-24.3"
-    :tag "ruby" "elisp" "languages" "emacs>=24.3"
-    :url "http://github.com/zenspider/Enhanced-Ruby-Mode"
-    :added "2021-10-31"
-    :emacs>= 24.3
-    :ensure t
-    :custom
-    ((enh-ruby-deep-indent-paren . nil)
-     (enh-ruby-bounce-deep-indent . t)
-     (enh-ruby-use-ruby-mode-show-parens-config . t)
-     (enh-ruby-add-encoding-comment-on-save . nil)
-     (flycheck-disabled-checkers . '(ruby-reek)))
+    :tag "out-of-MELPA"
+    :added "2021-12-24"
+    :el-get (ruby/elisp
+             :url "https://raw.githubusercontent.com/ruby/elisp/master/ruby-mode.el")
     :mode "\\.rb$" "Rakefile$" "\\.rake$" "Gemfile" "\\.gemspec$" "\\.cap$" "Capfile$"
+    :ensure t ruby-electric ruby-end
+    :custom
+    ((ruby-deep-indent-paren-style . nil))
+    :hook ((ruby-mode-hook . flycheck-mode)
+           (ruby-mode-hook . lsp-deferred)
+           (ruby-mode-hook . ruby-electric-mode))
     :bind
-    ((:enh-ruby-mode-map
-      ("RET" . newline-and-indent)
-      ("C-M-i" . company-complete)))
-    :hook ((enh-ruby-mode-hook . flycheck-mode)
-           (enh-ruby-mode-hook . lsp-deferred))
+    ((:ruby-mode-map
+      ("RET" . ruby-reindent-then-newline-and-indent)))
     :config
-    (plist-put develock-max-column-plist 'enh-ruby-mode 150)
     (plist-put develock-max-column-plist 'ruby-mode 150)
-
     ;; ruby-electric-mode 優先順位を最下位にする。[ruby-list:45511]
     (let ((rel (assq 'ruby-electric-mode minor-mode-map-alist)))
       (setq minor-mode-map-alist (append
                                   (delete rel minor-mode-map-alist)
                                   (list rel))))
-    (leaf ruby-end
-      :doc "Automatic insertion of end blocks for Ruby"
-      :tag "ruby" "convenience" "speed"
-      :url "http://github.com/rejeep/ruby-end"
-      :added "2021-11-05"
-      :ensure t)
-    ;; (leaf rcodetools
-    ;;   :el-get (rcodetools/rcodetools
-    ;;            :url https://raw.githubusercontent.com/rcodetools/rcodetools/master/misc/rcodetools.el)
-    ;;   :require t
-    ;;   :preface
-    ;;   (defun make-ruby-scratch-buffer ()
-    ;;     (with-current-buffer (get-buffer-create "*ruby scratch*")
-    ;;       (enh-ruby-mode)
-    ;;       (current-buffer)))
-    ;;   (defun ruby-scratch ()
-    ;;     (interactive)
-    ;;     (pop-to-buffer (make-ruby-scratch-buffer)))
-    ;;   :bind ((:enh-ruby-mode-map
-    ;;           ("M-C-i" . rct-complete-symbol)
-    ;;           ("C-c C-t" . ruby-toggle-buffer)
-    ;;           ("C-c C-d" . xmp)
-    ;;           ("C-c C-f" . rct-ri)))
-    ;;   )
     )
   (leaf rhtml-mode
     :doc "major mode for editing RHTML files"
