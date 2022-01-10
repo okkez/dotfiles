@@ -61,14 +61,38 @@ if test -x $HOME/.cargo/bin/rustup; then
 fi
 
 rustup update
-cargo install skim
-cargo install starship
+cargo_packages="
+alacritty
+delta
+lsd
+skim
+starship
+tokei
+xsv
+zellij
+"
+for package in $cargo_packages; do
+  cargo install $package
+done
 
 if test -L $HOME/.config/starship.toml; then
   echo $HOME/.config/starship.toml
 else
   ln -f -s $HOME/dotfiles/starship.toml $HOME/.config/starship.toml
 fi
+
+apps="
+alacritty
+lsd
+zellij
+"
+for app in $apps; do
+  if test -L $HOME/.config/${app}/config.yaml; then
+    echo ${app} is already configured
+  else
+    ln -f -s $HOME/dotfiles/config/${app} $HOME/.config/${app}
+  fi
+done
 
 if dpkg -l gh; then
   :
