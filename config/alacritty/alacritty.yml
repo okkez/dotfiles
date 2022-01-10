@@ -1,0 +1,28 @@
+window:
+  dimensions:
+    columns: 213
+    lines: 51
+  position:
+    x: 2560
+    y: 0
+  padding:
+    x: 2
+    y: 2
+
+font:
+  size: 14.0
+
+cursor:
+  style:
+    blinking: on
+
+background_opacity: 1.0
+scrolling:
+  history: 10000
+
+key_bindings:
+  - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
+  - { key: Q,      mods: Control|Shift, action: ToggleViMode }
+
+import:
+  - "~/.config/alacritty/solarized.yml"
