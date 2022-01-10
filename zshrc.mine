@@ -22,6 +22,9 @@ alias ec=emacsclient
 alias ecc="ec -c"
 alias ecn="ec -nw"
 
+# to expand global alias. see $HOME/.config/zabrze/config.yaml
+eval "$(zabrze init --bind-keys)"
+
 function svn() {
   if [ $1 = "diff" ] ; then
     command env LANG=C LC_ALL=C svn diff $2 $3 $4 $5 $6
