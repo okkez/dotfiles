@@ -84,6 +84,7 @@ fi
 apps="
 alacritty
 lsd
+zabrze
 zellij
 "
 for app in $apps; do
@@ -94,8 +95,8 @@ for app in $apps; do
   fi
 done
 
-if dpkg -l gh; then
-  :
+if dpkg -l gh > /dev/null; then
+  echo gh is installed
 else
   url=$(curl https://api.github.com/repos/cli/cli/releases/latest |
           jq -r '.assets[] | select(.name | test("gh_.*linux_amd64.deb")).browser_download_url')
