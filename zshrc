@@ -152,10 +152,10 @@ case "${OSTYPE}" in
         alias ls=" gls --color"
 esac
 
-alias l=" ls"
-alias la=" ls -a"
-alias lf=" ls -F"
-alias ll=" ls -alh"
+alias l=" lsd"
+alias la=" lsd -a"
+alias lf=" lsd -F"
+alias ll=" lsd -alh"
 
 alias du="du -h"
 alias df="df -h"
