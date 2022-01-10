@@ -213,7 +213,7 @@ esac
 # set terminal title including current directory
 #
 case "${TERM}" in
-kterm*|xterm*)
+kterm*|xterm*|alacritty)
     precmd() {
         echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
     }
