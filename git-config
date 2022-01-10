@@ -23,7 +23,7 @@
 
 [core]
   excludesfile = ~/.gitignore
-  pager = less
+  pager = delta
   attributesfile = ~/.config/git/attributes
   autocrlf = input
 
@@ -45,3 +45,15 @@
 	insteadOf = https://github.com/
 [init]
 	defaultBranch = main
+
+[delta]
+  dark = true
+  syntax-theme = Solarized (dark)
+  #syntax-theme = Dracula
+  #side-by-side = true
+  navigate = true
+  hyperlinks = false
+
+[interactive]
+  diffFilter = delta --color-only
+
