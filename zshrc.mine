@@ -3,6 +3,10 @@ bindkey "^?" backward-delete-char
 bindkey "[3~" backward-delete-char
 setopt ignoreeof
 unsetopt bg_nice
+if [[ -t 0 ]]; then
+  stty stop undef
+  stty start undef
+fi
 
 REPORTTIME=10
 
