@@ -103,9 +103,6 @@ if [[ -f $HOME/.cargo/bin/rustup ]]; then
     source <(rustup completions zsh)
 fi
 
-# Embulk
-export PATH="$HOME/.embulk/bin:$PATH"
-
 ## load dir_colors
 DIRCOLORS=$HOME/src/dircolors-solarized/dircolors.ansi-universal
 test -s $DIRCOLORS && eval $(dircolors $DIRCOLORS)
