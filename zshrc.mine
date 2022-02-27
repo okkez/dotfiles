@@ -92,6 +92,7 @@ export RUBY_CONFIGURE_OPTS="--enable-shared --disable-install-doc"
 
 # load virtualenv
 if [[ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]]; then
+    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
     export WORKON_HOME=$HOME/.virtualenvs
     export VIRTUAL_ENV_DISABLE_PROMPT=1
     source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
