@@ -46,29 +46,6 @@ function reload() {
   source ~/.zshrc
 }
 
-completion_list () {
-  mkdir -p ~/.zsh/completion
-  if [ ! -f ~/.zsh/completion/$*[-1] ]; then
-    eval $*[1,-2] | sed -e 's/^/compadd /g' > ~/.zsh/completion/$*[-1]
-  fi
-
-  `cat ~/.zsh/completion/$*[-1]`
-}
-
-_cheat () {
-  completion_list 'cheat sheets | grep -v All' _cheat
-}
-
-compdef _cheat cheat
-
-_rake () {
-  if [ -f Rakefile ]; then
-    compadd `rake -T | awk "{print \\$2}" | xargs`
-  fi
-}
-
-compdef _rake rake
-
 ## load prompt configuration
 eval "$(starship init zsh)"
 
@@ -85,9 +62,6 @@ if [[ -f $HOME/wc/src/github.com/asdf-vm/asdf/asdf.sh ]]; then
     source $HOME/wc/src/github.com/asdf-vm/asdf/asdf.sh
     # append completions to fpath
     fpath=(${ASDF_DIR}/completions $fpath)
-    # initialise completions with ZSH's compinit
-    autoload -Uz compinit
-    compinit
 fi
 
 test -f $HOME/wc/src/github.com/asdf-vm/asdf/plugins/java/set-java-home.zsh && \
@@ -103,22 +77,34 @@ if [[ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]]; then
     source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 fi
 
+mkdir -p ~/.zsh/completions
+fpath=(~/.zsh/completions $fpath)
+
 # Rust
 if [[ -f $HOME/.cargo/bin/rustup ]]; then
     export PATH="$HOME/.cargo/bin:$PATH"
-    source <(rustup completions zsh)
+    rustup completions zsh > ~/.zsh/completions/_rustup
+    test ! -f ~/.zsh/completions/_cargo && \
+        ln -sf $(realpath $(dirname $(rustup which cargo))/../share/zsh/site-functions/_cargo) ~/.zsh/completions/_cargo
 fi
 
 ## load dir_colors
 DIRCOLORS=$HOME/src/dircolors-solarized/dircolors.ansi-universal
 test -s $DIRCOLORS && eval $(dircolors $DIRCOLORS)
 
-fpath=(~/.zsh/Completion $fpath)
-
 eval "$(direnv hook zsh)"
 
 # k8s
-type kubectl > /dev/null && source <(kubectl completion zsh)
+if type kubectl > /dev/null; then
+    function kubectl() {
+        unfunction $0
+        source <(kubectl completion zsh)
+        $0 "$@"
+    }
+fi
 
 export PATH="$HOME/.local/bin:$PATH"
 
+# if (which zprof > /dev/null 2>&1) ;then
+#   zprof
+# fi

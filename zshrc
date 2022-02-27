@@ -1,5 +1,6 @@
 # -*- sh -*-
 # users generic .zshrc file for zsh(1)
+# zmodload zsh/zprof && zprof
 
 ## Environment variable configuration
 #
@@ -82,25 +83,6 @@ setopt extended_history     # save timestamp and elapsed time to history file
 setopt hist_save_no_dups
 setopt hist_find_no_dups
 
-
-## Completion configuration
-#
-fpath=(~/.zsh/functions/Completion ${fpath})
-autoload -U compinit
-compinit
-
-zstyle ':completion:*' format '%B%d%b'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*:default' menu select=2
-zstyle ':completion:*:default' list-colors ""
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':completion:*' use-cache yes
-
-setopt complete_in_word
-setopt glob_complete
-setopt hist_expand
-setopt no_beep
-setopt numeric_glob_sort
 
 ## word delimiter
 #
@@ -228,3 +210,22 @@ esac
 ## load user .zshrc configuration file
 #
 [ -f ~/dotfiles/zshrc.mine ] && source ~/dotfiles/zshrc.mine
+
+## Completion configuration
+#
+fpath=(~/.zsh/functions/Completion ${fpath})
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' format '%B%d%b'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*:default' list-colors ""
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' use-cache yes
+
+setopt complete_in_word
+setopt glob_complete
+setopt hist_expand
+setopt no_beep
+setopt numeric_glob_sort
