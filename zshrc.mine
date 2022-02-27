@@ -2,6 +2,7 @@
 bindkey "^?" backward-delete-char
 bindkey "[3~" backward-delete-char
 setopt ignoreeof
+unsetopt bg_nice
 
 REPORTTIME=10
 
