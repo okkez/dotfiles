@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-# -*- mode: enh-ruby -*-
+# -*- mode: ruby -*-
 
 # ri を使えるようにする
 # 例.
