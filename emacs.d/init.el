@@ -788,7 +788,7 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
          ("C-z g" . hydra-avy/body)
          (:isearch-mode-map
           ("C-a" . avy-isearch)))
-  :chord (("gg" . hydra-avy/body)))
+  :chord (("jj" . hydra-avy/body)))
 
 (leaf ace-window
   :doc "Quickly switch windows."
