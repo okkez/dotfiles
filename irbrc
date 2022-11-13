@@ -51,6 +51,9 @@ IRB.conf[:EVAL_HISTORY] = 1000
 # タブ補完を有効にする
 require 'irb/completion'
 
+# disable auto completion
+IRB.conf[:USE_AUTOCOMPLETE] = false
+
 # simple prompt
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 
