@@ -551,59 +551,65 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :added "2021-10-31"
   :ensure t)
 
-(leaf company
-  :doc "Modular text completion framework"
-  :req "emacs-25.1"
-  :tag "matching" "convenience" "abbrev" "emacs>=25.1"
-  :url "http://company-mode.github.io/"
-  :added "2021-10-31"
-  :emacs>= 25.1
+(leaf corfu
+  :doc "Completion Overlay Region FUnction"
+  :req "emacs-27.1"
+  :tag "emacs>=27.1"
+  :url "https://github.com/minad/corfu"
+  :added "2022-11-13"
+  :emacs>= 27.1
   :ensure t
-  :custom ((company-idle-delay . 0.5)
-           (company-selection-wrap-around . t))
-  :bind
-  (("C-M-i" . company-complete)
-   (:company-active-map
-    ("M-n" . nil)
-    ("M-p" . nil)
-    ("C-n" . company-select-next)
-    ("C-p" . company-select-previous)
-    ;; C-sで絞り込む
-    ("C-s" . company-filter-candidates)
-    ;; TABで候補を設定
-    ("C-i" . company-complete-common-or-cycle)
-    ("<tab>" . company-complete-common-or-cycle)
-    ("C-h" . nil)
-    ("C-S-h" . company-show-doc-buffer))
-   (:company-search-map
-    ("C-n" . company-select-next)
-    ("C-p" . company-select-previous))
-   (:emacs-lisp-mode-map
-    ("C-M-i" . company-complete))
-   (:lisp-interaction-mode-map
-    ("C-M-i" . company-complete)))
-  :config
-  (leaf company-emoji
-    :doc "company-mode backend for emoji"
-    :req "cl-lib-0.5" "company-0.8.0"
-    :tag "company" "emoji"
-    :url "https://github.com/dunn/company-emoji.git"
-    :added "2021-10-31"
-    :ensure t
-    :after company
-    :config (add-to-list 'company-backends 'company-emoji))
+  :global-minor-mode global-corfu-mode
+  :custom ((corfu-cycle . t)
+           (corfu-auto . t))
+  :bind ((:corfu-map
+          ("TAB" . corfu-next)
+          ("<tab>" . corfu-next)
+          ("S-TAB" . corfu-previous)
+          ("<backtab>" . corfu-previous)
+          ("C-n" . corfu-next)
+          ("C-p" . corfu-previous))))
+
+(leaf corfu-doc
+  :doc "Documentation popup for Corfu"
+  :req "emacs-27.1" "corfu-0.25"
+  :tag "convenience" "documentation" "popup" "corfu" "emacs>=27.1"
+  :url "https://github.com/galeo/corfu-doc"
+  :added "2022-11-13"
+  :emacs>= 27.1
+  :ensure t
+  :after corfu
+  :hook (corfu-mode-hook corfu-doc-mode)
+  :bind ((:corfu-map
+          ("M-n" . corfu-doc-scroll-up)
+          ("M-p" . corfu-doc-scroll-down)
+          ("M-d" . corfu-doc-toggle))))
+
+(leaf kind-icon
+  :doc "Completion kind icons"
+  :req "emacs-27.1" "svg-lib-0"
+  :tag "completion" "emacs>=27.1"
+  :url "https://github.com/jdtsmith/kind-icon"
+  :added "2022-11-13"
+  :emacs>= 27.1
+  :ensure t
+  :after svg-lib corfu
+  :custom ((kind-icon-default-face . corfu-default))
+  :config (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
   )
 
-(leaf company-quickhelp
-  :doc "Popup documentation for completion candidates"
-  :req "emacs-24.3" "company-0.8.9" "pos-tip-0.4.6"
-  :tag "quickhelp" "documentation" "popup" "company" "emacs>=24.3"
-  :url "https://www.github.com/expez/company-quickhelp"
-  :added "2021-10-31"
-  :emacs>= 24.3
+(leaf cape
+  :doc "Completion At Point Extensions"
+  :req "emacs-27.1"
+  :tag "emacs>=27.1"
+  :url "https://github.com/minad/cape"
+  :added "2022-11-13"
+  :emacs>= 27.1
   :ensure t
-  :after company pos-tip
-  :custom ((company-quickhelp-mode . t)))
+  :config
+  (add-to-list 'completion-at-point #'cape-file t)
+  (add-to-list 'completion-at-point #'cape-dabbrev t)
+  (add-to-list 'completion-at-point #'cape-keyword t))
 
 (leaf emojify
   :doc "Display emojis in Emacs"
@@ -652,16 +658,6 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
     :require t
     :after hydra
     :hook (emacs-startup-hook . hydra-posframe-mode))
-
-  (leaf company-posframe
-    :doc "Use a posframe as company candidate menu"
-    :req "emacs-26.0" "company-0.9.0" "posframe-0.9.0"
-    :tag "matching" "convenience" "abbrev" "emacs>=26.0"
-    :url "https://github.com/tumashu/company-posframe"
-    :added "2021-10-31"
-    :emacs>= 26.0
-    :ensure t
-    :hook (emacs-startup-hook . company-posframe-mode))
 
   (leaf vertico-posframe
     :doc "Using posframe to show Vertico"
