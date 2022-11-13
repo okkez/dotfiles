@@ -579,7 +579,7 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :emacs>= 27.1
   :ensure t
   :after corfu
-  :hook (corfu-mode-hook corfu-doc-mode)
+  :hook (corfu-mode-hook . corfu-doc-mode)
   :bind ((:corfu-map
           ("M-n" . corfu-doc-scroll-up)
           ("M-p" . corfu-doc-scroll-down)
