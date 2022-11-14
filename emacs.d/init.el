@@ -1036,7 +1036,8 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :after lsp-mode markdown-mode
   :config (add-to-list
            'load-path (expand-file-name "~/.emacs.d/el-get/lsp-mode/clients"))
-  :hook (lsp-mode-hook . lsp-ui-mode))
+  :hook (lsp-mode-hook . lsp-ui-mode)
+  :custom ((lsp-completion-provider :none)))
 
 (leaf magit
   :doc "A Git porcelain inside Emacs."
