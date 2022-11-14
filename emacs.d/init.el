@@ -946,7 +946,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :ensure t
   :custom ((completion-styles . '(orderless)))
   :config
-  (defun affe-orderless-regexp-compiler (input _type)
+  (defun affe-orderless-regexp-compiler (input _type _ignorecase)
     (setq input (orderless-pattern-compiler input))
     (cons input (lambda (str) (orderless--highlight input str)))))
 
