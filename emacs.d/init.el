@@ -1268,10 +1268,13 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :ensure t)
   )
 
-(leaf org-bullets
-  :doc "Show bullets in org-mode as UTF-8 characters"
-  :url "https://github.com/integral-dw/org-bullets"
-  :added "2021-10-31"
+(leaf org-modern
+  :doc "Modern looks for Org"
+  :req "emacs-27.1"
+  :tag "emacs>=27.1"
+  :url "https://github.com/minad/org-modern"
+  :added "2022-11-14"
+  :emacs>= 27.1
   :ensure t)
 
 (leaf org
@@ -1344,8 +1347,9 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     (interactive)
     (insert (insert-this-date)))
   :mode "\\.org$"
-  :hook ((org-mode-hook . org-bullets-mode))
-  :chord (("op" . org-remember))
+  :hook ((org-mode-hook . org-modern-mode)
+         (org-agenda-finalize-hook . org-modern-agenda))
+  ;; :chord (("op" . org-remember))
   :bind (("C-c a" . org-agenda)
          ("C-z a" . my-open-agenda)
          ("C-z s" . my-open-standup-meeting)
