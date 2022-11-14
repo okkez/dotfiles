@@ -235,6 +235,12 @@
            ("b" . calendar-backward-day))
     :hook ((today-visible-calendar-hook . calendar-mark-weekend)
            (today-invisible-calendar-hook . calendar-mark-weekend)))
+  (leaf recentf
+    :doc "setup a menu of recently opened files"
+    :tag "builtin"
+    :added "2022-11-14"
+    :hook (emacs-startup-hook . recentf-mode)
+    :custom ((recentf-max-saved-items . 1000)))
   )
 
 ;; どこに入れていいか迷うもの
