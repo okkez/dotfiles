@@ -88,6 +88,9 @@ if [[ -f $HOME/.cargo/bin/rustup ]]; then
         ln -sf $(realpath $(dirname $(rustup which cargo))/../share/zsh/site-functions/_cargo) ~/.zsh/completions/_cargo
 fi
 
+# gh
+type gh > /dev/null && gh completion -s zsh > ~/.zsh/completions/_gh
+
 ## load dir_colors
 DIRCOLORS=$HOME/src/dircolors-solarized/dircolors.ansi-universal
 test -s $DIRCOLORS && eval $(dircolors $DIRCOLORS)
