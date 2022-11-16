@@ -108,13 +108,13 @@
     :config
     ;; other-window を逆回りにする
     (global-set-key (kbd "C-z p")
-                    '(lambda ()
-                       (interactive)
-                       (other-window -1)))
+                    #'(lambda ()
+                        (interactive)
+                        (other-window -1)))
     (global-set-key (kbd "C-x C-i")
-                    '(lambda ()
-                       (interactive)
-                       (indent-region (point-min) (point-max) nil))))
+                    #'(lambda ()
+                        (interactive)
+                        (indent-region (point-min) (point-max) nil))))
   (leaf cus-edit
     :doc "tools for customizing Emacs and Lisp packages"
     :tag "builtin" "faces" "help"
