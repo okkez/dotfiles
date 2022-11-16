@@ -1009,10 +1009,11 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :url "https://github.com/emacs-tree-sitter/elisp-tree-sitter"
   :added "2021-12-22"
   :emacs>= 25.1
-  :ensure t tree-sitter-langs
-  :after tsc
+  :ensure t
+  :require t
   :hook ((emacs-startup-hook . global-tree-sitter-mode)
-         (tree-sitter-after-on-hook . tree-sitter-hl-mode)))
+         (tree-sitter-after-on-hook . tree-sitter-hl-mode))
+  )
 
 (leaf atomic-chrome
   :doc "Edit Chrome text area with Emacs using Atomic Chrome"
@@ -1022,7 +1023,6 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :added "2021-10-31"
   :emacs>= 24.4
   :ensure t
-  :after websocket
   :hook (emacs-startup-hook . atomic-chrome-start-server))
 
 (leaf lsp-ui
