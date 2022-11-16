@@ -67,6 +67,7 @@ fi
 test -f $HOME/wc/src/github.com/asdf-vm/asdf/plugins/java/set-java-home.zsh && \
     source $HOME/wc/src/github.com/asdf-vm/asdf/plugins/java/set-java-home.zsh
 
+export ASDF_GEM_DEFAULT_PACKAGES_FILE="$HOME/.asdf/plugins/ruby/default-gems"
 export RUBY_CONFIGURE_OPTS="--enable-shared --disable-install-doc"
 
 # load virtualenv
