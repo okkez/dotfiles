@@ -1023,7 +1023,11 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :added "2021-10-31"
   :emacs>= 24.4
   :ensure t
-  :hook (emacs-startup-hook . atomic-chrome-start-server))
+  :hook (emacs-startup-hook . atomic-chrome-start-server)
+  :custom ((atomic-chrome-default-major-mode . 'markdown-mode)
+           (atomic-chrome-buffer-open-style . 'frame)
+           (atomic-chrome-buffer-frame-height . 80)
+           (atomic-chrome-buffer-frame-width . 150)))
 
 (leaf lsp-ui
   :doc "UI modules for lsp-mode"
