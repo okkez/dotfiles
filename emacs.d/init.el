@@ -1180,6 +1180,20 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
       (setq minor-mode-map-alist (append
                                   (delete rel minor-mode-map-alist)
                                   (list rel))))
+    (defadvice ruby-indent-line (after unindent-closing-paren activate)
+      (let ((column (current-column))
+            indent offset)
+        (save-excursion
+          (back-to-indentation)
+          (let ((state (syntax-ppss)))
+            (setq offset (- column (current-column)))
+            (when (and (eq (char-after) ?\))
+                       (not (zerop (car state))))
+              (goto-char (cadr state))
+              (setq indent (current-indentation)))))
+        (when indent
+          (indent-line-to indent)
+          (when (> offset 0) (forward-char offset)))))
     )
   (leaf rhtml-mode
     :doc "major mode for editing RHTML files"
