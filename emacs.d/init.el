@@ -263,6 +263,7 @@
   (set-default-coding-systems 'utf-8-unix)
   ;; Emoji
   (set-fontset-font t 'symbol "Noto Color Emoji")
+  (setq use-default-font-for-symbols nil)
   (auto-compression-mode t)
   ;; disable commands
   (put 'set-goal-column 'disabled nil)
