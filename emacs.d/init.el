@@ -1172,12 +1172,12 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :el-get (ruby/elisp
              :url "https://raw.githubusercontent.com/ruby/elisp/master/ruby-mode.el")
     :mode "\\.rb$" "Rakefile$" "\\.rake$" "Gemfile" "\\.gemspec$" "\\.cap$" "Capfile$"
-    :ensure t ruby-electric ruby-end
+    :ensure t ruby-end inf-ruby
     :custom
     ((ruby-deep-indent-paren-style . nil))
     :hook ((ruby-mode-hook . flycheck-mode)
-           (ruby-mode-hook . lsp-deferred)
-           (ruby-mode-hook . ruby-electric-mode))
+           (ruby-mode-hook . inf-ruby-minor-mode)
+           (ruby-mode-hook . lsp-deferred))
     :bind
     ((:ruby-mode-map
       ("RET" . ruby-reindent-then-newline-and-indent)))
