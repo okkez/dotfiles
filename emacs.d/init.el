@@ -944,6 +944,23 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :after embark consult
   :require t)
 
+(leaf fussy
+  :doc "Fuzzy completion style using `flx'"
+  :req "emacs-27.2" "flx-0.5"
+  :tag "matching" "emacs>=27.2"
+  :url "https://github.com/jojojames/fussy"
+  :added "2022-11-25"
+  :emacs>= 27.2
+  :ensure t flx
+  :config
+  (leaf fuz-bin
+    :el-get jcs-elpa/fuz-bin
+    :config
+    (fuz-bin-load-dyn))
+  (add-to-list 'completion-styles 'fussy t)
+  :custom ((fussy-score-fn . #'fussy-fuz-bin-score)
+           (fussy-filter-fn . #'fussy-filter-orderless-flex)))
+
 (leaf orderless
   :doc "Completion style for matching regexps in any order"
   :req "emacs-26.1"
@@ -952,8 +969,8 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :added "2021-10-31"
   :emacs>= 26.1
   :ensure t
-  :custom ((completion-styles . '(orderless)))
   :config
+  (add-to-list 'completion-styles 'orderless t)
   (defun affe-orderless-regexp-compiler (input _type _ignorecase)
     (setq input (orderless-pattern-compiler input))
     (cons input (lambda (str) (orderless--highlight input str)))))
