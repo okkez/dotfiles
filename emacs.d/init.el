@@ -959,7 +959,12 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     (fuz-bin-load-dyn))
   (add-to-list 'completion-styles 'fussy t)
   :custom ((fussy-score-fn . #'fussy-fuz-bin-score)
-           (fussy-filter-fn . #'fussy-filter-orderless-flex)))
+           (fussy-filter-fn . #'fussy-filter-orderless-flex)
+           ;; For example, project-find-file uses 'project-files which uses
+           ;; substring completion by default. Set to nil to make sure it's
+           ;; using flx.
+           (completion-category-defaults . nil)
+           (completion-category-overrides . nil)))
 
 (leaf orderless
   :doc "Completion style for matching regexps in any order"
