@@ -243,18 +243,25 @@
     :custom ((recentf-max-saved-items . 1000)))
   )
 
+(leaf skk
+  :ensure ddskk
+  :custom ((default-input-method . "japanese-skk")
+           (skk-server-host . "localhost")
+           (skk-server-port . 1178)
+           (skk-aux-large-jisyo . "/usr/share/skk/SKK-JISYO.L")
+           (skk-server-report-response . t))
+  :config
+  (leaf ddskk-posframe
+    :ensure t
+    :global-minor-mode t))
+
 ;; どこに入れていいか迷うもの
 (leaf misc
   :custom (
            (case-fold-search . t)
-           (default-input-method . "japanese-skk")
            (truncate-lines . t)
            (ring-bell-function . 'ignore)
            ;(global-font-lock-mode . t nil (font-lock))
-           (skk-server-host . "localhost")
-           (skk-server-port . 1178)
-           (skk-aux-large-jisyo . "/usr/share/skk/SKK-JISYO.L")
-           (skk-server-report-response . t)
            )
   :custom-face
   ((default . '((t (:family "VL ゴシック" :foundry "VL  " :slant normal :weight normal :height 113 :width normal)))))
