@@ -1086,7 +1086,9 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :custom ((atomic-chrome-default-major-mode . 'markdown-mode)
            (atomic-chrome-buffer-open-style . 'frame)
            (atomic-chrome-buffer-frame-height . 80)
-           (atomic-chrome-buffer-frame-width . 150)))
+           (atomic-chrome-buffer-frame-width . 150)
+           (atomic-chrome-url-major-mode-alist
+            . '(("helpdesk\\.classmethod\\.net" . text-mode)))))
 
 (leaf lsp-ui
   :doc "UI modules for lsp-mode"
