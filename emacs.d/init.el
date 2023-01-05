@@ -1123,9 +1123,13 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :ensure t
   :after magit xterm-color
   :hook (magit-mode-hook . magit-delta-mode))
-
 (leaf *programming
   :config
+  (leaf sh-script
+  :doc "shell-script editing commands for Emacs"
+  :tag "builtin"
+  :added "2022-12-08"
+  :custom ((sh-basic-offset . 2)))
   (leaf scheme-mode
     :custom ((scheme-program-name . "gosh -i"))
     :config
@@ -1178,6 +1182,31 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :emacs>= 24.3
     :ensure t
     :mode "\\.tf$")
+
+  (leaf nginx-mode
+    :doc "major mode for editing nginx config files"
+    :tag "nginx" "languages"
+    :added "2022-12-30"
+    :ensure t
+    :mode "/nginx/sites-\\(?:available\\|enabled\\|conf.d\\)")
+
+  (leaf lua-mode
+    :doc "a major-mode for editing Lua scripts"
+    :req "emacs-24.3"
+    :tag "tools" "processes" "languages" "emacs>=24.3"
+    :url "https://immerrr.github.io/lua-mode"
+    :added "2022-12-30"
+    :emacs>= 24.3
+    :ensure t
+    :mode "\\.lua$")
+
+  (leaf vcl-mode
+    :doc "Major mode for Varnish Configuration Language"
+    :tag "vcl" "varnish"
+    :url "http://elpa.gnu.org/packages/vcl-mode.html"
+    :added "2023-01-02"
+    :ensure t)
+
   (leaf js2-mode
     :doc "Improved JavaScript editing mode"
     :req "emacs-24.1" "cl-lib-0.5"
