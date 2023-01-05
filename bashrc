@@ -53,32 +53,8 @@ else
   PAGER=more
 fi
 export PAGER
-# XMODIFIERS を export しないのは、emacs が Segmentation Fault を起こすから
-# ただし、この方法だと、Debian メニューシステムからの起動には対応できない。
-function rxvt {
-  if /usr/bin/which krxvt &> /dev/null
-  then
-    krxvt $*
-  else
-    /usr/bin/rxvt $*
-  fi
-}
-alias jfbterm='LANG=ja_JP.UTF-8 /usr/bin/jfbterm'
-alias xemacs='XMODIFIERS= xemacs'
-# perl がロケールにかんするワーニングを出す場合に有効にしてください。
-# PERL_BADLANG=0 ; export PERL_BADLANG
 # .bash_profile で使う。
 BASHRC_DONE=1
-# mh がインストールされていたら、PATH に加える。
-if [ -x /usr/bin/mh/mhmail ]
-then
-  if type mhmail &>/dev/null
-  then
-    true
-  else
-    PATH=$PATH:/usr/bin/mh
-  fi
-fi
 ## ----- お好みに応じて -----
 # ls の動作 (属性表示、色つき)。man ls 参照
 if [ "$TERM" = "dumb" -o "$TERM" = "emacs" ]
