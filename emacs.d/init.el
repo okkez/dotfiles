@@ -255,6 +255,42 @@
     :ensure t
     :global-minor-mode t))
 
+(leaf *font
+  :custom-face
+  ;((default . '((t (:family "VL ゴシック" :foundry "VL  " :slant normal :weight normal :height 113 :width normal)))))
+  ((default . '((t (:family "Ricty Diminished" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
+  :config
+  (defun set-fontset-font:around (set-fontset-font name target font-spec &optional frame add)
+    "Warn if specified font is not installed."
+    (if (stringp font-spec) (setq font-spec (font-spec :family font-spec)))
+    (if (and (fontp font-spec)
+             (null (find-font font-spec)))
+        (warn "set-fontset-font: font %s is not found." (font-get font-spec :family))
+      (funcall set-fontset-font name target font-spec frame add)))
+
+  (advice-add 'set-fontset-font :around #'set-fontset-font:around)
+  ;; 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
+  ;; あいうえお アイウエオ 🍣🍺🍻📚🎆
+  ;; 漢字もいい感じ亜異上御
+  ;; 竈門襧豆子で異体字確認
+  ;; 句読点も、。
+  ;; M-x list-character-sets
+  ;; M-x describe-char
+  (defun my:setup-font ()
+    (set-default-coding-systems 'utf-8-unix)
+    (set-fontset-font t 'japanese-jisx0208 "Ricty Diminished")
+    (set-fontset-font t 'japanese-jisx0208-1978 "Ricty Diminished")
+    (set-fontset-font t 'japanese-jisx0212 "Ricty Diminished")
+    (set-fontset-font t 'japanese-jisx0213-1 "Ricty Diminished")
+    (set-fontset-font t 'japanese-jisx0213-2 "Ricty Diminished")
+    (set-fontset-font t 'japanese-jisx0213.2004-1 "Ricty Diminished")
+    (set-fontset-font t 'symbol "Noto Color Emoji")
+    (setq use-default-font-for-symbols nil))
+  (my:setup-font)
+  (add-hook 'focus-in-hook #'my:setup-font)
+
+  )
+
 ;; どこに入れていいか迷うもの
 (leaf misc
   :custom (
@@ -263,14 +299,7 @@
            (ring-bell-function . 'ignore)
            ;(global-font-lock-mode . t nil (font-lock))
            )
-  :custom-face
-  ((default . '((t (:family "VL ゴシック" :foundry "VL  " :slant normal :weight normal :height 113 :width normal)))))
   :config
-  ;; default font
-  (set-default-coding-systems 'utf-8-unix)
-  ;; Emoji
-  (set-fontset-font t 'symbol "Noto Color Emoji")
-  (setq use-default-font-for-symbols nil)
   (auto-compression-mode t)
   ;; disable commands
   (put 'set-goal-column 'disabled nil)
