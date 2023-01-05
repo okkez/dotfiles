@@ -8,6 +8,7 @@ window:
   padding:
     x: 2
     y: 2
+  opacity: 1.0
 
 font:
   size: 14.0
@@ -16,13 +17,13 @@ cursor:
   style:
     blinking: on
 
-background_opacity: 1.0
 scrolling:
   history: 10000
 
 key_bindings:
   - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
   - { key: Q,      mods: Control|Shift, action: ToggleViMode }
+  - { key: Plus,  mods: Control|Shift, action: IncreaseFontSize }
 
 import:
   - "~/.config/alacritty/solarized.yml"
