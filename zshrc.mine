@@ -29,6 +29,12 @@ alias ecn="ec -nw"
 
 # to expand global alias. see $HOME/.config/zabrze/config.yaml
 eval "$(zabrze init --bind-keys)"
+zle -N __zabrze::expand-or-complete
+function __zabrze::expand-or-complete() {
+    zle __zabrze::expand
+    zle expand-or-complete
+}
+bindkey "^I" __zabrze::expand-or-complete
 
 function svn() {
   if [ $1 = "diff" ] ; then
