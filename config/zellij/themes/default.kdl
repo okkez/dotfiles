@@ -1,0 +1,41 @@
+themes {
+    tokyo-night {
+        fg 169 177 214
+        bg 26 27 38
+        black 65 72 104
+        red 247 118 142
+        green 158 206 106
+        yellow 224 175 104
+        blue 122 162 247
+        magenta 187 154 247
+        cyan 42 195 222
+        white 192 202 245
+        orange 255 158 100
+    }
+    tokyo-night-light {
+        fg 52 59 88
+        bg 213 214 219
+        black 15 15 20
+        red 140 67 81
+        green 72 94 48
+        yellow 143 94 21
+        blue 52 84 138
+        magenta 90 74 120
+        cyan 15 75 110
+        white 52 59 88
+        orange 150 80 39
+    }
+    tokyo-night-storm {
+        fg 169 177 214
+        bg 36 40 59
+        black 65 72 104
+        red 247 118 142
+        green 158 206 106
+        yellow 224 175 104
+        blue 122 162 247
+        magenta 187 154 247
+        cyan 42 195 222
+        white 192 202 245
+        orange 255 158 100
+    }
+}
