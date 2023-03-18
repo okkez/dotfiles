@@ -64,14 +64,8 @@ for f in $HOME/dotfiles/zsh/*.zsh; do
     source $f
 done
 
-if [[ -f $HOME/wc/src/github.com/asdf-vm/asdf/asdf.sh ]]; then
-    source $HOME/wc/src/github.com/asdf-vm/asdf/asdf.sh
-    # append completions to fpath
-    fpath=(${ASDF_DIR}/completions $fpath)
-fi
-
-test -f $HOME/wc/src/github.com/asdf-vm/asdf/plugins/java/set-java-home.zsh && \
-    source $HOME/wc/src/github.com/asdf-vm/asdf/plugins/java/set-java-home.zsh
+eval "$(~/bin/rtx activate zsh)"
+alias asdf=rtx
 
 export ASDF_GEM_DEFAULT_PACKAGES_FILE="$HOME/.asdf/plugins/ruby/default-gems"
 export RUBY_CONFIGURE_OPTS="--enable-shared --disable-install-doc"
