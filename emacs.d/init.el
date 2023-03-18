@@ -258,7 +258,8 @@
 (leaf *font
   :custom-face
   ;((default . '((t (:family "VL ゴシック" :foundry "VL  " :slant normal :weight normal :height 113 :width normal)))))
-  ((default . '((t (:family "Ricty Diminished" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
+  ;((default . '((t (:family "Ricty Diminished" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
+  ((default . '((t (:family "UDEV Gothic JPDOC" :foundry "twr " :slant normal :weight normal :height 113 :width normal)))))
   :config
   (defun set-fontset-font:around (set-fontset-font name target font-spec &optional frame add)
     "Warn if specified font is not installed."
@@ -270,6 +271,7 @@
 
   (advice-add 'set-fontset-font :around #'set-fontset-font:around)
   ;; 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
+  ;; !"#$%&'()-=^~\|`';:+*,.<>/?\_[]{}
   ;; あいうえお アイウエオ 🍣🍺🍻📚🎆
   ;; 漢字もいい感じ亜異上御
   ;; 竈門襧豆子で異体字確認
@@ -277,19 +279,18 @@
   ;; M-x list-character-sets
   ;; M-x describe-char
   (defun my:setup-font ()
-    (set-default-coding-systems 'utf-8-unix)
-    (set-fontset-font t 'japanese-jisx0208 "Ricty Diminished")
-    (set-fontset-font t 'japanese-jisx0208-1978 "Ricty Diminished")
-    (set-fontset-font t 'japanese-jisx0212 "Ricty Diminished")
-    (set-fontset-font t 'japanese-jisx0213-1 "Ricty Diminished")
-    (set-fontset-font t 'japanese-jisx0213-2 "Ricty Diminished")
-    (set-fontset-font t 'japanese-jisx0213.2004-1 "Ricty Diminished")
-    (set-fontset-font t 'symbol "Noto Color Emoji")
-    (setq use-default-font-for-symbols nil))
-  (my:setup-font)
-  (add-hook 'focus-in-hook #'my:setup-font)
-
-  )
+    (let* ((my:japanese-font "UDEV Gothic JPDOC"))
+          (set-default-coding-systems 'utf-8-unix)
+          (set-fontset-font t 'japanese-jisx0208 my:japanese-font)
+          (set-fontset-font t 'japanese-jisx0208-1978 my:japanese-font)
+          (set-fontset-font t 'japanese-jisx0212 my:japanese-font)
+          (set-fontset-font t 'japanese-jisx0213-1 my:japanese-font)
+          (set-fontset-font t 'japanese-jisx0213-2 my:japanese-font)
+          (set-fontset-font t 'japanese-jisx0213.2004-1 my:japanese-font)
+          (set-fontset-font t 'symbol "Noto Color Emoji")
+          (setq use-default-font-for-symbols nil)))
+      (my:setup-font)
+      (add-hook 'focus-in-hook #'my:setup-font))
 
 ;; どこに入れていいか迷うもの
 (leaf misc
