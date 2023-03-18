@@ -12,6 +12,15 @@ window:
 
 font:
   size: 14.0
+  normal:
+    family: UDEV Gothic NF
+    style: Regular
+  bold:
+    family: UDEV Gothic NF
+    style: Bold
+  italic:
+    family: UDEV Gothic NF
+    style: Italic
 
 cursor:
   style:
