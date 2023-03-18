@@ -1,0 +1,101 @@
+abbrevs:
+  - name: xdg-user-dir DOWNLOAD
+    abbr: '@d'
+    snippet: '$(xdg-user-dir DOWNLOAD)/'
+    global: true
+    evaluate: true
+
+  - name: pipe rg
+    abbr: '@g'
+    snippet: '| rg'
+    global: true
+
+  - name: discard output
+    abbr: '@n'
+    snippet: '> /dev/null'
+    global: true
+
+  - name: apt search
+    abbr: as
+    snippet: apt search 
+
+  - name: apt install
+    abbr: ai
+    snippet: sudo apt install
+
+  - name: apt update && apt upgrade
+    abbr: au
+    snippet: "sudo apt update && sudo apt upgrade -y"
+
+  - name: apt-file search
+    abbr: afs
+    snippet: apt-file search
+
+  - name: git branch master or main
+    abbr: 'm'
+    snippet: "$(git branch --format='%(refname:lstrip=2)' | grep -E '^(master|main)$')"
+    context: '^git '
+    global: true
+    evaluate: true
+
+  - name: git current branch
+    abbr: B
+    snippet: "$(git symbolic-ref --short HEAD)"
+    context: '^git '
+    global: true
+    evaluate: true
+
+  - name: git push origin
+    abbr: po
+    snippet: "push -u origin $(git symbolic-ref --short HEAD)"
+    context: "^git"
+    global: true
+    evaluate: true
+
+  - name: git push -f origin
+    abbr: pof
+    snippet: "push -f -u origin $(git symbolic-ref --short HEAD)"
+    context: "^git"
+    global: true
+    evaluate: true
+
+  - name: gh pr create -w
+    abbr: cw
+    snippet: "create -w"
+    context: "^gh pr "
+    global: true
+
+  - name: envchain repro
+    abbr: "@repro"
+    snippet: envchain repro
+
+  - name: envchain okkez-test
+    abbr: "@sandbox"
+    snippet: envchain okkez-test
+
+
+  - name: kafka bootstrap server
+    abbr: B
+    snippet: "--bootstrap-server 127.0.0.1:9092"
+    context: "^kafka-"
+    global: true
+
+  - name: docker buildkit
+    abbr: bk
+    snippet: env DOCKER_BUILDKIT=1 docker build
+
+  - name: bundle exec
+    abbr: be
+    snippet: bundle exec
+    global: true
+
+  - name: ssh user
+    abbr: "@o"
+    snippet: SSH_USER=okkez
+    context: "^env "
+    global: true
+
+  - name: envchain okkez
+    abbr: "@okkez"
+    snippet: envchain okkez
+
