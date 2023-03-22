@@ -206,16 +206,15 @@ kterm*|xterm*|alacritty)
     ;;
 esac
 
+## Completion configuration
+#
+fpath=(~/.zsh/functions/Completion ${fpath})
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
 
 ## load user .zshrc configuration file
 #
 [ -f ~/dotfiles/zshrc.mine ] && source ~/dotfiles/zshrc.mine
-
-## Completion configuration
-#
-fpath=(~/.zsh/functions/Completion ${fpath})
-autoload -Uz compinit
-compinit
 
 zstyle ':completion:*' format '%B%d%b'
 zstyle ':completion:*' group-name ''
