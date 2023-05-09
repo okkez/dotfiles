@@ -1165,7 +1165,9 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :url "https://github.com/dominikh/go-mode.el"
     :added "2021-10-31"
     :ensure t
-    :hook (go-mode-hook . lsp-deferred))
+    :custom (tab-width . 4)
+    :hook ((go-mode-hook . lsp-deferred)
+           (before-save-hook . gofmt-before-save)))
   (leaf haml-mode
     :doc "Major mode for editing Haml files"
     :req "emacs-24" "cl-lib-0.5"
