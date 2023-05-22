@@ -3,6 +3,7 @@
   ci = commit
   co = checkout
   br = branch
+  bra = br -avv
   up = pull --rebase --autostash --prune
   cherryv = cherry -v --abbrev
   cm = cherry -v --abbrev master
@@ -11,8 +12,24 @@
   dlog = log -p --stat --ext-diff
   graph = log --graph --decorate --oneline
   wt = worktree
-  find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
-  show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
+  delete-merged-branch = "!f() { \
+	git switch $1;\
+	git branch --merged | rg -v '^\\*|^[[:space:]]+(develop|main|master)\\z' | xargs git branch -d; \
+  };f"
+  find-merge = "!f(){ \
+    commit=$1 && branch=${2:-HEAD} && \
+    (git rev-list $commit..$branch --ancestry-path | cat -n; \
+     git rev-list $commit..$branch --first-parent | cat -n) | \
+      sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2; \
+  };f"
+  show-merge = "!f(){ \
+    merge=$(git find-merge $1 $2) && \
+    [ -n \"${merge}\" ] && git show $merge; \
+  };f"
+  view-merge = "!f(){ \
+    pr=$(git show-merge $1 $2 | sd -fms '.+Merge pull request #(\\d+)\\b.+' '$1'); \
+    gh pr view -w ${pr}; \
+  };f"
 
 
 [color]
