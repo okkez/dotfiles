@@ -64,8 +64,9 @@ for f in $HOME/dotfiles/zsh/*.zsh; do
     source $f
 done
 
-eval "$(~/bin/rtx activate zsh)"
-alias asdf=rtx
+alias asdf=mise
+eval "$(~/bin/mise activate zsh)"
+# export MISE_ENV_FILE=.env
 
 export ASDF_GEM_DEFAULT_PACKAGES_FILE="$HOME/.asdf/plugins/ruby/default-gems"
 export RUBY_CONFIGURE_OPTS="--enable-shared --disable-install-doc"
@@ -107,9 +108,10 @@ if type kubectl > /dev/null; then
     }
 fi
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH"
 
 complete -C 'aws_completer' aws
+complete -o nospace -C $(mise which terraform) terraform
 
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
