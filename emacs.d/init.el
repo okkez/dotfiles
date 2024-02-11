@@ -1391,6 +1391,66 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :added "2021-10-31"
     :emacs>= 24.1
     :ensure t)
+  (leaf polymode
+    :doc "Extensible framework for multiple major modes"
+    :req "emacs-25"
+    :tag "processes" "multi-modes" "languages" "emacs>=25"
+    :url "https://github.com/polymode/polymode"
+    :added "2023-04-07"
+    :emacs>= 25
+    :ensure t
+    :config
+    (defcustom pm-inner/erb-regexp "<%\\|<%=\\|<%#"
+      "Regexp to start erb inner mode."
+      :type 'regexp
+      :group 'inner-mode)
+
+    (defcustom pm-inner/erb-end-regexp "%>"
+      "Regexp to end erb inner mode."
+      :type 'regexp
+      :group 'inner-mode)
+
+    (define-innermode pm-inner/yaml+erb-innermode
+      :mode 'ruby-mode
+      :head-matcher pm-inner/erb-regexp
+      :tail-matcher pm-inner/erb-end-regexp
+      :head-mode 'host
+      :tail-mode 'host)
+
+    (define-polymode poly-yaml+erb-mode
+      :hostmode 'pm-host/yaml
+      :innermodes '(pm-inner/yaml+erb-innermode))
+    (add-to-list 'auto-mode-alist '("\\.yml$" . poly-yaml+erb-mode))
+    )
+  (leaf poly-markdown
+    :doc "Polymode for markdown-mode"
+    :req "emacs-25" "polymode-0.2.2" "markdown-mode-2.3"
+    :tag "emacs" "emacs>=25"
+    :url "https://github.com/polymode/poly-markdown"
+    :added "2023-04-07"
+    :emacs>= 25
+    :ensure t
+    :after polymode markdown-mode
+    :mode "\\.md$")
+  (leaf poly-ruby
+    :doc "Provides poly-ruby-mode"
+    :req "emacs-25" "polymode-0.1.2"
+    :tag "languages" "emacs>=25"
+    :url "https://github.com/knu/poly-ruby.el"
+    :added "2023-04-07"
+    :emacs>= 25
+    :ensure t
+    :after polymode
+    :mode "\\.rb$")
+  (leaf poly-erb
+    :doc "Polymode for erb"
+    :req "emacs-25" "polymode-0.2.2"
+    :tag "emacs" "emacs>=25"
+    :url "https://github.com/polymode/poly-erb"
+    :added "2023-04-25"
+    :emacs>= 25
+    :ensure t
+    :after polymode)
   )
 
 (leaf org-modern
