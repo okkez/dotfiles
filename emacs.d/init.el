@@ -1198,8 +1198,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :url "https://github.com/purcell/emacs-hcl-mode"
     :added "2021-10-31"
     :emacs>= 24.3
-    :ensure t
-    :mode "\\.tf$")
+    :ensure t)
 
   (leaf nginx-mode
     :doc "major mode for editing nginx config files"
