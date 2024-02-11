@@ -1062,18 +1062,22 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :after nadvice
   :hook (emacs-startup-hook . editorconfig-mode))
 
-(leaf tree-sitter
-  :doc "Incremental parsing system"
-  :req "emacs-25.1" "tsc-0.16.1"
-  :tag "tree-sitter" "parsers" "tools" "languages" "emacs>=25.1"
-  :url "https://github.com/emacs-tree-sitter/elisp-tree-sitter"
-  :added "2021-12-22"
-  :emacs>= 25.1
-  :ensure t
-  :require t
-  :hook ((emacs-startup-hook . global-tree-sitter-mode)
-         (tree-sitter-after-on-hook . tree-sitter-hl-mode))
-  )
+(leaf treesit
+  :doc "tree-sitter utilities"
+  :tag "builtin" "languages" "tree-sitter" "treesit"
+  :added "2023-09-26"
+  :custom ((treesit-font-lock-level . 4)))
+
+;; (leaf treesit-auto
+;;   :doc "Automatically use tree-sitter enhanced major modes"
+;;   :req "emacs-29.0"
+;;   :tag "convenience" "fallback" "mode" "major" "automatic" "auto" "treesitter" "emacs>=29.0"
+;;   :url "https://github.com/renzmann/treesit-auto.git"
+;;   :added "2023-09-26"
+;;   :emacs>= 29.0
+;;   :ensure t
+;;   :custom ((treesit-auto-install . t))
+;;   :hook (emacs-startup-hook . global-treesit-auto-mode))
 
 (leaf atomic-chrome
   :doc "Edit Chrome text area with Emacs using Atomic Chrome"
