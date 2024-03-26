@@ -1,0 +1,52 @@
+import = ["/home/kenji/.config/alacritty/solarized.toml"]
+
+[cursor.style]
+blinking = "on"
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "UDEV Gothic NF"
+style = "Bold"
+
+[font.italic]
+family = "UDEV Gothic NF"
+style = "Italic"
+
+[font.normal]
+family = "UDEV Gothic NF"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Q"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Control|Shift"
+
+[scrolling]
+history = 10000
+
+[window]
+opacity = 1.0
+
+[window.dimensions]
+columns = 213
+lines = 47
+
+[window.padding]
+x = 2
+y = 2
+
+[window.position]
+x = 2560
+y = 0
