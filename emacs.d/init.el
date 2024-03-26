@@ -246,11 +246,24 @@
 (leaf skk
   :ensure ddskk
   :custom ((default-input-method . "japanese-skk")
-           (skk-server-host . "localhost")
-           (skk-server-port . 1178)
-           (skk-aux-large-jisyo . "/usr/share/skk/SKK-JISYO.L")
-           (skk-server-report-response . t))
+           ;(skk-server-host . "localhost")
+           ;(skk-server-port . 1178)
+           (skk-aux-large-jisyo . "/etc/alternatives/SKK-JISYO")
+           (skk-jisyo-code . 'utf-8)
+           ;(skk-server-report-response . t)
+           )
   :config
+  (defun skk-open-server-decoding-utf-8 ()
+    "辞書サーバと接続する。サーバープロセスを返す。 decoding coding-system が euc ではなく utf8 となる。"
+    (unless (skk-server-live-p)
+      (setq skkserv-process (skk-open-server-1))
+      (when (skk-server-live-p)
+        (let ((code (cdr (assoc "euc" skk-coding-system-alist))))
+          (set-process-coding-system skkserv-process 'utf-8 code))))
+    skkserv-process)
+  (setq skk-mode-hook
+        '(lambda()
+           (advice-add 'skk-open-server :override 'skk-open-server-decoding-utf-8)))
   (leaf ddskk-posframe
     :ensure t
     :global-minor-mode t))
