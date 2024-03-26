@@ -1316,6 +1316,15 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :after rust-mode markdown-mode project spinner xterm-color
     :mode "\\.rs$")
 
+  (leaf svelte-mode
+    :doc "Emacs major mode for Svelte"
+    :req "emacs-26.1"
+    :tag "languages" "wp" "emacs>=26.1"
+    :url "https://github.com/leafOfTree/svelte-mode"
+    :added "2024-02-11"
+    :emacs>= 26.1
+    :ensure t)
+
   (leaf scss-mode
     :doc "Major mode for editing SCSS files"
     :tag "mode" "css" "scss"
