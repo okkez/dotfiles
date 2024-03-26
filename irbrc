@@ -58,7 +58,7 @@ IRB.conf[:USE_AUTOCOMPLETE] = false
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 
 # ヒストリーを有効にする
-require 'irb/ext/save-history'
+require 'irb/history'
 IRB.conf[:SAVE_HISTORY] = 10000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-save-history"
 
