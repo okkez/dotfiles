@@ -624,22 +624,11 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
           ("S-TAB" . corfu-previous)
           ("<backtab>" . corfu-previous)
           ("C-n" . corfu-next)
-          ("C-p" . corfu-previous))))
-
-(leaf corfu-doc
-  :doc "Documentation popup for Corfu"
-  :req "emacs-27.1" "corfu-0.25"
-  :tag "convenience" "documentation" "popup" "corfu" "emacs>=27.1"
-  :url "https://github.com/galeo/corfu-doc"
-  :added "2022-11-13"
-  :emacs>= 27.1
-  :ensure t
-  :after corfu
-  :hook (corfu-mode-hook . corfu-doc-mode)
-  :bind ((:corfu-map
-          ("M-n" . corfu-doc-scroll-up)
-          ("M-p" . corfu-doc-scroll-down)
-          ("M-d" . corfu-doc-toggle))))
+          ("C-p" . corfu-previous)
+          ("M-n" . corfu-popupinfo-scroll-up)
+          ("M-p" . corfu-popupinfo-scroll-down)
+          ("M-d" . corfu-popupinfo-toggle)
+          )))
 
 (leaf kind-icon
   :doc "Completion kind icons"
