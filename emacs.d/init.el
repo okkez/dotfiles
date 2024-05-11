@@ -1096,19 +1096,17 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
            (atomic-chrome-url-major-mode-alist
             . '(("helpdesk\\.classmethod\\.net" . text-mode)))))
 
-(leaf lsp-ui
-  :doc "UI modules for lsp-mode"
-  :req "emacs-26.1" "dash-2.18.0" "lsp-mode-6.0" "markdown-mode-2.3"
-  :tag "tools" "languages" "emacs>=26.1"
-  :url "https://github.com/emacs-lsp/lsp-ui"
-  :added "2021-10-31"
-  :emacs>= 26.1
+(leaf eglot
   :ensure t
-  :after lsp-mode markdown-mode
-  :config (add-to-list
-           'load-path (expand-file-name "~/.emacs.d/el-get/lsp-mode/clients"))
-  :hook (lsp-mode-hook . lsp-ui-mode)
-  :custom ((lsp-completion-provider :none)))
+  :hook
+  ;; eglotに接続した時点でhover modeを有効にする
+  (eglot-connect-hook . eldoc-box-hover-mode)
+  :bind
+  (:eglot-mode-map
+   ("C-c r" . eglot-rename)
+   ;; intellijの方と挙動を揃える
+   ("C-<return>" . eglot-code-actions)
+   ("M-m" . eldoc-box-help-at-point)))
 
 (leaf magit
   :doc "A Git porcelain inside Emacs."
