@@ -1,10 +1,7 @@
 ; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
-(defconst my:default-gc-cons-threshold gc-cons-threshold)
-(setq gc-cons-threshold (* 128 1024 1024))
-(defun my:set-gc-cons-threshold ()
-  (setq gc-cons-threshold my:default-gc-cons-threshold))
-(add-hook 'emacs-startup-hook 'my:set-gc-cons-threshold)
+(defconst my-saved-file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
 
 ;; this enables this running method
 ;;   emacs -q -l ~/.debug.emacs.d/{{pkg}}/init.el
@@ -87,9 +84,7 @@
   :emacs>= 24
   :ensure t
   :chord (("jk" . view-mode))
-  :setq ((key-chord-two-keys-delay . 0.15)
-         (key-chord-safety-interval-backward . 0.1)
-         (key-chord-safety-interval-forward . 0.25))
+  :custom ((key-chord-two-keys-delay . 0.15))
   :config
   (key-chord-mode 1))
 
