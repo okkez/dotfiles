@@ -1164,7 +1164,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :added "2021-10-31"
     :ensure t
     :custom (tab-width . 4)
-    :hook ((go-mode-hook . lsp-deferred)
+    :hook ((go-mode-hook . eglot-ensure)
            (before-save-hook . gofmt-before-save)))
   (leaf haml-mode
     :doc "Major mode for editing Haml files"
@@ -1270,7 +1270,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     ((ruby-deep-indent-paren-style . nil))
     :hook ((ruby-mode-hook . flycheck-mode)
            (ruby-mode-hook . inf-ruby-minor-mode)
-           (ruby-mode-hook . lsp-deferred))
+           (ruby-mode-hook . eglot-ensure))
     :bind
     ((:ruby-mode-map
       ("RET" . ruby-reindent-then-newline-and-indent)))
@@ -1308,7 +1308,10 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :emacs>= 26.1
     :ensure t
     :after rust-mode markdown-mode project spinner xterm-color
-    :mode "\\.rs$")
+    :hook ((rustic-mode-hook . eglot-ensure))
+    :custom ((rustic-lsp-client . 'eglot))
+    :mode "\\.rs$"
+    )
 
   (leaf svelte-mode
     :doc "Emacs major mode for Svelte"
