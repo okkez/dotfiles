@@ -585,21 +585,16 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :added "2021-10-31"
   :emacs>= 24.3
   :ensure t
-  :setq ((popwin:close-popup-window-timer-interval . 0.05))
-  :defer-config
-  (push "*Backtrace*" popwin:special-display-config)
-  ;; vc
-  (push "*vc-diff*" popwin:special-display-config)
-  (push "*vc-change-log*" popwin:special-display-config)
-  ;; ag
-  (push "*ag*" popwin:special-display-config)
-  ;; po-mode
-  (push '("\\*.*\\.po\\*"
-          :regexp t
-          :position bottom
-          :height 20)
-        popwin:special-display-config)
-  )
+  :config
+  (with-eval-after-load 'popwin-mode
+    (push "*Backtrace*" popwin:special-display-config)
+    ;; po-mode
+    (push '("\\*.*\\.po\\*"
+            :regexp t
+            :position bottom
+            :height 20)
+          popwin:special-display-config))
+    )
 
 (leaf pos-tip
   :doc "Show tooltip at point"
