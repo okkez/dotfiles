@@ -469,6 +469,7 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :hook (after-init-hook . global-git-gutter+-mode))
 
 (leaf popup
+  :el-get
   :doc "Visual Popup User Interface"
   :req "emacs-24.3"
   :tag "lisp" "emacs>=24.3"
