@@ -1578,7 +1578,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
        (current-buffer))
       (current-buffer))
     (if (re-search-forward org-code-capture--store-header nil t)
-        (goto-char (point-at-bol))
+        (goto-char (pos-bol))
       (goto-char (point-max))
       (or (bolp) (insert "\n"))
       (insert "* Capture\n")
