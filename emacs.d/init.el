@@ -485,11 +485,11 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :added "2021-10-30"
   :emacs>= 24.3
   :ensure t
-  :config
-  (setq flycheck-display-errors-function
-        '(lambda (errors)
-           (-when-let (messages (-keep #'flycheck-error-message errors))
-                      (popup-tip (s-join "\n\n" messages))))))
+  :custom ((flycheck-display-errors-function
+            . (lambda (errors)
+                (-when-let (messages (-keep #'flycheck-error-message errors))
+                  (popup-tip (s-join "\n\n" messages))))))
+  )
 
 (leaf flyspell
   :doc "On-the-fly spell checker"
