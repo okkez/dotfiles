@@ -62,11 +62,13 @@
                      (imenu-list-position . 'left))))
 
 (leaf macrostep
-      :ensure t
-      :bind (("C-c e" . macrostep-expand)))
+  :el-get
+  :ensure t
+  :bind (("C-c e" . macrostep-expand)))
 
 
 (leaf exec-path-from-shell
+  :el-get
   :doc "Get environment variables such as $PATH from the shell"
   :req "emacs-24.1" "cl-lib-0.6"
   :tag "environment" "unix" "emacs>=24.1"
@@ -77,6 +79,7 @@
   :config (exec-path-from-shell-initialize))
 
 (leaf key-chord
+  :el-get
   :doc "map pairs of simultaneously pressed keys to commands"
   :req "emacs-24"
   :tag "input" "chord" "keyboard" "emacs>=24"
