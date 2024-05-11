@@ -59,6 +59,13 @@ abbrevs:
     global: true
     evaluate: true
 
+  - name: git switch
+    abbr: sw
+    snippet: switch
+    context: "^git"
+    global: true
+    evaluate: true
+
   - name: gh pr create -w
     abbr: cw
     snippet: "create -w"
@@ -68,6 +75,10 @@ abbrevs:
   - name: envchain repro
     abbr: "@repro"
     snippet: envchain repro
+
+  - name: envchain repro-users
+    abbr: "@users"
+    snippet: envchain repro-users
 
   - name: envchain okkez-test
     abbr: "@sandbox"
@@ -99,3 +110,24 @@ abbrevs:
     abbr: "@okkez"
     snippet: envchain okkez
 
+  - name: copy text
+    abbr: "@c"
+    snippet: "| copyq copy -"
+    global: true
+
+  - name: SSH to EMR
+    abbr: "@emr"
+    snippet: " ssh -l hadoop -i ~/.aws/repro-emr.pem"
+
+  - name: Start Socks Proxy to EMR
+    abbr: "@emrsocks"
+    snippet: " ssh -l hadoop -i ~/.aws/repro-emr.pem -fND 8157"
+
+  - name: SCP for EMR
+    abbr: "@emrscp"
+    snippet: " scp -i ~/.aws/repro-emr.pem hadoop@"
+
+  - name: daily utern
+    abbr: "@utern"
+    snippet: " envchain repro utern --no-log-group --no-log-stream --stream-prefix --since $(date --iso-8601=seconds) /ecs/batch-worker"
+    evaluate: true
