@@ -639,8 +639,8 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :emacs>= 27.1
   :ensure t
   :after svg-lib corfu
-  :custom ((kind-icon-default-face . corfu-default))
-  :config (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+  :custom ((kind-icon-default-face . 'corfu-default))
+  :hook (corfu-margin-formatters . kind-icon-margin-formatter)
   )
 
 (leaf cape
@@ -652,9 +652,9 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :emacs>= 27.1
   :ensure t
   :config
-  (add-to-list 'completion-at-point #'cape-file t)
-  (add-to-list 'completion-at-point #'cape-dabbrev t)
-  (add-to-list 'completion-at-point #'cape-keyword t))
+  (add-to-list 'completion-at-point-functions #'cape-file t)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev t)
+  (add-to-list 'completion-at-point-functions #'cape-keyword t))
 
 (leaf emojify
   :doc "Display emojis in Emacs"
