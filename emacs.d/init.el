@@ -1131,19 +1131,19 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :custom ((sh-basic-offset . 2)))
   (leaf scheme-mode
     :custom ((scheme-program-name . "gosh -i"))
+    :bind ((:scheme-mode-map
+            ("C-c C-s" . scheme-other-window)))
     :config
     (autoload 'scheme-mode "cmuscheme" "Major mode for Scheme." t)
     (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme process." t)
-    (defun scheme-other-window ()
-      "Run scheme on other window"
-      (interactive)
-      (switch-to-buffer-other-window
-       (get-buffer-create "*scheme*"))
-      (run-scheme scheme-program-name))
-    (add-hook 'scheme-mode-hook
-              '(lambda ()
-                 (define-key scheme-mode-map
-                   (kbd "C-c C-s") 'scheme-other-window))))
+    (with-eval-after-load 'scheme
+      (defun scheme-other-window ()
+        "Run scheme on other window"
+        (interactive)
+        (switch-to-buffer-other-window
+         (get-buffer-create "*scheme*"))
+        (run-scheme scheme-program-name))))
+
   (leaf css-mode
     :doc "Major mode to edit CSS files"
     :tag "builtin"
