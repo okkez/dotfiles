@@ -1125,10 +1125,10 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
 (leaf *programming
   :config
   (leaf sh-script
-  :doc "shell-script editing commands for Emacs"
-  :tag "builtin"
-  :added "2022-12-08"
-  :custom ((sh-basic-offset . 2)))
+    :doc "shell-script editing commands for Emacs"
+    :tag "builtin"
+    :added "2022-12-08"
+    :custom ((sh-basic-offset . 2)))
   (leaf scheme-mode
     :custom ((scheme-program-name . "gosh -i"))
     :config
