@@ -1101,7 +1101,13 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
    ("C-c r" . eglot-rename)
    ;; intellijの方と挙動を揃える
    ("C-<return>" . eglot-code-actions)
-   ("M-m" . eldoc-box-help-at-point)))
+   ("M-m" . eldoc-box-help-at-point))
+  :config
+  (add-to-list
+   'eglot-server-programs
+   '((ruby-mode ruby-ts-mode) . ,(eglot-alternatives
+                                  '(("lsp_router" "--error=/tmp/lsp_router.err" "~/dotfiles/lsp_router.conf")
+                                    ("solargraph" "socket" "--port" :autoport))))))
 
 (leaf magit
   :doc "A Git porcelain inside Emacs."
