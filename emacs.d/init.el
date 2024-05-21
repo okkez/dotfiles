@@ -1256,6 +1256,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :added "2021-11-09"
     :emacs>= 24.4
     :ensure t
+    :custom ((js-indent-level . 2))
     :after json-snatcher)
 
   (leaf ruby-mode
