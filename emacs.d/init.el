@@ -488,7 +488,7 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :ensure t
   :custom ((flycheck-display-errors-function
             . (lambda (errors)
-                (-when-let (messages (-keep #'flycheck-error-message errors))
+                (-when-let ((messages (-keep #'flycheck-error-message errors)))
                   (popup-tip (s-join "\n\n" messages))))))
   )
 
