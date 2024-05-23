@@ -113,6 +113,13 @@
                     #'(lambda ()
                         (interactive)
                         (indent-region (point-min) (point-max) nil))))
+
+  (leaf auth-source
+    :doc "authentication sources for Gnus and Emacs"
+    :tag "builtin"
+    :added "2024-05-23"
+    :custom ((auth-sources . '(default "secrets:Login"))))
+
   (leaf cus-edit
     :doc "tools for customizing Emacs and Lisp packages"
     :tag "builtin" "faces" "help"
@@ -1128,6 +1135,17 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :ensure t
   :after magit xterm-color
   :hook (magit-mode-hook . magit-delta-mode))
+
+(leaf forge
+  :doc "Access Git forges from Magit."
+  :req "emacs-26.1" "compat-29.1.4.5" "closql-20240405" "dash-2.19.1" "emacsql-20240124" "ghub-20240311" "let-alist-1.0.6" "magit-20240404" "markdown-mode-2.6" "seq-2.24" "transient-20240421" "yaml-0.5.5"
+  :tag "vc" "tools" "git" "emacs>=26.1"
+  :url "https://github.com/magit/forge"
+  :added "2024-05-23"
+  :emacs>= 26.1
+  :ensure t
+  :after compat closql emacsql ghub magit markdown-mode yaml)
+
 (leaf *programming
   :config
   (leaf sh-script
