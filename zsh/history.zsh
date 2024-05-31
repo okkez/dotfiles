@@ -20,7 +20,7 @@ add-zsh-hook preexec clh-add-history
 
 function clh-search-history() {
     BUFFER=$(curl --silent --user ${CLH_USER}:${CLH_PASS}  "https://clh.okkez.net/?pwd=${PWD}" | \
-                 jq -r 'map("https://clh.okkez.net/" + (.id | tostring) + "\t" + .command) | join("\n")' | \
+                 jaq -r 'map("https://clh.okkez.net/" + (.id | tostring) + "\t" + .command) | join("\n")' | \
                  sk --layout=reverse --query "$LBUFFER" --delimiter '\t' --with-nth 2 --nth 1 \
                     --bind 'ctrl-k:execute-silent(echo {} | cut -f1 | xargs -n 1 curl --user ${CLH_USER}:${CLH_PASS} --silent -o /dev/null -X DELETE)' | \
                  cut -f 2)
@@ -32,7 +32,7 @@ bindkey '^s' clh-search-history
 
 function clh-search-history-all() {
     BUFFER=$(curl --silent --user ${CLH_USER}:${CLH_PASS} https://clh.okkez.net/ | \
-                 jq -r 'map("https://clh.okkez.net/" + (.id | tostring) + "\t" + .command) | join("\n")' |
+                 jaq -r 'map("https://clh.okkez.net/" + (.id | tostring) + "\t" + .command) | join("\n")' |
                  sk --layout=reverse --query "$LBUFFER" --delimiter '\t' --with-nth 2 --nth 1 \
                     --bind 'ctrl-k:execute-silent(echo {} | cut -f1 | xargs -n 1 curl --user ${CLH_USER}:${CLH_PASS} --silent -o /dev/null -X DELETE)' | \
                  cut -f 2)
