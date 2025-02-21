@@ -1283,6 +1283,15 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :custom ((js-indent-level . 2))
     :after json-snatcher)
 
+  (leaf jsonnet-mode
+    :doc "Major mode for editing jsonnet files"
+    :req "emacs-24" "dash-2.17.0"
+    :tag "languages" "emacs>=24"
+    :url "https://github.com/mgyucht/jsonnet-mode"
+    :added "2024-05-28"
+    :emacs>= 24
+    :ensure t)
+
   (leaf ruby-mode
     :doc "Major mode for editing Ruby files"
     :tag "out-of-MELPA"
