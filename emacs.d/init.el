@@ -1203,12 +1203,13 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :doc "Major mode for terraform configuration file"
     :req "emacs-24.3" "hcl-mode-0.3" "dash-2.17.0"
     :tag "emacs>=24.3"
-    :url "https://github.com/syohex/emacs-terraform-mode"
+    :url "https://github.com/hcl-emacs/terraform-mode"
     :added "2023-10-03"
     :emacs>= 24.3
     :ensure t
     :after hcl-mode
-    :hook ((terraform-mode-hook . terraform-format-on-save-mode)))
+    :hook ((terraform-mode-hook . terraform-format-on-save-mode)
+           (terraform-mode-hook . eglot-ensure)))
   (leaf hcl-mode
     :doc "Major mode for Hashicorp"
     :req "emacs-24.3"
