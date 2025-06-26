@@ -210,4 +210,3 @@ setopt complete_in_word
 setopt glob_complete
 setopt hist_expand
 setopt no_beep
-setopt numeric_glob_sort
