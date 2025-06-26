@@ -40,3 +40,15 @@ function cdgem() {
     cd ${gem_dir}
   fi
 }
+
+function skim-git-worktree() {
+    local selected_worktree=$(git worktree list | sk --layout=reverse --query "$LBUFFER" \
+        --preview 'echo "Branch: $(git -C {1} branch --show-current)"; echo ""; echo "Changed files:"; git -C {1} status --porcelain | head -n 10; echo ""; echo "Recent commits:"; git -C {1} log --oneline --color=always -10' | awk '{print $1}')
+    if [ -n "$selected_worktree" ]; then
+        BUFFER="cd ${selected_worktree}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N skim-git-worktree
+bindkey '^G' skim-git-worktree
