@@ -10,8 +10,21 @@ fi
 
 REPORTTIME=10
 
+## PATH Management
+# Remove duplicates automatically
+typeset -U path
+path=(
+    $HOME/bin
+    $HOME/.local/bin
+    $HOME/.local/share/mise/shims
+    $HOME/.cargo/bin
+    $GOPATH/bin
+    $PNPM_HOME
+    "${KREW_ROOT:-$HOME/.krew}/bin"
+    $path
+)
+
 export RUBYLIB="${RUBYLIB}":/usr/local/lib/site_ruby
-export PATH=$HOME/bin:"${PATH}"
 #export PATH=~/.gems/bin:"${PATH}"
 #export PATH=~/jruby-1.0/bin:"${PATH}"
 #export GEM_HOME=~/.gems
@@ -19,7 +32,6 @@ export HREF_DATADIR=~/.href
 export EDITOR=vim
 
 export GOPATH=$HOME/go
-export PATH="$GOPATH/bin:$PATH"
 
 alias gosh="rlwrap gosh"
 alias g="goruby -rirb -e'IRB.start'"
@@ -84,8 +96,7 @@ fpath=(~/.zsh/completions $fpath)
 
 # Rust
 if [[ -f $HOME/.cargo/bin/rustup ]]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
-    rustup completions zsh > ~/.zsh/completions/_rustup
+    [[ ! -f ~/.zsh/completions/_rustup ]] && rustup completions zsh > ~/.zsh/completions/_rustup
     test ! -f ~/.zsh/completions/_cargo && \
         ln -sf $(realpath $(dirname $(rustup which cargo))/../share/zsh/site-functions/_cargo) ~/.zsh/completions/_cargo
 fi
@@ -108,11 +119,13 @@ if type kubectl > /dev/null; then
     }
 fi
 
-export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH"
-
 complete -C 'aws_completer' aws
 complete -o nospace -C $(mise which terraform) terraform
 
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
 # fi
+
+# pnpm
+export PNPM_HOME="/home/kenji/.local/share/pnpm"
+# pnpm end
