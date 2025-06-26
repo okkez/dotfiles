@@ -578,12 +578,6 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
    (highlight-indent-guides-method . 'character)
    (highlight-indent-guides-character . ?|)))
 
-(leaf dash
-  :doc "A modern list library for Emacs"
-  :url "https://github.com/magnars/dash.el"
-  :added "2021-10-31"
-  :ensure t)
-
 (leaf popwin
   :doc "Popup Window Manager"
   :req "emacs-24.3"
