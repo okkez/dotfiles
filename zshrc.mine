@@ -102,7 +102,7 @@ if [[ -f $HOME/.cargo/bin/rustup ]]; then
 fi
 
 # gh
-type gh > /dev/null && gh completion -s zsh > ~/.zsh/completions/_gh
+[[ ! -f ~/.zsh/completions/_gh ]] && type gh > /dev/null 2>&1 && gh completion -s zsh > ~/.zsh/completions/_gh
 
 ## load dir_colors
 DIRCOLORS=$HOME/src/dircolors-solarized/dircolors.ansi-universal
