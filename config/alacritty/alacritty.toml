@@ -1,4 +1,3 @@
-import = ["/home/kenji/.config/alacritty/solarized.toml"]
 
 [cursor.style]
 blinking = "on"
@@ -50,3 +49,6 @@ y = 2
 [window.position]
 x = 2560
 y = 0
+
+[general]
+import = ["/home/kenji/.config/alacritty/solarized.toml"]
