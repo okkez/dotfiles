@@ -48,13 +48,6 @@ function __zabrze::expand-or-complete() {
 }
 bindkey "^I" __zabrze::expand-or-complete
 
-function svn() {
-  if [ $1 = "diff" ] ; then
-    command env LANG=C LC_ALL=C svn diff $2 $3 $4 $5 $6
-  else
-    command svn $*
-  fi
-}
 
 function say() {
   echo "(SayText \"$*\")"| festival --pipe
