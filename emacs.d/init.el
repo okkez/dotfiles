@@ -1165,6 +1165,19 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
          (get-buffer-create "*scheme*"))
         (run-scheme scheme-program-name))))
 
+  (leaf copilot
+    :el-get (:copilot
+             :type github
+             :pkgname "copilot-emacs/copilot.el")
+    :after (s f dash editorconfig)
+    :require t
+    :bind ((:copilot-mode-map
+            ("C-z C-a" . copilot-accept-completion)
+            ("C-z C-c" . copilot-complete)
+            ("C-z C-n" . copilot-next-completion)
+            ("C-z C-p" . copilot-previous-completion)))
+    :ensure t)
+
   (leaf css-mode
     :doc "Major mode to edit CSS files"
     :tag "builtin"
