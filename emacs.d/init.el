@@ -447,14 +447,15 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :bind (("M-g r" . browse-at-remote)
          ("M-g k" . browse-at-remote-kill)))
 
-(leaf git-gutter+
-  :doc "Manage Git hunks straight from the buffer"
-  :req "git-commit-0" "dash-0"
-  :tag "vc" "git"
-  :url "https://github.com/nonsequitur/git-gutter-plus"
-  :added "2021-11-02"
+(leaf git-gutter
+  :doc "Port of Sublime Text plugin GitGutter"
+  :req "emacs-25.1"
+  :tag "emacs>=25.1"
+  :url "https://github.com/emacsorphanage/git-gutter"
+  :added "2024-09-26"
+  :emacs>= 25.1
   :ensure t
-  :after git-commit)
+  :hook (after-init-hook . global-git-gutter-mode))
 
 (leaf fringe-helper
   :doc "helper functions for fringe bitmaps"
@@ -463,17 +464,19 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :added "2021-11-02"
   :ensure t)
 
-(leaf git-gutter-fringe+
-  :doc "Fringe version of git-gutter+.el"
-  :req "git-gutter+-0.1" "fringe-helper-1.0.1"
-  :url "https://github.com/nonsequitur/git-gutter-fringe-plus"
-  :added "2021-10-30"
+(leaf git-gutter-fringe
+  :doc "Fringe version of git-gutter.el"
+  :req "git-gutter-0.88" "fringe-helper-0.1.1" "cl-lib-0.5" "emacs-24"
+  :tag "emacs>=24"
+  :url "https://github.com/emacsorphanage/git-gutter-fringe"
+  :added "2024-09-26"
+  :emacs>= 24
   :ensure t
   :custom-face
-  ((git-gutter+-added . '((t (:background "#8c9a43" :foreground "#8c9a43"))))
-   (git-gutter+-deleted . '((t (:background "#d66556" :foreground "#d66556"))))
-   (git-gutter+-modified . '((t (:background "#268bd2" :foreground "#268bd2")))))
-  :hook (after-init-hook . global-git-gutter+-mode))
+  ((git-gutter-fr:added . '((t (:background "#8c9a43" :foreground "#8c9a43"))))
+   (git-gutter-fr:deleted . '((t (:background "#d66556" :foreground "#d66556"))))
+   (git-gutter-fr:modified . '((t (:background "#268bd2" :foreground "#268bd2")))))
+  :after git-gutter fringe-helper)
 
 (leaf popup
   :el-get
