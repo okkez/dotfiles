@@ -122,3 +122,6 @@ complete -o nospace -C $(mise which terraform) terraform
 # pnpm
 export PNPM_HOME="/home/kenji/.local/share/pnpm"
 # pnpm end
+
+GUIX_PROFILE="/home/kenji/.guix-profile"
+. ${GUIX_PROFILE}/etc/profile
