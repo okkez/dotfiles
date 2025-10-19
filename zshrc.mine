@@ -23,6 +23,7 @@ path=(
     "${KREW_ROOT:-$HOME/.krew}/bin"
     $path
 )
+eval "$(sheldon source)"
 
 export RUBYLIB="${RUBYLIB}":/usr/local/lib/site_ruby
 #export PATH=~/.gems/bin:"${PATH}"
@@ -57,23 +58,12 @@ function reload() {
   source ~/.zshrc
 }
 
-## load prompt configuration
-eval "$(starship init zsh)"
-
 ## load private .zshrc configuration file
 #
 [ -f ~/dotfiles/zshrc.private ] && source ~/dotfiles/zshrc.private
 
-# load utilities
-for f in $HOME/dotfiles/zsh/*.zsh; do
-    source $f
-done
-
 alias asdf=mise
-eval "$(~/bin/mise activate zsh)"
-# export MISE_ENV_FILE=.env
 
-export ASDF_GEM_DEFAULT_PACKAGES_FILE="$HOME/.asdf/plugins/ruby/default-gems"
 export RUBY_CONFIGURE_OPTS="--enable-shared --disable-install-doc"
 
 # load virtualenv
@@ -100,8 +90,6 @@ fi
 ## load dir_colors
 DIRCOLORS=$HOME/src/dircolors-solarized/dircolors.ansi-universal
 test -s $DIRCOLORS && eval $(dircolors $DIRCOLORS)
-
-eval "$(direnv hook zsh)"
 
 # k8s
 if type kubectl > /dev/null; then
