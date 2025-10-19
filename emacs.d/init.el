@@ -574,7 +574,8 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :added "2021-10-31"
   :emacs>= 24.1
   :ensure t
-  :hook ((prog-mode-hook yaml-mode-hook) . highlight-indent-guides-mode)
+  :hook (((prog-mode-hook yaml-mode-hook) . highlight-indent-guides-mode)
+         ((prog-mode-hook yaml-ts-mode-hook) . highlight-indent-guides-mode))
   :custom
   ((highlight-indent-guides-auto-enabled . t)
    (highlight-indent-guides-responsive . t)
