@@ -1,0 +1,5 @@
+[[actions]]
+action = "file.link"
+source = "{{ user.home_dir }}/dotfiles/config/lsd"
+target = "{{ user.config_dir }}/lsd"
+

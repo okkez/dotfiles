@@ -1,0 +1,9 @@
+[[actions]]
+action = "file.link"
+source = "{{ user.home_dir }}/dotfiles/emacs.d/early-init.el"
+target = "{{ user.home_dir }}/.emacs.d/early-init.el"
+
+[[actions]]
+action = "file.link"
+source = "{{ user.home_dir }}/dotfiles/emacs.d/init.el"
+target = "{{ user.home_dir }}/.emacs.d/init.el"
