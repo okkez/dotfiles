@@ -1,0 +1,4 @@
+finder:
+  overrides: --layout=reverse --preview-window=up:10%:wrap
+
+
