@@ -1115,12 +1115,12 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
 
 (leaf magit
   :doc "A Git porcelain inside Emacs."
-  :req "emacs-25.1" "dash-2.19.1" "git-commit-3.3.0" "magit-section-3.3.0" "transient-0.3.6" "with-editor-3.0.5"
+  :req "emacs-25.1" "dash-2.19.1" "magit-section-3.3.0" "transient-0.3.6" "with-editor-3.0.5"
   :tag "vc" "tools" "git" "emacs>=25.1"
   :added "2021-10-31"
   :emacs>= 25.1
   :ensure t
-  :after git-commit magit-section with-editor)
+  :after magit-section with-editor)
 
 (leaf magit-delta
   :doc "Use Delta when displaying diffs in Magit"
