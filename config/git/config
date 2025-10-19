@@ -13,7 +13,7 @@
   graph = log --graph --decorate --oneline
   wt = worktree
   delete-merged-branch = "!f() { \
-	git switch $1;\
+    git switch $1 && git up; \
 	git branch --merged | rg -v '^\\*|^[[:space:]]+(develop|main|master)\\z' | xargs git branch -d; \
   };f"
   find-merge = "!f(){ \
@@ -39,7 +39,7 @@
   linenumber = true
 
 [core]
-  excludesfile = ~/.gitignore
+  excludesfile = ~/.config/git/ignore
   pager = delta
   attributesfile = ~/.config/git/attributes
   autocrlf = input
@@ -74,3 +74,13 @@
 [interactive]
   diffFilter = delta --color-only
 
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[github]
+	user = okkez
+[gitlab]
+	user = okkez
