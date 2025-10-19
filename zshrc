@@ -144,33 +144,6 @@ alias df="df -h"
 
 alias su="su -l"
 
-case "${OSTYPE}" in
-darwin*)
-    alias updateports="sudo port selfupdate; sudo port outdated"
-    alias portupgrade="sudo port upgrade installed"
-    ;;
-freebsd*)
-    case ${UID} in
-    0)
-        updateports()
-        {
-            if [ -f /usr/ports/.portsnap.INDEX ]
-            then
-                portsnap fetch update
-            else
-                portsnap fetch extract update
-            fi
-            (cd /usr/ports/; make index)
-
-            portversion -v -l \<
-        }
-        alias appsupgrade='pkgdb -F && BATCH=YES NO_CHECKSUM=YES portupgrade -a'
-        ;;
-    esac
-    ;;
-esac
-
-
 ## terminal configuration
 #
 unset LSCOLORS
