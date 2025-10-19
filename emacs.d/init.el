@@ -1006,9 +1006,9 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :ensure t
   :config
   (add-to-list 'completion-styles 'orderless t)
-  (defun affe-orderless-regexp-compiler (input _type ignorecase)
-    (setq input (orderless-pattern-compiler input))
-    (cons input (lambda (str) (orderless--highlight input ignorecase str)))))
+  (defun affe-orderless-regexp-compiler (input _type _ignorecase)
+    (setq input (cdr (orderless-compile input)))
+    (cons input (apply-partially #'orderless--highlight input t))))
 
 (leaf affe
   :doc "Asynchronous Fuzzy Finder for Emacs"
