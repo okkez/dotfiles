@@ -1,0 +1,9 @@
+max-history=5
+sort=-time
+
+on-button-left=invoke-default-action
+on-button-middle=dismiss-group
+on-button-right=dismiss
+
+# in msec (30sec)
+default-timeout=30000
