@@ -12,3 +12,8 @@ target = "{{ user.config_dir }}/waybar"
 action = "file.link"
 source = "{{ user.home_dir }}/dotfiles/config/mako"
 target = "{{ user.config_dir }}/mako"
+
+[[actions]]
+action = "file.link"
+source = "{{ user.home_dir }}/dotfiles/config/fuzzel"
+target = "{{ user.config_dir }}/fuzzel"
