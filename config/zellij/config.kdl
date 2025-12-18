@@ -52,6 +52,7 @@ keybinds clear-defaults=true {
         bind "r" { NewPane "Right"; }
         bind "x" { CloseFocus; }
         bind "f" { ToggleFocusFullscreen; }
+        bind "s" { ToggleActiveSyncTab; }
         bind "z" { TogglePaneFrames; }
         bind "Alt [" { FocusPreviousPane; }
         bind "Alt ]" { FocusNextPane; }
