@@ -1,29 +1,34 @@
-# `sheldon` configuration file
-# ----------------------------
-#
-# You can modify this file directly or you can use one of the following
-# `sheldon` commands which are provided to assist in editing the config file:
-#
-# - `sheldon add` to add a new plugin to the config file
-# - `sheldon edit` to open up the config file in the default editor
-# - `sheldon remove` to remove a plugin from the config file
-#
-# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
-
 shell = "zsh"
-
-[plugins]
-
-[plugins.zsh-defer]
-github = "romkatv/zsh-defer"
 
 [templates]
 defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
 
-# For example:
-#
-# [plugins.base16]
-# github = "chriskempson/base16-shell"
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+[plugins.env]
+local = "~/dotfiles/zsh/env.zsh"
+
+[plugins.options]
+local = "~/dotfiles/zsh/config/options.zsh"
+
+[plugins.keybinds]
+local = "~/dotfiles/zsh/config/keybinds.zsh"
+
+[plugins.history]
+local = "~/dotfiles/zsh/config/history.zsh"
+
+[plugins.completion]
+local = "~/dotfiles/zsh/config/completion.zsh"
+
+[plugins.aliases]
+local = "~/dotfiles/zsh/config/aliases.zsh"
+
+[plugins.functions]
+local = "~/dotfiles/zsh/config/functions.zsh"
+
+[plugins.integrations]
+local = "~/dotfiles/zsh/config/integrations.zsh"
 
 [plugins.starship]
 inline = 'eval "$(starship init zsh)"'
@@ -34,8 +39,13 @@ inline = 'eval "$(~/bin/mise activate zsh)"'
 [plugins.direnv]
 inline = 'eval "$(direnv hook zsh)"'
 
-[plugins.local-scripts]
+[plugins.git-wt]
+inline = 'eval "$(git wt --init zsh)"'
+
+[plugins.interactive-tools]
 local = "~/dotfiles/zsh"
+use = ["{peco,skim,navi,notify,ghq}.zsh"]
+apply = ["defer"]
 
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
@@ -44,5 +54,5 @@ apply = ["defer"]
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
 
-[plugins.git-wt]
-inline = 'eval "$(git wt --init zsh)"'
+[plugins.private]
+local = "~/dotfiles/zshrc.private"
