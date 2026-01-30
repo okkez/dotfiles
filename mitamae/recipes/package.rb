@@ -3,6 +3,10 @@ execute "Install rustup" do
   not_if "test -x #{ENV["HOME"]}/.cargo/bin/rustup"
 end
 
+execute "Update Rust" do
+  command "rustup update"
+end
+
 # Install cargo-binstall from pre-compiled binary to avoid long build time
 tmp_tgz = "/tmp/cargo-binstall.tgz"
 binstall_url = "https://github.com/cargo-bins/cargo-binstall/releases/latest/download/cargo-binstall-x86_64-unknown-linux-musl.tgz"
@@ -23,6 +27,8 @@ cargo_packages = %w[
   alacritty
   git-delta
   lsd
+  mise
+  sd
   skim
   sheldon
   starship
@@ -35,3 +41,6 @@ cargo_packages.each do |pkg|
     command "#{binstall_path} -y #{pkg}"
   end
 end
+
+execute "mise install ghq"
+execute "mise use -g ghq"
