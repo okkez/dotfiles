@@ -106,7 +106,7 @@ abbrevs:
 
   - name: copy text
     abbr: "@c"
-    snippet: "| copyq copy -"
+    snippet: "| wl-copy"
     global: true
 
   - name: Rust backtrace
