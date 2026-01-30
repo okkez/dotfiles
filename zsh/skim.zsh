@@ -42,10 +42,12 @@ function cdgem() {
 }
 
 function skim-git-worktree() {
-    local selected_worktree=$(git worktree list | sk --layout=reverse --query "$LBUFFER" \
-        --preview 'echo "Branch: $(git -C {1} branch --show-current)"; echo ""; echo "Changed files:"; git -C {1} status --porcelain | head -n 10; echo ""; echo "Recent commits:"; git -C {1} log --oneline --color=always -10' | awk '{print $1}')
-    if [ -n "$selected_worktree" ]; then
-        BUFFER="cd ${selected_worktree}"
+    local selected=$(git-wt 2>/dev/null | tail -n +2 | sk --layout=reverse --query "$LBUFFER" \
+        --with-nth=1,2 \
+        --preview 'path=$(echo {} | awk "{print \$1}"); branch=$(echo {} | awk "{print \$2}"); echo "Worktree: $path"; echo "Branch: $branch"; echo ""; echo "Changed files:"; git -C "$path" status --porcelain | head -n 10; echo ""; echo "Recent commits:"; git -C "$path" log --oneline --color=always -10')
+    if [ -n "$selected" ]; then
+        local branch=$(echo "$selected" | awk '{print $2}')
+        BUFFER="git wt ${branch}"
         zle accept-line
     fi
     zle clear-screen
