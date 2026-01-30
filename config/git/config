@@ -58,6 +58,9 @@
 	root = ~/go/src
 	root = ~/wc/src
 
+[wt]
+    basedir = .worktrees
+
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [init]
