@@ -52,7 +52,7 @@ inline = 'eval "$(git wt --init zsh)"'
 
 [plugins.interactive-tools]
 local = "~/dotfiles/zsh"
-use = ["{peco,skim,navi,notify,ghq}.zsh"]
+use = ["{skim,navi,notify,ghq}.zsh"]
 apply = ["defer"]
 
 [plugins.zsh-syntax-highlighting]
