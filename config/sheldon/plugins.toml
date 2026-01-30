@@ -43,3 +43,6 @@ apply = ["defer"]
 
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
+
+[plugins.git-wt]
+inline = 'eval "$(git wt --init zsh)"'
