@@ -27,7 +27,11 @@
     [ -n \"${merge}\" ] && git show $merge; \
   };f"
   view-merge = "!f(){ \
-    pr=$(git show-merge $1 $2 | sd -fms '.+Merge pull request #(\\d+)\\b.+' '$1'); \
+    pr=$(git show-merge $1 $2 | rg -o 'Merge pull request #(\\d+)' -r '$1'); \
+    if [ -z \"${pr}\" ]; then \
+      echo \"Error: No PR found. This commit may not have been merged via a pull request.\" >&2; \
+      return 1; \
+    fi; \
     gh pr view -w ${pr}; \
   };f"
 
