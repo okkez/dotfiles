@@ -59,7 +59,8 @@ function skim-git-branch() {
     local selected_branch=$(git branch --all | grep -v "HEAD" | sk --layout=reverse --ansi --query "$LBUFFER" \
         --preview 'branch_name=$(echo {} | sed "s/.* //" | sed "s#remotes/origin/##"); git log --oneline --color=always -10 $branch_name; echo "---"; default_branch=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name); git diff --color=always origin/$default_branch...$branch_name')
     if [ -n "$selected_branch" ]; then
-        BUFFER="git checkout $(echo $selected_branch | awk '{$1=$1;print}' | sed 's/.* //')"
+        local branch_name=$(echo $selected_branch | awk '{$1=$1;print}' | sed 's/.* //' | sed 's#remotes/[^/]*/##')
+        BUFFER="git checkout $branch_name"
         zle accept-line
     fi
     zle clear-screen
