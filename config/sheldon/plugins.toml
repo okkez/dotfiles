@@ -19,8 +19,7 @@ local = "~/dotfiles/zsh/config"
 use = ["keybinds.zsh"]
 
 [plugins.history]
-local = "~/dotfiles/zsh/config"
-use = ["history.zsh"]
+inline = 'eval "$(clh setup --shell zsh)"'
 
 [plugins.completion]
 local = "~/dotfiles/zsh/config"
