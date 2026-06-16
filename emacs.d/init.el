@@ -67,6 +67,10 @@
   :bind (("C-c e" . macrostep-expand)))
 
 
+(leaf autorevert
+  :doc "revert buffers when files on disk change"
+  :global-minor-mode global-auto-revert-mode)
+
 (leaf exec-path-from-shell
   :el-get
   :doc "Get environment variables such as $PATH from the shell"
