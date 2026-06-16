@@ -1156,6 +1156,59 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :ensure t
   :after compat closql emacsql ghub magit markdown-mode yaml)
 
+(leaf consult-gh
+  :doc "Consulting GitHub Client"
+  :req "emacs-29.4" "consult-2.0" "markdown-mode-2.6" "ox-gfm-1.0" "yaml-1.2.0"
+  :tag "vc" "tools" "matching" "convenience" "emacs>=29.4"
+  :url "https://github.com/armindarvish/consult-gh"
+  :added "2025-10-20"
+  :emacs>= 29.4
+  :ensure t
+  :after consult markdown-mode ox-gfm yaml
+  )
+
+(leaf consult-gh-embark
+  :doc "Embark Actions for consult-gh"
+  :req "emacs-29.4" "consult-2.0" "consult-gh-3.0" "embark-consult-1.1" "which-key-3.6.0"
+  :tag "completion" "forges" "repositories" "git" "matching" "emacs>=29.4"
+  :url "https://github.com/armindarvish/consult-gh"
+  :added "2025-10-20"
+  :emacs>= 29.4
+  :ensure t
+  :after consult consult-gh embark-consult which-key
+  :config (consult-gh-embark-mode +1))
+
+(leaf consult-gh-forge
+  :doc "Magit/Forge Integration for consult-gh"
+  :req "emacs-29.4" "consult-2.0" "forge-0.3.3" "consult-gh-3.0"
+  :tag "completion" "forges" "repositories" "git" "matching" "emacs>=29.4"
+  :url "https://github.com/armindarvish/consult-gh"
+  :added "2025-10-20"
+  :emacs>= 29.4
+  :ensure t
+  :after consult forge consult-gh
+  :config (consult-gh-forge-mode +1))
+
+(leaf consult-gh-nerd-icons
+  :doc "Nerd icons integration for consult-gh"
+  :req "emacs-29.4" "nerd-icons-0.1.0" "consult-gh-3.0"
+  :tag "completion" "repositories" "git" "matching" "emacs>=29.4"
+  :url "https://github.com/armindarvish/consult-gh"
+  :added "2025-10-20"
+  :emacs>= 29.4
+  :ensure t
+  :after nerd-icons consult-gh)
+
+(leaf consult-gh-with-pr-review
+  :doc "\"pr-review\" Integration for consult-gh"
+  :req "emacs-29.4" "consult-2.0" "pr-review-0.1" "consult-gh-3.0"
+  :tag "completion" "repositories" "git" "matching" "emacs>=29.4"
+  :url "https://github.com/armindarvish/consult-gh"
+  :added "2025-10-20"
+  :emacs>= 29.4
+  :ensure t
+  :after consult pr-review consult-gh)
+
 (leaf *programming
   :config
   (leaf sh-script
