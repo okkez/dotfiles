@@ -1098,6 +1098,9 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
 
 (leaf eglot
   :ensure t
+  :custom
+  ;; LSPサーバ接続を待たずにバッファを即表示する (*.tf を開く速度改善)
+  (eglot-sync-connect . nil)
   :hook
   ;; eglotに接続した時点でhover modeを有効にする
   (eglot-connect-hook . eldoc-box-hover-mode)
