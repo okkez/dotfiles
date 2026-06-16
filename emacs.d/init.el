@@ -310,7 +310,7 @@
           (set-fontset-font t 'symbol "Noto Color Emoji")
           (setq use-default-font-for-symbols nil)))
       (my:setup-font)
-      (add-hook 'focus-in-hook #'my:setup-font))
+      (add-function :before after-focus-change-function #'my:setup-font))
 
 ;; どこに入れていいか迷うもの
 (leaf misc
@@ -1696,6 +1696,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   ;;; end https://ladicle.com/post/20200625_123915/
   )
 
+(setq file-name-handler-alist my-saved-file-name-handler-alist)
 
 (provide 'init)
 
