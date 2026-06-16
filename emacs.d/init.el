@@ -1096,6 +1096,11 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
            (atomic-chrome-url-major-mode-alist
             . '(("helpdesk\\.classmethod\\.net" . text-mode)))))
 
+(leaf eldoc-box
+  :doc "eglot接続時のhover modeで使用する。要求しておかないとeglot-connect-hookがタイマーから発火した際に未定義関数エラーになる"
+  :ensure t
+  :require t)
+
 (leaf eglot
   :ensure t
   :custom
