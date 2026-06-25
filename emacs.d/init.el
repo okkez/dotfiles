@@ -260,24 +260,26 @@
 (leaf skk
   :ensure ddskk
   :custom ((default-input-method . "japanese-skk")
-           ;(skk-server-host . "localhost")
-           ;(skk-server-port . 1178)
+           ;; 大辞書は yaskkserv2 サーバ(localhost:1178)に一本化する
+           (skk-server-host . "localhost")
+           (skk-server-port . 1178)
+           ;; ローカル全部入りは引かない (nil にするとその検索は no-op になる)。
+           ;; サーバの L 優先の並びをそのまま活かすため。
+           (skk-large-jisyo . nil)
+           ;; サーバ不通時のフォールバック辞書
            (skk-aux-large-jisyo . "/etc/alternatives/SKK-JISYO")
+           (skk-jisyo . "~/.skk-jisyo")
            (skk-jisyo-code . 'utf-8)
-           ;(skk-server-report-response . t)
+           (skk-server-report-response . t)
            )
   :config
-  (defun skk-open-server-decoding-utf-8 ()
-    "辞書サーバと接続する。サーバープロセスを返す。 decoding coding-system が euc ではなく utf8 となる。"
-    (unless (skk-server-live-p)
-      (setq skkserv-process (skk-open-server-1))
-      (when (skk-server-live-p)
-        (let ((code (cdr (assoc "euc" skk-coding-system-alist))))
-          (set-process-coding-system skkserv-process 'utf-8 code))))
-    skkserv-process)
-  (setq skk-mode-hook
-        '(lambda()
-           (advice-add 'skk-open-server :override 'skk-open-server-decoding-utf-8)))
+  ;;; skk server
+  ;; yaskkserv2 は --midashi-utf8 で起動しているため、サーバ接続を UTF-8 にする。
+  ;; ddskk の skk-open-server は接続を EUC 固定にするので、接続直後に上書きする。
+  (advice-add 'skk-open-server :after
+              (lambda (&rest _)
+                (when (skk-server-live-p)
+                  (set-process-coding-system skkserv-process 'utf-8 'utf-8))))
   (leaf ddskk-posframe
     :ensure t
     :global-minor-mode t))
