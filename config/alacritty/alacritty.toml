@@ -6,15 +6,15 @@ blinking = "on"
 size = 14.0
 
 [font.bold]
-family = "UDEV Gothic NF"
+family = "UDEV Gothic"
 style = "Bold"
 
 [font.italic]
-family = "UDEV Gothic NF"
+family = "UDEV Gothic"
 style = "Italic"
 
 [font.normal]
-family = "UDEV Gothic NF"
+family = "UDEV Gothic"
 style = "Regular"
 
 [[keyboard.bindings]]
