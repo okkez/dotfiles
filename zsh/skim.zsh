@@ -67,3 +67,14 @@ function skim-git-branch() {
 }
 zle -N skim-git-branch
 bindkey '^[b' skim-git-branch
+
+function git-cd-root() {
+    local root=$(git rev-parse --show-toplevel 2>/dev/null)
+    if [ -n "$root" ]; then
+        BUFFER="cd ${root}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N git-cd-root
+bindkey '^^' git-cd-root
