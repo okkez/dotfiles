@@ -152,6 +152,13 @@
     :added "2021-10-31"
     :init (tool-bar-mode 0))
 
+  (leaf menu-bar
+    :doc "define a default menu bar"
+    :tag "builtin" "mouse" "frames"
+    ;; メニューバーは未使用。有効だと再描画毎に imenu-update-menubar が走り、
+    ;; eglot 接続時は terraform-ls への同期 documentSymbol で *.tf が重くなる。
+    :init (menu-bar-mode 0))
+
   (leaf simple
     :doc "basic editing commands for Emacs"
     :tag "builtin" "internal"
@@ -504,6 +511,25 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
                   (popup-tip (s-join "\n\n" messages))))))
   )
 
+;; prog-mode の重い装飾/スペルチェックは、バッファ表示をブロックしないよう
+;; 開いた直後ではなく短いアイドル後にまとめて有効化する。
+;; (*.tf など大きいファイルのオープン速度対策。flyspell/rainbow-delimiters/
+;;  highlight-indent-guides/highlight-thing を critical path から外す)
+(defun my:enable-prog-decorations ()
+  "Enable heavy prog-mode decorations after display, off the critical path."
+  (let ((buf (current-buffer)))
+    (run-with-idle-timer
+     0.3 nil
+     (lambda ()
+       (when (buffer-live-p buf)
+         (with-current-buffer buf
+           (when (derived-mode-p 'prog-mode)
+             (ignore-errors (flyspell-prog-mode))
+             (ignore-errors (rainbow-delimiters-mode 1))
+             (ignore-errors (highlight-indent-guides-mode 1))
+             (ignore-errors (highlight-thing-mode 1)))))))))
+(add-hook 'prog-mode-hook #'my:enable-prog-decorations)
+
 (leaf flyspell
   :doc "On-the-fly spell checker"
   :tag "builtin"
@@ -514,9 +540,9 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
     (flyspell-auto-correct-binding . ,(kbd "C-z C-;"))
     (ispell-program-name . "hunspell")
     (ispell-really-hunspell . t)
-    (isqpell-dictionary . "en_US"))
-  :hook ((text-mode-hook . flyspell-mode)
-         ((prog-mode-hook ruby-mode-hook) . flyspell-prog-mode))
+    (ispell-dictionary . "en_US"))
+  ;; prog/ruby の flyspell-prog-mode は my:enable-prog-decorations で遅延有効化。
+  :hook ((text-mode-hook . flyspell-mode))
   :config
   (setenv "DICTIONARY" "en_US")
   (leaf flyspell-correct
@@ -565,8 +591,8 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :tag "symbol" "thing" "highlight"
   :url "https://github.com/fgeller/highlight-thing.el"
   :added "2021-10-31"
-  :ensure t
-  :hook (prog-mode-hook . highlight-thing-mode))
+  ;; prog-mode では my:enable-prog-decorations 経由で遅延有効化。
+  :ensure t)
 
 (leaf highlight-indent-guides
   :doc "Minor mode to highlight indentation"
@@ -576,8 +602,9 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :added "2021-10-31"
   :emacs>= 24.1
   :ensure t
-  :hook (((prog-mode-hook yaml-mode-hook) . highlight-indent-guides-mode)
-         ((prog-mode-hook yaml-ts-mode-hook) . highlight-indent-guides-mode))
+  ;; prog-mode は my:enable-prog-decorations で遅延。yaml 系は即時のまま。
+  :hook ((yaml-mode-hook . highlight-indent-guides-mode)
+         (yaml-ts-mode-hook . highlight-indent-guides-mode))
   :custom
   ((highlight-indent-guides-auto-enabled . t)
    (highlight-indent-guides-responsive . t)
@@ -902,8 +929,8 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :tag "tools" "lisp" "convenience" "faces"
   :url "https://github.com/Fanael/rainbow-delimiters"
   :added "2021-11-02"
-  :ensure t
-  :hook (prog-mode-hook . rainbow-delimiters-mode))
+  ;; prog-mode では my:enable-prog-decorations 経由で遅延有効化。
+  :ensure t)
 
 (leaf marginalia
   :doc "Enrich existing commands with completion annotations"
@@ -1108,6 +1135,9 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :custom
   ;; LSPサーバ接続を待たずにバッファを即表示する (*.tf を開く速度改善)
   (eglot-sync-connect . nil)
+  ;; imenu を eglot に乗っ取らせない。LSP の documentSymbol は同期リクエストで
+  ;; 大きいファイルの再描画/imenu呼び出しを重くするため、組込みの軽い索引を使う。
+  (eglot-stay-out-of . '(imenu))
   :hook
   ;; eglotに接続した時点でhover modeを有効にする
   (eglot-connect-hook . eldoc-box-hover-mode)
