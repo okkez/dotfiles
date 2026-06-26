@@ -1,0 +1,5 @@
+(:name copilot
+       :description "An unofficial Copilot plugin for Emacs."
+       :type github
+       :pkgname "copilot-emacs/copilot.el"
+       :depends (s f dash editorconfig))

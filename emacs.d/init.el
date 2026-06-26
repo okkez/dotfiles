@@ -80,11 +80,17 @@
   ;; additional recipes path
   (add-to-list 'el-get-recipe-path
                (expand-file-name "~/dotfiles/emacs.d/recipes"))
+  ;; el-get を MELPA 経由で入れると本体に同梱される 1900 余りのレシピ集
+  ;; (例: 仮想パッケージ `package' の builtin レシピ) が recipe-path から漏れ、
+  ;; elpa 依存を解決する際に "can not find a recipe for package" になる。
+  ;; el-get 自身の git クローンに同梱されたレシピ集を末尾に追加して補う。
+  (add-to-list 'el-get-recipe-path
+               (expand-file-name "~/.emacs.d/el-get/el-get/recipes")
+               t)
   (unless
       (file-directory-p
        (expand-file-name "~/.emacs.d/el-get/el-get/recipes/elpa"))
-    (el-get-elpa-build-local-recipes))
-  (el-get 'sync))
+    (el-get-elpa-build-local-recipes)))
 
 (leaf leaf
       :config
@@ -1322,17 +1328,14 @@ rebuild (update) every registered grammar even if already installed."
         (run-scheme scheme-program-name))))
 
   (leaf copilot
-    :el-get (:copilot
-             :type github
-             :pkgname "copilot-emacs/copilot.el")
+    :el-get copilot
     :after (s f dash editorconfig)
     :require t
     :bind ((:copilot-mode-map
             ("C-z C-a" . copilot-accept-completion)
             ("C-z C-c" . copilot-complete)
             ("C-z C-n" . copilot-next-completion)
-            ("C-z C-p" . copilot-previous-completion)))
-    :ensure t)
+            ("C-z C-p" . copilot-previous-completion))))
 
   (leaf css-mode
     :doc "Major mode to edit CSS files"
