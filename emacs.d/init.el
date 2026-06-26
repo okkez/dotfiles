@@ -33,6 +33,37 @@
 
 ;; Write configurations below...
 
+;; --- Byte-compiler appeasement -------------------------------------------
+;; These variables and functions live in packages that are loaded lazily, or
+;; are defined later in this file inside `leaf' bodies (which the byte-compiler
+;; does not treat as top-level definitions). Declare them here to silence
+;; spurious "free variable" / "not known to be defined" warnings.
+(defvar skkserv-process)
+(defvar popwin:special-display-config)
+(defvar scheme-program-name)
+(defvar pm-inner/erb-regexp)
+(defvar pm-inner/erb-end-regexp)
+(declare-function skk-server-live-p "skk-server")
+(declare-function smart-jump-setup-default-registers "smart-jump")
+(declare-function project-root "project")
+(declare-function fuz-bin-load-dyn "fuz-bin")
+(declare-function orderless-compile "orderless")
+(declare-function orderless--highlight "orderless")
+(declare-function eglot-alternatives "eglot")
+(declare-function flycheck-error-message "flycheck")
+(declare-function -keep "dash")
+(declare-function s-join "s")
+(declare-function popup-tip "popup")
+(declare-function org-heading-components "org")
+(declare-function org-capture-target-buffer "org-capture")
+(declare-function org-end-of-subtree "org")
+;; Defined later in this file inside `leaf' bodies.
+(declare-function set-fontset-font:around "init")
+(declare-function my:setup-font "init")
+(declare-function affe-orderless-regexp-compiler "init")
+(declare-function insert-this-date "init")
+(declare-function ruby-indent-line@unindent-closing-paren "init")
+
 (setq-default indent-tabs-mode nil)
 ;; prefix key
 (defvar my-prefix (kbd "C-z") "*Prefix key for my favorite.")
@@ -507,9 +538,11 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :added "2021-10-30"
   :emacs>= 24.3
   :ensure t
+  :preface (eval-when-compile (require 'dash) (require 's) (require 'popup))
+  :config (require 'dash) (require 's) (require 'popup)
   :custom ((flycheck-display-errors-function
             . (lambda (errors)
-                (-when-let ((messages (-keep #'flycheck-error-message errors)))
+                (-when-let (messages (-keep #'flycheck-error-message errors))
                   (popup-tip (s-join "\n\n" messages))))))
   )
 
@@ -965,7 +998,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :custom ((consult-project-root-function
             . (lambda ()
                 (when-let (project (project-current))
-                  (car (project-roots project))))))
+                  (project-root project)))))
   :hydra (hydra-consult
           (:hint nil :exit t)
     "
@@ -1150,9 +1183,10 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
    ("C-<return>" . eglot-code-actions)
    ("M-m" . eldoc-box-help-at-point))
   :config
+  (defvar eglot-server-programs)
   (add-to-list
    'eglot-server-programs
-   '((ruby-mode ruby-ts-mode) . ,(eglot-alternatives
+   `((ruby-mode ruby-ts-mode) . ,(eglot-alternatives
                                   '(("lsp_router" "--error=/tmp/lsp_router.err" "~/dotfiles/lsp_router.conf")
                                     ("solargraph" "socket" "--port" :autoport))))))
 
@@ -1422,7 +1456,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
       (setq minor-mode-map-alist (append
                                   (delete rel minor-mode-map-alist)
                                   (list rel))))
-    (defadvice ruby-indent-line (after unindent-closing-paren activate)
+    (define-advice ruby-indent-line (:after (&rest _) unindent-closing-paren)
       (let ((column (current-column))
             indent offset)
         (save-excursion
@@ -1686,7 +1720,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
          ("C-z a" . my-open-agenda)
          ("C-z s" . my-open-standup-meeting)
          ("C-z c" . my-open-cheat-sheet)
-         ("C-z t" . insert-this-date-to-curent-position))
+         ("C-z t" . insert-this-date-to-current-position))
   :config
   (require 'ox-md)
   ;;; start https://ladicle.com/post/20200625_123915/
