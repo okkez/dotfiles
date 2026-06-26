@@ -13,8 +13,8 @@
 
 (eval-and-compile
   (customize-set-variable
-   'package-archives '(("org"   . "https://orgmode.org/elpa/")
-                       ("melpa" . "https://melpa.org/packages/")
+   ;; orgmode.org の ELPA は廃止済み。Org は GNU ELPA / 組み込みで入手する。
+   'package-archives '(("melpa" . "https://melpa.org/packages/")
                        ("gnu"   . "https://elpa.gnu.org/packages/")))
   (package-initialize)
   (use-package leaf :ensure t)
