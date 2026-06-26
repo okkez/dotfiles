@@ -43,6 +43,9 @@
 (defvar scheme-program-name)
 (defvar pm-inner/erb-regexp)
 (defvar pm-inner/erb-end-regexp)
+(defvar ruby-mode-map)
+(defvar ruby-ts-mode-map)
+(defvar treesit-language-source-alist)
 (declare-function skk-server-live-p "skk-server")
 (declare-function smart-jump-setup-default-registers "smart-jump")
 (declare-function project-root "project")
@@ -50,6 +53,7 @@
 (declare-function orderless-compile "orderless")
 (declare-function orderless--highlight "orderless")
 (declare-function eglot-alternatives "eglot")
+(declare-function treesit-ready-p "treesit")
 (declare-function flycheck-error-message "flycheck")
 (declare-function -keep "dash")
 (declare-function s-join "s")
@@ -1131,7 +1135,29 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :doc "tree-sitter utilities"
   :tag "builtin" "languages" "tree-sitter" "treesit"
   :added "2023-09-26"
-  :custom ((treesit-font-lock-level . 4)))
+  :custom ((treesit-font-lock-level . 4)
+           ;; 文法の入手元。`M-x treesit-install-language-grammar RET <lang>'
+           ;; で ~/.emacs.d/tree-sitter/ にビルド・配置できる。
+           (treesit-language-source-alist
+            . '((bash       "https://github.com/tree-sitter/tree-sitter-bash")
+                (c          "https://github.com/tree-sitter/tree-sitter-c")
+                (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
+                (go         "https://github.com/tree-sitter/tree-sitter-go")
+                (json       "https://github.com/tree-sitter/tree-sitter-json")
+                (ruby       "https://github.com/tree-sitter/tree-sitter-ruby")
+                (toml       "https://github.com/tree-sitter-grammars/tree-sitter-toml")
+                (yaml       "https://github.com/tree-sitter-grammars/tree-sitter-yaml"))))
+  :config
+  ;; 文法をまとめて導入/更新するヘルパー (手動実行用)。
+  ;; 既定は未導入のものだけ。prefix 引数 (C-u) で全文法を再ビルド=更新する。
+  (defun my:treesit-install-grammars (&optional update-all)
+    "Install grammars in `treesit-language-source-alist'.
+By default install only the missing ones.  With prefix arg UPDATE-ALL,
+rebuild (update) every registered grammar even if already installed."
+    (interactive "P")
+    (dolist (lang (mapcar #'car treesit-language-source-alist))
+      (when (or update-all (not (treesit-ready-p lang t)))
+        (treesit-install-language-grammar lang)))))
 
 ;; (leaf treesit-auto
 ;;   :doc "Automatically use tree-sitter enhanced major modes"
@@ -1435,22 +1461,30 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
 
   (leaf ruby-mode
     :doc "Major mode for editing Ruby files"
-    :tag "out-of-MELPA"
+    :tag "builtin"
     :added "2021-12-24"
-    :el-get (ruby/elisp
-             :url "https://raw.githubusercontent.com/ruby/elisp/master/ruby-mode.el")
     :mode "\\.rb$" "Rakefile$" "\\.rake$" "Gemfile" "\\.gemspec$" "\\.cap$" "Capfile$"
-    :ensure t ruby-end inf-ruby
+    :ensure ruby-end inf-ruby
+    :init
+    ;; .rb は既定で ruby-ts-mode に。文法が無い環境では安全にスキップする。
+    (when (and (require 'treesit nil t) (treesit-ready-p 'ruby t))
+      (add-to-list 'major-mode-remap-alist '(ruby-mode . ruby-ts-mode)))
     :custom
+    ;; ruby-deep-indent-paren-style は SMIE 専用 (ruby-mode 使用時のみ効く)
     ((ruby-deep-indent-paren-style . nil))
-    :hook ((ruby-mode-hook . flycheck-mode)
-           (ruby-mode-hook . inf-ruby-minor-mode)
-           (ruby-mode-hook . eglot-ensure))
-    :bind
-    ((:ruby-mode-map
-      ("RET" . ruby-reindent-then-newline-and-indent)))
+    ;; eglot/flycheck/inf-ruby は ruby-base-mode-hook に集約し
+    ;; ruby-mode / ruby-ts-mode の両方で発火させる。
+    :hook ((ruby-base-mode-hook . flycheck-mode)
+           (ruby-base-mode-hook . inf-ruby-minor-mode)
+           (ruby-base-mode-hook . eglot-ensure))
     :config
     (plist-put develock-max-column-plist 'ruby-mode 150)
+    (plist-put develock-max-column-plist 'ruby-ts-mode 150)
+    ;; RET: 現在行を再インデントしてから改行+インデント。
+    ;; ruby-base-mode-map は ruby-mode/ruby-ts-mode の親ではないため両マップに束縛する。
+    (keymap-set ruby-mode-map "RET" #'reindent-then-newline-and-indent)
+    (with-eval-after-load 'ruby-ts-mode
+      (keymap-set ruby-ts-mode-map "RET" #'reindent-then-newline-and-indent))
     ;; ruby-electric-mode 優先順位を最下位にする。[ruby-list:45511]
     (let ((rel (assq 'ruby-electric-mode minor-mode-map-alist)))
       (setq minor-mode-map-alist (append
@@ -1613,16 +1647,6 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
     :ensure t
     :after polymode markdown-mode
     :mode "\\.md$")
-  (leaf poly-ruby
-    :doc "Provides poly-ruby-mode"
-    :req "emacs-25" "polymode-0.1.2"
-    :tag "languages" "emacs>=25"
-    :url "https://github.com/knu/poly-ruby.el"
-    :added "2023-04-07"
-    :emacs>= 25
-    :ensure t
-    :after polymode
-    :mode "\\.rb$")
   (leaf poly-erb
     :doc "Polymode for erb"
     :req "emacs-25" "polymode-0.2.2"
