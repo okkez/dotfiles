@@ -1,5 +1,0 @@
-(:name hydra-posframe
-       :description "hydra-posframe"
-       :type github
-       :pkgname "Ladicle/hydra-posframe"
-       :depends (posframe hydra))

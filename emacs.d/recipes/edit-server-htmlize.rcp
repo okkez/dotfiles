@@ -1,5 +1,0 @@
-(:name edit-server-htmlize
-       :description "HTMLize gmail"
-       :type github
-       :pkgname "frobtech/edit-server-htmlize"
-       :features "edit-server-htmlize")

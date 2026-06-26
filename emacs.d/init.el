@@ -22,9 +22,8 @@
   (leaf leaf-keywords
     :ensure t
     :init
-    ;; optional packages if you want to use :hydra, :el-get, :blackout,,,
+    ;; optional packages if you want to use :hydra, :blackout,,,
     (leaf hydra :ensure t)
-    (leaf el-get :ensure t)
     (leaf blackout :ensure t)
 
     :config
@@ -74,24 +73,6 @@
 (defvar my-map (make-sparse-keymap) "*Keymap for `my-prefix' commands.")
 (define-key global-map my-prefix my-map)
 
-(leaf el-get
-  :after el-get
-  :config
-  ;; additional recipes path
-  (add-to-list 'el-get-recipe-path
-               (expand-file-name "~/dotfiles/emacs.d/recipes"))
-  ;; el-get を MELPA 経由で入れると本体に同梱される 1900 余りのレシピ集
-  ;; (例: 仮想パッケージ `package' の builtin レシピ) が recipe-path から漏れ、
-  ;; elpa 依存を解決する際に "can not find a recipe for package" になる。
-  ;; el-get 自身の git クローンに同梱されたレシピ集を末尾に追加して補う。
-  (add-to-list 'el-get-recipe-path
-               (expand-file-name "~/.emacs.d/el-get/el-get/recipes")
-               t)
-  (unless
-      (file-directory-p
-       (expand-file-name "~/.emacs.d/el-get/el-get/recipes/elpa"))
-    (el-get-elpa-build-local-recipes)))
-
 (leaf leaf
       :config
       (leaf leaf-convert :ensure t)
@@ -101,7 +82,6 @@
                      (imenu-list-position . 'left))))
 
 (leaf macrostep
-  :el-get
   :ensure t
   :bind (("C-c e" . macrostep-expand)))
 
@@ -111,7 +91,6 @@
   :global-minor-mode global-auto-revert-mode)
 
 (leaf exec-path-from-shell
-  :el-get
   :doc "Get environment variables such as $PATH from the shell"
   :req "emacs-24.1" "cl-lib-0.6"
   :tag "environment" "unix" "emacs>=24.1"
@@ -122,7 +101,6 @@
   :config (exec-path-from-shell-initialize))
 
 (leaf key-chord
-  :el-get
   :doc "map pairs of simultaneously pressed keys to commands"
   :req "emacs-24"
   :tag "input" "chord" "keyboard" "emacs>=24"
@@ -531,7 +509,6 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :after git-gutter fringe-helper)
 
 (leaf popup
-  :el-get
   :doc "Visual Popup User Interface"
   :req "emacs-24.3"
   :tag "lisp" "emacs>=24.3"
@@ -773,7 +750,7 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   (leaf hydra-posframe
     :tag "out-of-MELPA"
     :added "2021-10-31"
-    :el-get Ladicle/hydra-posframe
+    :vc (:url "https://github.com/Ladicle/hydra-posframe")
     :require t
     :after hydra
     :hook (emacs-startup-hook . hydra-posframe-mode))
@@ -1059,7 +1036,7 @@ Window: _v_sprit  _h_sprit  _o_ther  _s_wap _a_ce-window del_0_:_1_
   :ensure t flx
   :config
   (leaf fuz-bin
-    :el-get jcs-elpa/fuz-bin
+    :vc (:url "https://github.com/jcs-elpa/fuz-bin")
     :config
     (fuz-bin-load-dyn))
   (add-to-list 'completion-styles 'fussy t)
@@ -1328,7 +1305,7 @@ rebuild (update) every registered grammar even if already installed."
         (run-scheme scheme-program-name))))
 
   (leaf copilot
-    :el-get copilot
+    :ensure t
     :after (s f dash editorconfig)
     :require t
     :bind ((:copilot-mode-map
