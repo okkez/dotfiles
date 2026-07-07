@@ -844,7 +844,7 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"88\""
   :if (executable-find "cmigemo")
   :custom `((migemo-command . "cmigemo")
             (migemo-options . '("-q" "--emacs"))
-            (migemo-directory . ,(expand-file-name "/usr/share/cmigemo/utf-8/migemo-dict"))
+            (migemo-dictionary . ,(expand-file-name "/usr/share/cmigemo/utf-8/migemo-dict"))
             (migemo-user-dictionary . nil)
             (migemo-regex-dictionary . nil)
             (migemo-coding-system . 'utf-8-unix))
