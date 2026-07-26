@@ -1439,6 +1439,16 @@ rebuild (update) every registered grammar even if already installed."
     :emacs>= 24
     :ensure t)
 
+  (leaf rbs-mode
+    :doc "A major mode for RBS"
+    :req "emacs-25.3"
+    :tag "languages" "emacs>=25.3"
+    :url "https://github.com/ybiquitous/rbs-mode"
+    :added "2026-07-26"
+    :emacs>= 25.3
+    :ensure t
+    :mode "\\.rbs\\'")
+
   (leaf ruby-mode
     :doc "Major mode for editing Ruby files"
     :tag "builtin"
